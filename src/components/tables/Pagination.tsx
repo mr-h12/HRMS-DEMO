@@ -26,6 +26,6 @@ export function Pagination({ page, pageSize, total, onPageChange }: { page: numb
   )
 }
 
-export function usePaged<T>(items: T[], page: number, pageSize: number) {
+export function paginate<T>(items: T[], page: number, pageSize: number) {
   return items.slice((page - 1) * pageSize, page * pageSize)
 }

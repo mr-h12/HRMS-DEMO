@@ -17,7 +17,12 @@ export function SimpleBar({ data, x, series, unit, stacked, height = 260 }: { da
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 8, right: 4, left: unit === '$' ? 8 : -16, bottom: 0 }} barGap={2}>
             <CartesianGrid {...gridProps} />
-            <XAxis dataKey={x} {...axisProps} />
+            <XAxis
+              dataKey={x}
+              {...axisProps}
+              interval={0}
+              {...(data.length > 6 ? { angle: -35, textAnchor: 'end', height: 56, tick: { ...axisProps.tick, fontSize: 11 } } : {})}
+            />
             <YAxis {...axisProps} tickFormatter={(v) => (unit === '$' ? `$${Math.round(v / 1000)}K` : `${v}${unit ?? ''}`)} />
             <Tooltip cursor={{ fill: 'var(--muted)', opacity: 0.6 }} content={<ChartTooltip formatter={fmt(unit)} />} />
             {series.map((s, i) => (

@@ -156,8 +156,10 @@ export function getDailyAttendance(date: string): DailyAttendanceRecord[] {
       }
     }
     if (roll < 0.09) return { employeeId: e.id, date, status: 'Missing Punch', checkIn: minutesToTime(inMin), hours: 0 }
-    if (!isToday && roll < 0.15) {
+    if (roll < 0.15) {
       const out = 18 * 60 + 30 + rng.int(0, 120)
+      // Today: pre-approved overtime shift still in progress.
+      if (isToday) return { employeeId: e.id, date, status: 'Overtime', checkIn: minutesToTime(inMin), hours: 0 }
       return { employeeId: e.id, date, status: 'Overtime', checkIn: minutesToTime(inMin), checkOut: minutesToTime(out), hours: Math.round(((out - inMin) / 60 - 1) * 10) / 10 }
     }
     const out = 17 * 60 + rng.int(0, 30)
