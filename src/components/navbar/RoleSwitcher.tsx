@@ -30,11 +30,11 @@ export function RoleSwitcher() {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="inline-flex h-9 items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-2.5 text-sm transition hover:bg-primary/10 focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none"
+          className="inline-flex h-9 min-w-0 shrink-0 items-center whitespace-nowrap gap-1.5 rounded-lg border border-primary/20 bg-primary/5 px-2 text-[13px] transition sm:gap-2 sm:px-2.5 sm:text-sm hover:bg-primary/10 focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none"
           aria-label={`Viewing as ${ROLE_LABELS[role]}. Change demo role`}
         >
-          <Icon className="size-4 text-primary" />
-          <span className="hidden text-muted-foreground md:inline">Viewing as:</span>
+          <Icon className="hidden size-4 text-primary min-[400px]:block" />
+          <span className="hidden text-muted-foreground lg:inline">Viewing as:</span>
           <span className="font-semibold text-primary">{ROLE_LABELS[role]}</span>
           <ChevronDown className="size-3.5 text-primary/70" />
         </button>

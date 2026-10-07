@@ -49,7 +49,7 @@ export default function ApprovalsPage() {
     <div className="space-y-6">
       <PageHeader title="Approvals" description="Review and act on requests from your team." />
 
-      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
         <Tabs value={tab} onValueChange={(v) => setTab(v as RequestType)}>
           <TabsList>
             {TABS.map((t) => (
@@ -60,7 +60,7 @@ export default function ApprovalsPage() {
             ))}
           </TabsList>
         </Tabs>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Tabs value={statusFilter} onValueChange={(v) => setStatusFilter(v as 'Pending' | 'Decided')}>
             <TabsList>
               <TabsTrigger value="Pending">Pending</TabsTrigger>

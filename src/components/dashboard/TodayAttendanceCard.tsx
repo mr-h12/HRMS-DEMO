@@ -62,7 +62,7 @@ export function TodayAttendanceCard() {
             <MapPin className="size-3" /> {todayAttendance.location} · Shift {todayAttendance.shift}
           </CardDescription>
         </div>
-        <span className={cn('inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium', clock.clockedIn ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300' : 'bg-muted text-muted-foreground')}>
+        <span className={cn('inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium whitespace-nowrap', clock.clockedIn ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300' : 'bg-muted text-muted-foreground')}>
           <span className={cn('size-1.5 rounded-full', clock.clockedIn ? 'animate-pulse bg-emerald-500' : 'bg-slate-400')} />
           {clock.clockedIn ? 'Clocked in' : 'Clocked out'}
         </span>

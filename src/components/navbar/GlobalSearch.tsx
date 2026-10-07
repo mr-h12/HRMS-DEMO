@@ -118,12 +118,12 @@ export function GlobalSearch() {
       <DialogPrimitive.Trigger asChild>
         <button
           type="button"
-          className="group flex h-9 items-center gap-2 rounded-lg border bg-muted/50 px-3 text-sm text-muted-foreground transition hover:bg-muted max-md:size-9 max-md:justify-center max-md:border-0 max-md:bg-transparent max-md:px-0 md:w-64 xl:w-80"
+          className="group flex h-9 items-center gap-2 rounded-lg border bg-muted/50 px-3 text-sm whitespace-nowrap text-muted-foreground transition hover:bg-muted max-lg:size-9 max-lg:justify-center max-lg:border-0 max-lg:bg-transparent max-lg:px-0 lg:w-64 xl:w-80"
           aria-label="Search"
         >
           <Search className="size-4 shrink-0" />
-          <span className="hidden flex-1 text-left md:inline">Search people, requests…</span>
-          <kbd className="hidden rounded border bg-card px-1.5 py-0.5 font-sans text-[10px] font-medium md:inline">⌘K</kbd>
+          <span className="hidden flex-1 text-left lg:inline">Search people, requests…</span>
+          <kbd className="hidden rounded border bg-card px-1.5 py-0.5 font-sans text-[10px] font-medium lg:inline">⌘K</kbd>
         </button>
       </DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>

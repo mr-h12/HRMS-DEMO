@@ -1,13 +1,15 @@
-import { Bell, ChevronDown, LogOut, Settings2, User } from 'lucide-react'
+import { Bell, ChevronDown, LogOut, Moon, Settings2, Sun, User } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { UserAvatar } from '@/components/common/UserAvatar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useCurrentUser, useRole } from '@/hooks/useRole'
+import { useTheme } from '@/hooks/useTheme'
 
 export function ProfileMenu() {
   const user = useCurrentUser()
   const role = useRole()
   const navigate = useNavigate()
+  const { theme, toggleTheme } = useTheme()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -37,6 +39,9 @@ export function ProfileMenu() {
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate(`/${role}/notifications`)}>
           <Bell /> Notifications
+        </DropdownMenuItem>
+        <DropdownMenuItem className="sm:hidden" onSelect={toggleTheme}>
+          {theme === 'dark' ? <Sun /> : <Moon />} {theme === 'dark' ? 'Light mode' : 'Dark mode'}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem variant="destructive" onSelect={() => navigate('/signed-out')}>

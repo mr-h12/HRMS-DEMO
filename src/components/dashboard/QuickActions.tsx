@@ -23,7 +23,7 @@ export function QuickActions({ actions }: { actions: QuickAction[] }) {
             <a.icon className="size-5" />
           </span>
           <span className="min-w-0">
-            <span className="block truncate text-[13px] font-semibold">{a.label}</span>
+            <span className="block text-[13px] leading-tight font-semibold">{a.label}</span>
             <span className="block truncate text-[11px] text-muted-foreground">{a.description}</span>
           </span>
         </button>

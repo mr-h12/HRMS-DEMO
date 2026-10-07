@@ -21,11 +21,11 @@ export function BrandMark() {
 export function Navbar({ collapsed, onToggleCollapse, onOpenMobile }: { collapsed: boolean; onToggleCollapse: () => void; onOpenMobile: () => void }) {
   const role = useRole()
   return (
-    <header className="sticky top-0 z-40 flex h-16 items-center gap-2 border-b bg-card/85 px-3 backdrop-blur-md sm:gap-3 sm:px-4">
+    <header className="sticky top-0 z-40 flex h-16 items-center gap-1.5 border-b bg-card/85 px-2 backdrop-blur-md sm:gap-3 sm:px-4">
       <Button variant="ghost" size="icon" className="md:hidden" onClick={onOpenMobile} aria-label="Open menu">
         <Menu className="size-5" />
       </Button>
-      <Link to={`/${role}`} className="flex items-center gap-2.5 md:w-[218px]" aria-label="HRMS DEMO home">
+      <Link to={`/${role}`} className="flex shrink-0 items-center gap-2.5 whitespace-nowrap lg:w-[218px]" aria-label="HRMS DEMO home">
         <BrandMark />
         <span className="hidden text-[15px] font-bold tracking-tight sm:inline">
           HRMS <span className="text-primary">DEMO</span>
@@ -35,9 +35,11 @@ export function Navbar({ collapsed, onToggleCollapse, onOpenMobile }: { collapse
         {collapsed ? <PanelLeftOpen className="size-[18px]" /> : <PanelLeftClose className="size-[18px]" />}
       </Button>
       <RoleSwitcher />
-      <div className="ml-auto flex items-center gap-1 sm:gap-1.5">
+      <div className="ml-auto flex items-center gap-0.5 sm:gap-1.5">
         <GlobalSearch />
-        <ThemeToggle />
+        <div className="hidden sm:block">
+          <ThemeToggle />
+        </div>
         <NotificationsMenu />
         <div className="mx-1 hidden h-6 w-px bg-border sm:block" />
         <ProfileMenu />

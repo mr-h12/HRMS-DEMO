@@ -181,8 +181,7 @@ export function AddEmployeeModal({ open, onOpenChange }: { open: boolean; onOpen
                   type="email"
                   value={form.email}
                   onChange={(e) => set('email', e.target.value)}
-                  onFocus={() => !form.email && form.firstName && form.lastName && set('email', `${form.firstName}.${form.lastName}@northwind.co`.toLowerCase().replace(/\s/g, ''))}
-                  placeholder="name@northwind.co"
+                  placeholder={form.firstName && form.lastName ? `${form.firstName}.${form.lastName}@northwind.co`.toLowerCase().replace(/\s/g, '') : 'name@northwind.co'}
                 />
               </Field>
               <Field label="Phone" htmlFor="f-phone" error={errors.phone} required>
