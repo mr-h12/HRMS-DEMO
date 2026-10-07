@@ -1,7 +1,7 @@
 import type { AttendanceDay, AttendanceTrendPoint, DailyAttendanceRecord } from '@/types'
 import { toISODate } from '@/utils/format'
 import { createRng } from '@/utils/random'
-import { employees, MANAGER_ID } from './employees'
+import { employees, EMPLOYEE_ID, MANAGER_ID } from './employees'
 
 /** The demo is anchored on Wednesday, October 7, 2026. */
 export const DEMO_TODAY = '2026-10-07'
@@ -120,6 +120,9 @@ function minutesToTime(m: number) {
   return `${String(h12).padStart(2, '0')}:${String(min).padStart(2, '0')} ${suffix}`
 }
 
+/** Team members whose current leave started recently (matches their approved leave requests). */
+const LEAVE_START: Record<string, string> = { 'EMP-1085': '2026-10-01', 'EMP-1054': '2026-10-05' }
+
 const cache = new Map<string, DailyAttendanceRecord[]>()
 
 /** Deterministic attendance for every employee on a given working day. */
@@ -130,7 +133,14 @@ export function getDailyAttendance(date: string): DailyAttendanceRecord[] {
   const rng = createRng(seed)
   const isToday = date === DEMO_TODAY
   const records = employees.map<DailyAttendanceRecord>((e) => {
-    if (e.status === 'On Leave') return { employeeId: e.id, date, status: 'On Leave', hours: 0 }
+    if (e.id === EMPLOYEE_ID) {
+      const own = ahmedAttendance[date.slice(0, 7)]?.find((d) => d.date === date)
+      if (own && own.status !== 'Weekend' && own.status !== 'Holiday') {
+        rng.next()
+        return { employeeId: e.id, date, status: own.status, checkIn: own.checkIn, checkOut: own.checkOut, hours: own.hours }
+      }
+    }
+    if (e.status === 'On Leave' && date >= (LEAVE_START[e.id] ?? '0000')) return { employeeId: e.id, date, status: 'On Leave', hours: 0 }
     const roll = rng.next()
     const inMin = 8 * 60 + 40 + rng.int(0, 19)
     if (roll < 0.022) return { employeeId: e.id, date, status: 'Absent', hours: 0 }
@@ -186,16 +196,19 @@ export function lastWorkingDays(count: number, end = DEMO_TODAY): string[] {
   return result
 }
 
-/** Team attendance (Mohamed Ali's 18 reports) over the previous 7 working days. */
-export const teamAttendanceTrend: AttendanceTrendPoint[] = [
-  { day: 'Sep 28', present: 16, late: 1, absent: 0, onLeave: 1 },
-  { day: 'Sep 29', present: 15, late: 2, absent: 0, onLeave: 1 },
-  { day: 'Sep 30', present: 16, late: 0, absent: 1, onLeave: 1 },
-  { day: 'Oct 1', present: 15, late: 1, absent: 0, onLeave: 2 },
-  { day: 'Oct 4', present: 14, late: 2, absent: 0, onLeave: 2 },
-  { day: 'Oct 5', present: 15, late: 1, absent: 0, onLeave: 2 },
-  { day: 'Oct 7', present: 14, late: 2, absent: 0, onLeave: 2 },
-]
+/** Team attendance (Mohamed Ali's 18 reports) over the previous 7 working days, derived from daily records. */
+export const teamAttendanceTrend: AttendanceTrendPoint[] = lastWorkingDays(7).map((date) => {
+  const ids = new Set(employees.filter((e) => e.managerId === MANAGER_ID).map((e) => e.id))
+  const recs = getDailyAttendance(date).filter((r) => ids.has(r.employeeId))
+  const count = (...st: string[]) => recs.filter((r) => st.includes(r.status)).length
+  return {
+    day: new Date(`${date}T00:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+    present: count('Present', 'Overtime', 'Missing Punch'),
+    late: count('Late'),
+    absent: count('Absent'),
+    onLeave: count('On Leave'),
+  }
+})
 
 /** Company-wide attendance rate by month for HR dashboards & reports. */
 export const companyAttendanceByMonth = [
