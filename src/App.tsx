@@ -72,7 +72,7 @@ export default function App() {
     <ThemeProvider>
       <AppStoreProvider>
         <TooltipProvider>
-          <BrowserRouter>
+          <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
             <Routes>
               <Route path="/" element={<RootRedirect />} />
               <Route path="/signed-out" element={page(<SignedOutPage />)} />
