@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { NotificationsMenu } from '@/components/notifications/NotificationsMenu'
 import { useRole } from '@/hooks/useRole'
 import { GlobalSearch } from './GlobalSearch'
+import { LanguageToggle } from './LanguageToggle'
 import { ProfileMenu } from './ProfileMenu'
 import { RoleSwitcher } from './RoleSwitcher'
 import { ThemeToggle } from './ThemeToggle'
@@ -32,11 +33,12 @@ export function Navbar({ collapsed, onToggleCollapse, onOpenMobile }: { collapse
         </span>
       </Link>
       <Button variant="ghost" size="icon" className="hidden md:inline-flex" onClick={onToggleCollapse} aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}>
-        {collapsed ? <PanelLeftOpen className="size-[18px]" /> : <PanelLeftClose className="size-[18px]" />}
+        {collapsed ? <PanelLeftOpen className="size-[18px] rtl:-scale-x-100" /> : <PanelLeftClose className="size-[18px] rtl:-scale-x-100" />}
       </Button>
       <RoleSwitcher />
-      <div className="ml-auto flex items-center gap-0.5 sm:gap-1.5">
+      <div className="ms-auto flex items-center gap-0.5 sm:gap-1.5">
         <GlobalSearch />
+        <LanguageToggle />
         <div className="hidden sm:block">
           <ThemeToggle />
         </div>

@@ -13,13 +13,13 @@ export function Pagination({ page, pageSize, total, onPageChange }: { page: numb
       </span>
       <div className="flex items-center gap-1.5">
         <Button variant="outline" size="icon-sm" disabled={page <= 1} onClick={() => onPageChange(page - 1)} aria-label="Previous page">
-          <ChevronLeft />
+          <ChevronLeft className="rtl:-scale-x-100" />
         </Button>
         <span className="px-2 tabular">
           Page {page} of {pages}
         </span>
         <Button variant="outline" size="icon-sm" disabled={page >= pages} onClick={() => onPageChange(page + 1)} aria-label="Next page">
-          <ChevronRight />
+          <ChevronRight className="rtl:-scale-x-100" />
         </Button>
       </div>
     </div>

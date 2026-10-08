@@ -60,7 +60,7 @@ export default function HRLeavePage() {
               ))}
             </TabsList>
           </Tabs>
-          <div className="flex flex-col gap-3 sm:flex-row xl:ml-auto">
+          <div className="flex flex-col gap-3 sm:flex-row xl:ms-auto">
             <SearchInput value={query} onChange={setQuery} placeholder="Search employee…" className="sm:w-56" />
             <FilterSelect value={type} onChange={setType} options={LEAVE_TYPES} label="Leave types" />
             <FilterSelect value={dept} onChange={setDept} options={DEPARTMENT_LIST} label="Departments" />
@@ -79,7 +79,7 @@ export default function HRLeavePage() {
                 <TableHead className="hidden sm:table-cell">Days</TableHead>
                 <TableHead className="hidden lg:table-cell">Manager</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="text-end">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -96,7 +96,7 @@ export default function HRLeavePage() {
                   <TableCell>
                     <StatusBadge status={r.status} />
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="text-end">
                     <div className="flex justify-end gap-1">
                       <Tooltip content="View details">
                         <Button variant="ghost" size="icon-sm" onClick={() => setViewing(r)} aria-label="View">

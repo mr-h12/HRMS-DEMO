@@ -111,7 +111,7 @@ export function ReportView({ report, onOpenChange }: { report: ReportDefinition 
           </div>
         </DialogBody>
         <DialogFooter>
-          <span className="mr-auto hidden text-xs text-muted-foreground sm:block">Last updated {report.updated}</span>
+          <span className="me-auto hidden text-xs text-muted-foreground sm:block">Last updated {report.updated}</span>
           <Button variant="outline" onClick={() => window.print()}>
             <Printer /> Print
           </Button>
@@ -129,7 +129,7 @@ export function ReportCard({ report, onOpen }: { report: ReportDefinition; onOpe
     <button
       type="button"
       onClick={onOpen}
-      className="group flex flex-col rounded-xl border bg-card p-5 text-left shadow-[0_1px_2px_rgba(16,24,40,0.04)] transition hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none"
+      className="group flex flex-col rounded-xl border bg-card p-5 text-start shadow-[0_1px_2px_rgba(16,24,40,0.04)] transition hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none"
     >
       <div className="flex items-start justify-between">
         <span className={`flex size-11 items-center justify-center rounded-xl ${report.tone}`}>

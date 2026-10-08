@@ -72,7 +72,7 @@ export default function HRDocumentsPage() {
                 <TableHead className="hidden md:table-cell">Owner</TableHead>
                 <TableHead className="hidden lg:table-cell">Uploaded</TableHead>
                 <TableHead className="hidden sm:table-cell">Expiry</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="text-end">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -101,7 +101,7 @@ export default function HRDocumentsPage() {
                       '—'
                     )}
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="text-end">
                     <Button variant="ghost" size="icon-sm" onClick={() => setPreviewing(d)} aria-label={`View ${d.name}`}>
                       <Eye />
                     </Button>

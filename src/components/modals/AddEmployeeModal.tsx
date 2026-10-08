@@ -185,7 +185,7 @@ export function AddEmployeeModal({ open, onOpenChange }: { open: boolean; onOpen
                 />
               </Field>
               <Field label="Phone" htmlFor="f-phone" error={errors.phone} required>
-                <Input id="f-phone" value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+20 100 123 4567" />
+                <Input id="f-phone" type="tel" value={form.phone} onChange={(e) => set('phone', e.target.value)} placeholder="+20 100 123 4567" />
               </Field>
               <Field label="Date of birth" htmlFor="f-dob" error={errors.dateOfBirth} required>
                 <Input id="f-dob" type="date" value={form.dateOfBirth} max="2008-01-01" onChange={(e) => set('dateOfBirth', e.target.value)} />
@@ -247,7 +247,7 @@ export function AddEmployeeModal({ open, onOpenChange }: { open: boolean; onOpen
                 <SelectField value={form.bank} onChange={(v) => set('bank', v)} options={['Commercial International Bank (CIB)', 'National Bank of Egypt', 'QNB Al Ahli', 'Emirates NBD', 'Al Rajhi Bank'] as const} />
               </Field>
               <Field label="IBAN" htmlFor="f-iban" error={errors.iban} required className="sm:col-span-2">
-                <Input id="f-iban" value={form.iban} onChange={(e) => set('iban', e.target.value.toUpperCase())} placeholder="EG38 0019 0005 0000 0000 2631 8000 2" />
+                <Input id="f-iban" dir="ltr" value={form.iban} onChange={(e) => set('iban', e.target.value.toUpperCase())} placeholder="EG38 0019 0005 0000 0000 2631 8000 2" />
               </Field>
               <div className="flex items-center justify-between rounded-xl bg-primary/5 px-4 py-3 sm:col-span-3">
                 <span className="text-sm text-muted-foreground">Monthly gross salary</span>
@@ -309,13 +309,13 @@ export function AddEmployeeModal({ open, onOpenChange }: { open: boolean; onOpen
           <Button variant="ghost" onClick={step === 0 ? close : () => setStep((s) => s - 1)}>
             {step === 0 ? 'Cancel' : (
               <>
-                <ChevronLeft /> Back
+                <ChevronLeft className="rtl:-scale-x-100" /> Back
               </>
             )}
           </Button>
           {step < STEPS.length - 1 ? (
             <Button onClick={next}>
-              Continue <ChevronRight />
+              Continue <ChevronRight className="rtl:-scale-x-100" />
             </Button>
           ) : (
             <Button onClick={submit} disabled={saving}>

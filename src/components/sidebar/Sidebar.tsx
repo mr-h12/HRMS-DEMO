@@ -12,7 +12,7 @@ export function SidebarNav({ collapsed = false, onNavigate }: { collapsed?: bool
   const items = NAVIGATION[role]
   return (
     <nav className="flex flex-col gap-0.5" aria-label={`${ROLE_LABELS[role]} navigation`}>
-      {!collapsed && <div className="px-3 pt-1 pb-2 text-[11px] font-medium tracking-wider text-muted-foreground/80 uppercase">{ROLE_LABELS[role]} workspace</div>}
+      {!collapsed && <div className="px-3 pt-1 pb-2 text-[11px] font-medium tracking-wider text-muted-foreground/80 uppercase">{`${ROLE_LABELS[role]} workspace`}</div>}
       {items.map((item) => {
         const badge = item.badgeKey ? counts[item.badgeKey] : 0
         const link = (
@@ -31,12 +31,12 @@ export function SidebarNav({ collapsed = false, onNavigate }: { collapsed?: bool
           >
             {({ isActive }) => (
               <>
-                {isActive && !collapsed && <span className="absolute top-1.5 bottom-1.5 left-0 w-[3px] rounded-r-full bg-primary" />}
+                {isActive && !collapsed && <span className="absolute top-1.5 bottom-1.5 start-0 w-[3px] rounded-e-full bg-primary" />}
                 <item.icon className="size-[18px] shrink-0" />
                 {!collapsed && <span className="flex-1 truncate">{item.label}</span>}
                 {badge > 0 &&
                   (collapsed ? (
-                    <span className="absolute top-1 right-1.5 size-2 rounded-full bg-rose-500 ring-2 ring-sidebar" />
+                    <span className="absolute top-1 end-1.5 size-2 rounded-full bg-rose-500 ring-2 ring-sidebar" />
                   ) : (
                     <span className="rounded-full bg-primary/10 px-1.5 py-px text-[11px] font-semibold text-primary tabular">{badge}</span>
                   ))}
@@ -60,7 +60,7 @@ export function Sidebar({ collapsed }: { collapsed: boolean }) {
   return (
     <aside
       className={cn(
-        'sticky top-16 hidden h-[calc(100dvh-4rem)] shrink-0 flex-col border-r bg-sidebar transition-[width] duration-200 md:flex',
+        'sticky top-16 hidden h-[calc(100dvh-4rem)] shrink-0 flex-col border-e bg-sidebar transition-[width] duration-200 md:flex',
         collapsed ? 'w-[68px] px-2.5' : 'w-64 px-3',
       )}
     >

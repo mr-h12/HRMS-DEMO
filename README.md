@@ -16,6 +16,16 @@ Use **Viewing as: ▼** in the top navigation to switch roles. Switching changes
 
 Workflows connect across roles. For example, a leave request Ahmed submits appears in Mohamed's approvals and Mariam's leave management, and approving it notifies Ahmed.
 
+## Languages
+
+Use the **العربية / English** button in the top bar (or *Preferences → Language*) to switch the whole interface between English and Arabic. Arabic mode:
+
+- mirrors the layout right-to-left (sidebar, drawers, menus, icons, calendars)
+- translates every label, table, dialog, toast, notification and chart, plus the mock data (positions, departments, requests, documents) and people's names
+- formats dates in Arabic, uses the IBM Plex Sans Arabic font, and remembers the choice between visits
+
+Translations live in `src/i18n/` (`ar-ui.ts` for interface copy, `ar-data.ts` for mock data, `names.ts` for names).
+
 ## Tech stack
 
 - React 19 + TypeScript + Vite
@@ -24,6 +34,7 @@ Workflows connect across roles. For example, a leave request Ahmed submits appea
 - Recharts (theme-aware, colorblind-validated palette)
 - Lucide React icons, Sonner toasts
 - Light and dark mode
+- English / Arabic with full RTL layout
 
 ## Getting started
 

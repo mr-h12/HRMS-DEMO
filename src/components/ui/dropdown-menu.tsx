@@ -48,13 +48,13 @@ export function DropdownMenuRadioItem({ className, children, ...props }: React.C
   return (
     <DropdownMenuPrimitive.RadioItem
       className={cn(
-        'relative flex cursor-pointer items-center gap-2.5 rounded-lg py-2 pr-8 pl-2.5 text-sm outline-none select-none data-[highlighted]:bg-muted',
+        'relative flex cursor-pointer items-center gap-2.5 rounded-lg py-2 pe-8 ps-2.5 text-sm outline-none select-none data-[highlighted]:bg-muted',
         className,
       )}
       {...props}
     >
       {children}
-      <span className="absolute right-2.5 flex size-4 items-center justify-center">
+      <span className="absolute end-2.5 flex size-4 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
           <Check className="size-4 text-primary" />
         </DropdownMenuPrimitive.ItemIndicator>

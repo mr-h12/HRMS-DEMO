@@ -5,6 +5,7 @@ import { AppLayout } from '@/components/layout/AppLayout'
 import { PageSkeleton } from '@/components/layout/PageSkeleton'
 import { TooltipProvider } from '@/components/ui/misc'
 import { isRole } from '@/config/roles'
+import { LanguageProvider } from '@/hooks/useLanguage'
 import { ThemeProvider, useTheme } from '@/hooks/useTheme'
 import { AppStoreProvider } from '@/store/AppStore'
 
@@ -62,59 +63,63 @@ function RootRedirect() {
   return <Navigate to={`/${isRole(stored ?? undefined) ? stored : 'employee'}`} replace />
 }
 
-function ThemedToaster() {
+function ThemedToaster({ rtl }: { rtl: boolean }) {
   const { theme } = useTheme()
-  return <Toaster theme={theme} position="top-right" richColors closeButton toastOptions={{ className: 'font-sans' }} />
+  return <Toaster theme={theme} dir={rtl ? 'rtl' : 'ltr'} position={rtl ? 'top-left' : 'top-right'} richColors closeButton toastOptions={{ className: 'font-sans' }} />
 }
 
 export default function App() {
   return (
     <ThemeProvider>
       <AppStoreProvider>
-        <TooltipProvider>
-          <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-            <Routes>
-              <Route path="/" element={<RootRedirect />} />
-              <Route path="/signed-out" element={page(<SignedOutPage />)} />
-              <Route path="/employee" element={<AppLayout />}>
-                <Route index element={page(<EmployeeDashboard />)} />
-                <Route path="attendance" element={page(<AttendancePage />)} />
-                <Route path="leave" element={page(<LeavePage />)} />
-                <Route path="payslips" element={page(<PayslipsPage />)} />
-                <Route path="documents" element={page(<DocumentsPage />)} />
-                <Route path="performance" element={page(<PerformancePage />)} />
-                <Route path="requests" element={page(<RequestsPage />)} />
-                {shared}
-              </Route>
-              <Route path="/manager" element={<AppLayout />}>
-                <Route index element={page(<ManagerDashboard />)} />
-                <Route path="team" element={page(<MyTeamPage />)} />
-                <Route path="attendance" element={page(<TeamAttendancePage />)} />
-                <Route path="leave" element={page(<TeamLeavePage />)} />
-                <Route path="approvals" element={page(<ApprovalsPage />)} />
-                <Route path="performance" element={page(<TeamPerformancePage />)} />
-                <Route path="reports" element={page(<ManagerReportsPage />)} />
-                {shared}
-              </Route>
-              <Route path="/hr" element={<AppLayout />}>
-                <Route index element={page(<HRDashboard />)} />
-                <Route path="employees" element={page(<EmployeesPage />)} />
-                <Route path="attendance" element={page(<HRAttendancePage />)} />
-                <Route path="leave" element={page(<HRLeavePage />)} />
-                <Route path="payroll" element={page(<PayrollPage />)} />
-                <Route path="recruitment" element={page(<RecruitmentPage />)} />
-                <Route path="performance" element={page(<HRPerformancePage />)} />
-                <Route path="training" element={page(<TrainingPage />)} />
-                <Route path="documents" element={page(<HRDocumentsPage />)} />
-                <Route path="reports" element={page(<ReportsPage />)} />
-                <Route path="settings" element={page(<SettingsPage />)} />
-                {shared}
-              </Route>
-              <Route path="*" element={<RootRedirect />} />
-            </Routes>
-          </BrowserRouter>
-          <ThemedToaster />
-        </TooltipProvider>
+        <LanguageProvider>
+          {(lang) => (
+            <TooltipProvider key={lang}>
+              <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+                <Routes>
+                  <Route path="/" element={<RootRedirect />} />
+                  <Route path="/signed-out" element={page(<SignedOutPage />)} />
+                  <Route path="/employee" element={<AppLayout />}>
+                    <Route index element={page(<EmployeeDashboard />)} />
+                    <Route path="attendance" element={page(<AttendancePage />)} />
+                    <Route path="leave" element={page(<LeavePage />)} />
+                    <Route path="payslips" element={page(<PayslipsPage />)} />
+                    <Route path="documents" element={page(<DocumentsPage />)} />
+                    <Route path="performance" element={page(<PerformancePage />)} />
+                    <Route path="requests" element={page(<RequestsPage />)} />
+                    {shared}
+                  </Route>
+                  <Route path="/manager" element={<AppLayout />}>
+                    <Route index element={page(<ManagerDashboard />)} />
+                    <Route path="team" element={page(<MyTeamPage />)} />
+                    <Route path="attendance" element={page(<TeamAttendancePage />)} />
+                    <Route path="leave" element={page(<TeamLeavePage />)} />
+                    <Route path="approvals" element={page(<ApprovalsPage />)} />
+                    <Route path="performance" element={page(<TeamPerformancePage />)} />
+                    <Route path="reports" element={page(<ManagerReportsPage />)} />
+                    {shared}
+                  </Route>
+                  <Route path="/hr" element={<AppLayout />}>
+                    <Route index element={page(<HRDashboard />)} />
+                    <Route path="employees" element={page(<EmployeesPage />)} />
+                    <Route path="attendance" element={page(<HRAttendancePage />)} />
+                    <Route path="leave" element={page(<HRLeavePage />)} />
+                    <Route path="payroll" element={page(<PayrollPage />)} />
+                    <Route path="recruitment" element={page(<RecruitmentPage />)} />
+                    <Route path="performance" element={page(<HRPerformancePage />)} />
+                    <Route path="training" element={page(<TrainingPage />)} />
+                    <Route path="documents" element={page(<HRDocumentsPage />)} />
+                    <Route path="reports" element={page(<ReportsPage />)} />
+                    <Route path="settings" element={page(<SettingsPage />)} />
+                    {shared}
+                  </Route>
+                  <Route path="*" element={<RootRedirect />} />
+                </Routes>
+              </BrowserRouter>
+              <ThemedToaster rtl={lang === 'ar'} />
+            </TooltipProvider>
+          )}
+        </LanguageProvider>
       </AppStoreProvider>
     </ThemeProvider>
   )

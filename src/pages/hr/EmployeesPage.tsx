@@ -94,7 +94,7 @@ export default function EmployeesPage() {
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {STATUSES.map((s) => (
-          <button key={s} type="button" onClick={() => setStatus(status === s ? ALL : s)} className="text-left">
+          <button key={s} type="button" onClick={() => setStatus(status === s ? ALL : s)} className="text-start">
             <MiniStat label={s} value={employees.filter((e) => e.status === s).length} tone={s === 'Active' ? 'emerald' : s === 'On Leave' ? 'sky' : s === 'Probation' ? 'violet' : 'amber'} icon={UsersRound} />
           </button>
         ))}
@@ -111,7 +111,7 @@ export default function EmployeesPage() {
               <FilterSelect value={type} onChange={setType} options={EMPLOYMENT_TYPES} label="Types" className="sm:w-full xl:w-40" />
             </div>
             {hasFilters && (
-              <Button variant="ghost" size="sm" onClick={reset} className="xl:ml-auto">
+              <Button variant="ghost" size="sm" onClick={reset} className="xl:ms-auto">
                 Clear filters
               </Button>
             )}
@@ -133,7 +133,7 @@ export default function EmployeesPage() {
                 <TableHead className="hidden xl:table-cell">Manager</TableHead>
                 <TableHead className="hidden lg:table-cell">Joining Date</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead className="text-right">
+                <TableHead className="text-end">
                   <span className="sr-only">Actions</span>
                 </TableHead>
               </TableRow>
@@ -162,7 +162,7 @@ export default function EmployeesPage() {
                   <TableCell>
                     <StatusBadge status={e.status} />
                   </TableCell>
-                  <TableCell className="text-right" onClick={(ev) => ev.stopPropagation()}>
+                  <TableCell className="text-end" onClick={(ev) => ev.stopPropagation()}>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon-sm" aria-label={`Actions for ${e.name}`}>

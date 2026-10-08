@@ -19,7 +19,7 @@ import { NEXT_PAYROLL_DATE, payslips, payslipTotals } from '@/data/payroll'
 import { useSimulatedLoading } from '@/hooks/useSimulatedLoading'
 import { useAppStore } from '@/store/AppStore'
 import type { HRRequest, Payslip } from '@/types'
-import { formatCurrency, formatDate, greeting } from '@/utils/format'
+import { formatCurrency, formatDate, greeting, todayLabel } from '@/utils/format'
 
 export default function EmployeeDashboard() {
   const navigate = useNavigate()
@@ -35,13 +35,13 @@ export default function EmployeeDashboard() {
   const myRequests = requests.filter((r) => r.employeeId === EMPLOYEE_ID)
   const annual = ahmedLeaveBalances[0]
   const nextPay = payslipTotals(payslips[0])
-  const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
+  const today = todayLabel()
 
   return (
     <div className="space-y-6">
       <div className="relative overflow-hidden rounded-2xl border bg-gradient-to-br from-indigo-600 via-indigo-600 to-violet-600 px-6 py-6 text-white shadow-lg shadow-indigo-500/20 sm:px-8 sm:py-7">
-        <div className="pointer-events-none absolute -top-16 -right-10 size-56 rounded-full bg-white/10 blur-2xl" />
-        <div className="pointer-events-none absolute right-40 -bottom-20 size-48 rounded-full bg-violet-300/20 blur-2xl" />
+        <div className="pointer-events-none absolute -top-16 -end-10 size-56 rounded-full bg-white/10 blur-2xl" />
+        <div className="pointer-events-none absolute end-40 -bottom-20 size-48 rounded-full bg-violet-300/20 blur-2xl" />
         <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm text-indigo-100">{today}</p>

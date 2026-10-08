@@ -55,7 +55,7 @@ export function StatCard({ label, value, icon: Icon, tone = 'indigo', hint, delt
         <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
           {delta && (
             <span className={cn('inline-flex items-center gap-0.5 font-medium', delta.positive ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400')}>
-              {delta.positive ? <ArrowUpRight className="size-3.5" /> : <ArrowDownRight className="size-3.5" />}
+              {delta.positive ? <ArrowUpRight className="size-3.5 rtl:-scale-x-100" /> : <ArrowDownRight className="size-3.5 rtl:-scale-x-100" />}
               {delta.value}
             </span>
           )}

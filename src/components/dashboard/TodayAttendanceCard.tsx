@@ -85,11 +85,11 @@ export function TodayAttendanceCard() {
               <Timer className="size-3.5" /> Working hours
             </span>
             <span className="font-medium tabular">
-              {h}h {String(m).padStart(2, '0')}m <span className="text-muted-foreground">/ 7h 00m</span>
+              {`${h}h ${String(m).padStart(2, '0')}m`} <span className="text-muted-foreground">/ 7h 00m</span>
             </span>
           </div>
           <Progress value={pct} indicatorClassName="bg-gradient-to-r from-indigo-500 to-violet-500" />
-          <div className="mt-1.5 text-right text-[11px] text-muted-foreground tabular">{Math.min(100, pct)}% of today’s shift</div>
+          <div className="mt-1.5 text-end text-[11px] text-muted-foreground tabular">{Math.min(100, pct)}% of today’s shift</div>
         </div>
         <Button className="w-full" variant={clock.clockedIn ? 'outline' : 'default'} onClick={onClock}>
           {clock.clockedIn ? <LogOut /> : <LogIn />}

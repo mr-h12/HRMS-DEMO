@@ -127,11 +127,11 @@ export default function PayrollPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Employee</TableHead>
-                <TableHead className="text-right">Basic Salary</TableHead>
-                <TableHead className="hidden text-right md:table-cell">Allowances</TableHead>
-                <TableHead className="hidden text-right lg:table-cell">Overtime</TableHead>
-                <TableHead className="hidden text-right sm:table-cell">Deductions</TableHead>
-                <TableHead className="text-right">Net Salary</TableHead>
+                <TableHead className="text-end">Basic Salary</TableHead>
+                <TableHead className="hidden text-end md:table-cell">Allowances</TableHead>
+                <TableHead className="hidden text-end lg:table-cell">Overtime</TableHead>
+                <TableHead className="hidden text-end sm:table-cell">Deductions</TableHead>
+                <TableHead className="text-end">Net Salary</TableHead>
                 <TableHead>Status</TableHead>
               </TableRow>
             </TableHeader>
@@ -141,11 +141,11 @@ export default function PayrollPage() {
                   <TableCell>
                     <PersonCell name={p.employeeName} subtitle={`${p.employeeId} · ${p.department}`} />
                   </TableCell>
-                  <TableCell className="text-right tabular">{formatCurrency(p.basic)}</TableCell>
-                  <TableCell className="hidden text-right tabular md:table-cell">{formatCurrency(p.allowances)}</TableCell>
-                  <TableCell className="hidden text-right tabular lg:table-cell">{p.overtime ? formatCurrency(p.overtime) : '—'}</TableCell>
-                  <TableCell className="hidden text-right text-rose-600 tabular sm:table-cell dark:text-rose-400">−{formatCurrency(p.deductions)}</TableCell>
-                  <TableCell className="text-right font-semibold tabular">{formatCurrency(p.net)}</TableCell>
+                  <TableCell className="text-end tabular">{formatCurrency(p.basic)}</TableCell>
+                  <TableCell className="hidden text-end tabular md:table-cell">{formatCurrency(p.allowances)}</TableCell>
+                  <TableCell className="hidden text-end tabular lg:table-cell">{p.overtime ? formatCurrency(p.overtime) : '—'}</TableCell>
+                  <TableCell className="hidden text-end text-rose-600 tabular sm:table-cell dark:text-rose-400">−{formatCurrency(p.deductions)}</TableCell>
+                  <TableCell className="text-end font-semibold tabular">{formatCurrency(p.net)}</TableCell>
                   <TableCell>
                     <StatusBadge status={p.status} />
                   </TableCell>

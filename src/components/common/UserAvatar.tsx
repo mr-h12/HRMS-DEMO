@@ -19,7 +19,7 @@ export function PersonCell({ name, subtitle, size = 'md', onClick }: { name: str
   const content = (
     <>
       <UserAvatar name={name} size={size} />
-      <div className="min-w-0 text-left">
+      <div className="min-w-0 text-start">
         <div className={cn('truncate text-sm font-medium', onClick && 'group-hover:text-primary')}>{name}</div>
         {subtitle && <div className="truncate text-xs text-muted-foreground">{subtitle}</div>}
       </div>

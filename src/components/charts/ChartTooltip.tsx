@@ -1,3 +1,6 @@
+import { isArabic } from '@/i18n/lang'
+import { translate } from '@/i18n/translator'
+
 interface TooltipPayload {
   name?: string | number
   value?: number | string
@@ -34,10 +37,14 @@ export function ChartTooltip({
   )
 }
 
+/** Axis labels are translated before Recharts measures them, so tick spacing fits Arabic text. */
+const chartText = (v: string | number): string => (isArabic() && typeof v === 'string' ? (translate(v) ?? v) : String(v))
+
 export const axisProps = {
   tick: { fontSize: 12, fill: 'var(--muted-foreground)' },
   tickLine: false,
   axisLine: false,
+  tickFormatter: chartText,
 } as const
 
 export const gridProps = { stroke: 'var(--border)', strokeDasharray: '3 3', vertical: false } as const

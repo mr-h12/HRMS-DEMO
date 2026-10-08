@@ -120,7 +120,7 @@ export default function HRAttendancePage() {
                 <TableHead className="hidden sm:table-cell">Check-out</TableHead>
                 <TableHead className="hidden sm:table-cell">Hours</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead className="text-right">
+                <TableHead className="text-end">
                   <span className="sr-only">Actions</span>
                 </TableHead>
               </TableRow>
@@ -141,7 +141,7 @@ export default function HRAttendancePage() {
                     <TableCell>
                       <StatusBadge status={r.status} />
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-end">
                       {r.status === 'Missing Punch' && (
                         <Button variant="outline" size="xs" onClick={() => fixPunch(r)}>
                           Fix punch

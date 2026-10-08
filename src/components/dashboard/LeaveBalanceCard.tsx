@@ -15,7 +15,7 @@ export function LeaveBalanceCard({ onRequest }: { onRequest?: () => void }) {
         </div>
         <Button variant="ghost" size="xs" asChild>
           <Link to="/employee/leave">
-            Details <ArrowRight />
+            Details <ArrowRight className="rtl:-scale-x-100" />
           </Link>
         </Button>
       </CardHeader>

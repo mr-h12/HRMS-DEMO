@@ -107,7 +107,7 @@ export default function RecruitmentPage() {
                       {list.length === 0 && <div className="rounded-lg border border-dashed px-3 py-6 text-center text-xs text-muted-foreground">No candidates</div>}
                       {list.map((c) => (
                         <div key={c.id} className="group rounded-lg border bg-card p-3 shadow-xs transition hover:shadow-md">
-                          <button type="button" onClick={() => setViewing(c)} className="flex w-full items-start gap-2.5 text-left">
+                          <button type="button" onClick={() => setViewing(c)} className="flex w-full items-start gap-2.5 text-start">
                             <UserAvatar name={c.name} size="sm" />
                             <div className="min-w-0 flex-1">
                               <div className="truncate text-[13px] font-semibold group-hover:text-primary">{c.name}</div>
@@ -125,10 +125,10 @@ export default function RecruitmentPage() {
                           </div>
                           <div className="mt-2.5 flex gap-1.5 border-t pt-2.5">
                             <Button variant="ghost" size="xs" className="flex-1" disabled={stage === 'Applied'} onClick={() => move(c, -1)} aria-label={`Move ${c.name} back`}>
-                              <ArrowLeft />
+                              <ArrowLeft className="rtl:-scale-x-100" />
                             </Button>
                             <Button variant="soft" size="xs" className="flex-[3]" disabled={stage === 'Hired'} onClick={() => move(c, 1)}>
-                              {stage === 'Hired' ? 'Hired' : `To ${STAGES[STAGES.indexOf(stage) + 1]}`} {stage !== 'Hired' && <ArrowRight />}
+                              {stage === 'Hired' ? 'Hired' : `To ${STAGES[STAGES.indexOf(stage) + 1]}`} {stage !== 'Hired' && <ArrowRight className="rtl:-scale-x-100" />}
                             </Button>
                           </div>
                         </div>
@@ -171,7 +171,7 @@ export default function RecruitmentPage() {
                       <div className="text-2xl font-semibold tabular">{j.applicants}</div>
                       <div className="text-xs text-muted-foreground">Applicants</div>
                     </div>
-                    <div className="text-right text-xs text-muted-foreground">
+                    <div className="text-end text-xs text-muted-foreground">
                       <div>{j.salaryRange}</div>
                       <div>Hiring manager: {j.hiringManager}</div>
                     </div>
@@ -191,7 +191,7 @@ export default function RecruitmentPage() {
                       setTab('pipeline')
                     }}
                   >
-                    View pipeline <ArrowRight />
+                    View pipeline <ArrowRight className="rtl:-scale-x-100" />
                   </Button>
                 </Card>
               )
@@ -210,7 +210,7 @@ export default function RecruitmentPage() {
                   <div>
                     <DialogTitle>{viewing.name}</DialogTitle>
                     <DialogDescription>
-                      {jobTitle(viewing.jobId)} · <StatusBadge status={viewing.stage} className="ml-1 align-middle" />
+                      {jobTitle(viewing.jobId)} · <StatusBadge status={viewing.stage} className="ms-1 align-middle" />
                     </DialogDescription>
                   </div>
                 </div>
@@ -238,7 +238,7 @@ export default function RecruitmentPage() {
                   <CalendarPlus /> Schedule interview
                 </Button>
                 <Button disabled={viewing.stage === 'Hired'} onClick={() => move(viewing, 1)}>
-                  Advance <ArrowRight />
+                  Advance <ArrowRight className="rtl:-scale-x-100" />
                 </Button>
               </DialogFooter>
             </>

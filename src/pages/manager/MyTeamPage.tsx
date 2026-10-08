@@ -74,7 +74,7 @@ export default function MyTeamPage() {
             <FilterSelect value={perf} onChange={setPerf} options={BANDS} label="Performance" />
           </div>
           {hasFilters && (
-            <Button variant="ghost" size="sm" onClick={reset} className="lg:ml-auto">
+            <Button variant="ghost" size="sm" onClick={reset} className="lg:ms-auto">
               Clear filters
             </Button>
           )}

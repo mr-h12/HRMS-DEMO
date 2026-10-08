@@ -122,7 +122,7 @@ export function GlobalSearch() {
           aria-label="Search"
         >
           <Search className="size-4 shrink-0" />
-          <span className="hidden flex-1 text-left lg:inline">Search people, requests…</span>
+          <span className="hidden flex-1 text-start lg:inline">Search people, requests…</span>
           <kbd className="hidden rounded border bg-card px-1.5 py-0.5 font-sans text-[10px] font-medium lg:inline">⌘K</kbd>
         </button>
       </DialogPrimitive.Trigger>
@@ -173,7 +173,7 @@ export function GlobalSearch() {
                           type="button"
                           onMouseEnter={() => setActive(i)}
                           onClick={r.onSelect}
-                          className={cn('flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left', active === i && 'bg-muted')}
+                          className={cn('flex w-full items-center gap-3 rounded-lg px-2 py-2 text-start', active === i && 'bg-muted')}
                         >
                           {r.icon ?? (
                             <span className="flex size-8 items-center justify-center rounded-lg bg-muted">
@@ -184,7 +184,7 @@ export function GlobalSearch() {
                             <div className="truncate text-sm font-medium">{r.title}</div>
                             <div className="truncate text-xs text-muted-foreground">{r.subtitle}</div>
                           </div>
-                          {active === i && <CornerDownLeft className="size-3.5 text-muted-foreground" />}
+                          {active === i && <CornerDownLeft className="size-3.5 text-muted-foreground rtl:-scale-x-100" />}
                         </button>
                       ),
                     )}

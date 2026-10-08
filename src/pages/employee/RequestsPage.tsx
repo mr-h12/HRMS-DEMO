@@ -76,7 +76,7 @@ export default function RequestsPage() {
                 <TableHead className="hidden lg:table-cell">Approver</TableHead>
                 <TableHead className="hidden sm:table-cell">Submitted</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead className="text-right">
+                <TableHead className="text-end">
                   <span className="sr-only">Actions</span>
                 </TableHead>
               </TableRow>
@@ -103,7 +103,7 @@ export default function RequestsPage() {
                     <TableCell>
                       <StatusBadge status={r.status} />
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-end">
                       <Button variant="ghost" size="sm" onClick={() => setViewing(r)}>
                         View
                       </Button>

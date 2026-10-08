@@ -37,7 +37,7 @@ export function PayslipModal({ payslip, onOpenChange }: { payslip: Payslip | nul
                   <div className="text-xs text-muted-foreground">Tower B, Smart Village, Giza, Egypt</div>
                 </div>
               </div>
-              <div className="sm:text-right">
+              <div className="sm:text-end">
                 <div className="text-xs tracking-wide text-muted-foreground uppercase">Payslip</div>
                 <div className="font-semibold">{payslip.period}</div>
                 <StatusBadge status={payslip.status} className="mt-1" />
@@ -91,7 +91,7 @@ export function PayslipModal({ payslip, onOpenChange }: { payslip: Payslip | nul
                 <div className="text-xs font-medium text-muted-foreground">Net pay</div>
                 <div className="text-2xl font-semibold text-primary tabular">{formatCurrency(t.net, true)}</div>
               </div>
-              <div className="text-xs text-muted-foreground sm:text-right">
+              <div className="text-xs text-muted-foreground sm:text-end">
                 Year-to-date net: {formatCurrency(t.net * 10 - 312, true)}
                 <br />
                 Social insurance no. 1094-221-8873

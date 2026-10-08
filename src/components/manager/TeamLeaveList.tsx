@@ -13,7 +13,7 @@ export function TeamLeaveList({ entries, onView }: { entries: HRRequest[]; onVie
       {entries.map((r) => {
         const active = r.startDate! <= DEMO_TODAY && r.endDate! >= DEMO_TODAY
         return (
-          <button key={r.id} type="button" onClick={() => onView?.(r)} className="flex w-full items-center gap-3 rounded-xl p-2 text-left transition hover:bg-muted/50">
+          <button key={r.id} type="button" onClick={() => onView?.(r)} className="flex w-full items-center gap-3 rounded-xl p-2 text-start transition hover:bg-muted/50">
             <UserAvatar name={r.employeeName} size="sm" />
             <div className="min-w-0 flex-1">
               <div className="truncate text-[13px] font-semibold">{r.employeeName}</div>

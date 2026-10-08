@@ -19,10 +19,10 @@ export const TableRow = ({ className, ...props }: React.ComponentProps<'tr'>) =>
 )
 export const TableHead = ({ className, ...props }: React.ComponentProps<'th'>) => (
   <th
-    className={cn('h-10 px-4 text-left align-middle text-xs font-medium tracking-wide whitespace-nowrap text-muted-foreground uppercase first:pl-5 last:pr-5', className)}
+    className={cn('h-10 px-4 text-start align-middle text-xs font-medium tracking-wide whitespace-nowrap text-muted-foreground uppercase first:ps-5 last:pe-5', className)}
     {...props}
   />
 )
 export const TableCell = ({ className, ...props }: React.ComponentProps<'td'>) => (
-  <td className={cn('px-4 py-3 align-middle whitespace-nowrap first:pl-5 last:pr-5', className)} {...props} />
+  <td className={cn('px-4 py-3 align-middle whitespace-nowrap first:ps-5 last:pe-5', className)} {...props} />
 )

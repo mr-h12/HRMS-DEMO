@@ -90,7 +90,7 @@ export default function ApprovalsPage() {
                 <TableHead>Request</TableHead>
                 <TableHead className="hidden lg:table-cell">Reason</TableHead>
                 <TableHead className="hidden sm:table-cell">Submitted</TableHead>
-                <TableHead className="text-right">{statusFilter === 'Pending' ? 'Actions' : 'Status'}</TableHead>
+                <TableHead className="text-end">{statusFilter === 'Pending' ? 'Actions' : 'Status'}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -105,7 +105,7 @@ export default function ApprovalsPage() {
                   </TableCell>
                   <TableCell className="hidden max-w-72 truncate text-muted-foreground lg:table-cell">{r.reason}</TableCell>
                   <TableCell className="hidden text-muted-foreground sm:table-cell">{relativeTime(r.submittedAt)}</TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="text-end">
                     <div className="flex items-center justify-end gap-1.5">
                       <Button variant="ghost" size="sm" onClick={() => setViewing(r)}>
                         <Eye /> <span className="hidden md:inline">View</span>

@@ -13,10 +13,10 @@ export function ApprovalRow({ request: r, onDecide, onView, compact }: { request
   const Icon = REQUEST_ICONS[r.type]
   return (
     <div className={cn('flex flex-col gap-3 rounded-xl border p-3.5 transition hover:border-primary/25 hover:bg-muted/30', !compact && 'sm:flex-row sm:items-center')}>
-      <button type="button" onClick={() => onView(r)} className="flex min-w-0 flex-1 items-center gap-3 text-left">
+      <button type="button" onClick={() => onView(r)} className="flex min-w-0 flex-1 items-center gap-3 text-start">
         <div className="relative">
           <UserAvatar name={r.employeeName} />
-          <span className="absolute -right-1 -bottom-1 flex size-5 items-center justify-center rounded-full border-2 border-card bg-muted">
+          <span className="absolute -end-1 -bottom-1 flex size-5 items-center justify-center rounded-full border-2 border-card bg-muted">
             <Icon className="size-2.5 text-muted-foreground" />
           </span>
         </div>
@@ -31,7 +31,7 @@ export function ApprovalRow({ request: r, onDecide, onView, compact }: { request
         </div>
       </button>
       {r.status === 'Pending' ? (
-        <div className={cn('flex gap-2', compact ? 'pl-12' : 'sm:shrink-0')}>
+        <div className={cn('flex gap-2', compact ? 'ps-12' : 'sm:shrink-0')}>
           <Tooltip content="Reject">
             <Button variant="outline" size="sm" className={cn('flex-1 text-destructive hover:bg-destructive/10 hover:text-destructive', !compact && 'sm:flex-none')} onClick={() => onDecide(r, 'Rejected')} aria-label={`Reject ${r.employeeName}'s request`}>
               <X /> <span className={compact ? '' : 'sm:hidden lg:inline'}>Reject</span>

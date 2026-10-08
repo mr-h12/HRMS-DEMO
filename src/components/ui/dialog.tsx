@@ -35,7 +35,7 @@ export function DialogContent({
       >
         {children}
         {!hideClose && (
-          <DialogPrimitive.Close className="absolute top-4 right-4 rounded-md p-1 text-muted-foreground transition hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none">
+          <DialogPrimitive.Close className="absolute top-4 end-4 rounded-md p-1 text-muted-foreground transition hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none">
             <X className="size-4" />
             <span className="sr-only">Close</span>
           </DialogPrimitive.Close>
@@ -46,7 +46,7 @@ export function DialogContent({
 }
 
 export function DialogHeader({ className, ...props }: React.ComponentProps<'div'>) {
-  return <div className={cn('flex flex-col gap-1 border-b px-6 pt-5 pb-4 pr-12', className)} {...props} />
+  return <div className={cn('flex flex-col gap-1 border-b px-6 pt-5 pb-4 pe-12', className)} {...props} />
 }
 
 export function DialogBody({ className, ...props }: React.ComponentProps<'div'>) {

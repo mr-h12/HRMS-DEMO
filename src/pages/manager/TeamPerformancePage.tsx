@@ -41,8 +41,8 @@ export default function TeamPerformancePage() {
             <p className="text-[13px] font-medium text-muted-foreground">{k.name}</p>
             <p className="mt-1.5 text-2xl font-semibold tracking-tight tabular">{k.value}</p>
             <p className={cn('mt-2 inline-flex items-center gap-0.5 text-xs font-medium', k.positive ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400')}>
-              {k.positive ? <ArrowUpRight className="size-3.5" /> : <ArrowDownRight className="size-3.5" />}
-              {k.change} <span className="ml-1 font-normal text-muted-foreground">vs last quarter</span>
+              {k.positive ? <ArrowUpRight className="size-3.5 rtl:-scale-x-100" /> : <ArrowDownRight className="size-3.5 rtl:-scale-x-100" />}
+              {k.change} <span className="ms-1 font-normal text-muted-foreground">vs last quarter</span>
             </p>
           </Card>
         ))}
@@ -103,7 +103,7 @@ export default function TeamPerformancePage() {
               <TableHead className="hidden md:table-cell">Goals</TableHead>
               <TableHead className="hidden lg:table-cell">Productivity</TableHead>
               <TableHead className="hidden sm:table-cell">Review</TableHead>
-              <TableHead className="text-right">Action</TableHead>
+              <TableHead className="text-end">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -137,7 +137,7 @@ export default function TeamPerformancePage() {
                   <TableCell className="hidden sm:table-cell">
                     <StatusBadge status={r.reviewStatus} />
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="text-end">
                     {r.reviewStatus === 'Completed' ? (
                       <Button variant="ghost" size="sm" onClick={() => openEmployee(e.id)}>
                         View

@@ -42,7 +42,7 @@ export default function TeamLeavePage() {
         actions={
           <Button asChild>
             <Link to="/manager/approvals">
-              Pending leave requests <ArrowRight />
+              Pending leave requests <ArrowRight className="rtl:-scale-x-100" />
             </Link>
           </Button>
         }
@@ -73,7 +73,7 @@ export default function TeamLeavePage() {
                         <UserAvatar key={r.id} name={r.employeeName} size="xs" ring className="hidden size-5 text-[8px] sm:inline-flex" />
                       ))}
                       <span className="text-[10px] font-medium text-muted-foreground sm:hidden">{list.length}</span>
-                      {list.length > 3 && <span className="hidden pl-2 text-[10px] text-muted-foreground sm:inline">+{list.length - 3}</span>}
+                      {list.length > 3 && <span className="hidden ps-2 text-[10px] text-muted-foreground sm:inline">+{list.length - 3}</span>}
                     </div>
                   ),
                 }

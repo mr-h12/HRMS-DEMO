@@ -55,7 +55,7 @@ export default function DocumentsPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <SearchInput value={query} onChange={setQuery} placeholder="Search documents…" />
         <FilterSelect value={category} onChange={setCategory} options={categories} label="Categories" />
-        <div className="flex rounded-lg border bg-card p-0.5 sm:ml-auto">
+        <div className="flex rounded-lg border bg-card p-0.5 sm:ms-auto">
           {(['grid', 'list'] as const).map((v) => (
             <button
               key={v}
@@ -117,7 +117,7 @@ export default function DocumentsPage() {
                 <TableHead className="hidden md:table-cell">Category</TableHead>
                 <TableHead className="hidden md:table-cell">Uploaded</TableHead>
                 <TableHead className="hidden lg:table-cell">Expiry</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="text-end">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -137,7 +137,7 @@ export default function DocumentsPage() {
                   <TableCell className="hidden md:table-cell">{d.category}</TableCell>
                   <TableCell className="hidden text-muted-foreground md:table-cell">{formatDate(d.uploadedAt)}</TableCell>
                   <TableCell className="hidden lg:table-cell">{d.expiresAt ? <span className="flex items-center gap-2">{formatDate(d.expiresAt)} {d.status && <StatusBadge status={d.status} />}</span> : '—'}</TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="text-end">
                     <Button variant="ghost" size="icon-sm" onClick={() => setPreviewing(d)} aria-label={`View ${d.name}`}>
                       <Eye />
                     </Button>

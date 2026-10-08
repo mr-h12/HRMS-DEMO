@@ -24,7 +24,7 @@ export function NotificationsMenu() {
         <Button variant="ghost" size="icon" className="relative" aria-label={`Notifications (${unread} unread)`}>
           <Bell className="size-[18px]" />
           {unread > 0 && (
-            <span className="absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-semibold text-white ring-2 ring-card">
+            <span className="absolute top-1 end-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-semibold text-white ring-2 ring-card">
               {unread}
             </span>
           )}
@@ -53,7 +53,7 @@ export function NotificationsMenu() {
                   if (n.link) navigate(n.link)
                   setOpen(false)
                 }}
-                className={cn('flex w-full gap-3 border-b px-4 py-3 text-left transition last:border-0 hover:bg-muted/60', !n.read && 'bg-primary/[0.03]')}
+                className={cn('flex w-full gap-3 border-b px-4 py-3 text-start transition last:border-0 hover:bg-muted/60', !n.read && 'bg-primary/[0.03]')}
               >
                 <NotificationIcon kind={n.kind} />
                 <div className="min-w-0 flex-1">

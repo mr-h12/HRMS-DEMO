@@ -20,7 +20,7 @@ import { useRequestActions } from '@/hooks/useRequestActions'
 import { useSimulatedLoading } from '@/hooks/useSimulatedLoading'
 import { useAppStore } from '@/store/AppStore'
 import type { HRRequest } from '@/types'
-import { greeting } from '@/utils/format'
+import { greeting, todayLabel } from '@/utils/format'
 
 /** Highlight the headline examples (Ahmed's leave, Sara's overtime, Omar's expense) first. */
 const FEATURED = ['REQ-2041', 'REQ-2045', 'REQ-2044']
@@ -34,7 +34,7 @@ export default function ManagerDashboard() {
   const data = useTeamData()
   const [viewing, setViewing] = useState<HRRequest | null>(null)
   const avgRating = (data.team.reduce((s, e) => s + e.rating, 0) / data.team.length).toFixed(1)
-  const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
+  const today = todayLabel()
 
   return (
     <div className="space-y-6">
@@ -74,7 +74,7 @@ export default function ManagerDashboard() {
             </div>
             <Button variant="ghost" size="xs" asChild>
               <Link to="/manager/attendance">
-                Details <ArrowRight />
+                Details <ArrowRight className="rtl:-scale-x-100" />
               </Link>
             </Button>
           </CardHeader>
@@ -91,7 +91,7 @@ export default function ManagerDashboard() {
             </div>
             <Button variant="ghost" size="xs" asChild>
               <Link to="/manager/approvals">
-                View all <ArrowRight />
+                View all <ArrowRight className="rtl:-scale-x-100" />
               </Link>
             </Button>
           </CardHeader>
@@ -113,7 +113,7 @@ export default function ManagerDashboard() {
           </div>
           <Button variant="ghost" size="xs" asChild>
             <Link to="/manager/team">
-              Manage team <ArrowRight />
+              Manage team <ArrowRight className="rtl:-scale-x-100" />
             </Link>
           </Button>
         </CardHeader>
@@ -171,7 +171,7 @@ export default function ManagerDashboard() {
             </div>
             <Button variant="ghost" size="xs" asChild>
               <Link to="/manager/performance">
-                Details <ArrowRight />
+                Details <ArrowRight className="rtl:-scale-x-100" />
               </Link>
             </Button>
           </CardHeader>
@@ -187,7 +187,7 @@ export default function ManagerDashboard() {
             </div>
             <Button variant="ghost" size="xs" asChild>
               <Link to="/manager/leave">
-                Calendar <ArrowRight />
+                Calendar <ArrowRight className="rtl:-scale-x-100" />
               </Link>
             </Button>
           </CardHeader>

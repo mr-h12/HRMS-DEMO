@@ -56,7 +56,7 @@ export default function PerformancePage() {
 
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="relative overflow-hidden p-6">
-          <div className="absolute -top-10 -right-10 size-36 rounded-full bg-amber-400/10" />
+          <div className="absolute -top-10 -end-10 size-36 rounded-full bg-amber-400/10" />
           <div className="flex items-center gap-2 text-[13px] font-medium text-muted-foreground">
             <Trophy className="size-4 text-amber-500" /> Current rating
           </div>
@@ -73,7 +73,7 @@ export default function PerformancePage() {
             <div>
               <div className="text-xs text-muted-foreground">Previous cycle</div>
               <div className="flex items-center gap-1 font-semibold">
-                {ahmedPerformance.previousRating} <ArrowUpRight className="size-3.5 text-emerald-500" />
+                {ahmedPerformance.previousRating} <ArrowUpRight className="size-3.5 text-emerald-500 rtl:-scale-x-100" />
               </div>
             </div>
             <div>
@@ -170,7 +170,7 @@ export default function PerformancePage() {
                     {k.unit && ` ${k.unit}`}
                   </TableCell>
                   <TableCell className="hidden sm:table-cell">
-                    {k.trend === 'up' ? <ArrowUpRight className="size-4 text-emerald-500" /> : k.trend === 'down' ? <ArrowDownRight className="size-4 text-rose-500" /> : <ArrowRight className="size-4 text-muted-foreground" />}
+                    {k.trend === 'up' ? <ArrowUpRight className="size-4 text-emerald-500 rtl:-scale-x-100" /> : k.trend === 'down' ? <ArrowDownRight className="size-4 text-rose-500 rtl:-scale-x-100" /> : <ArrowRight className="size-4 text-muted-foreground rtl:-scale-x-100" />}
                   </TableCell>
                   <TableCell>
                     <StatusBadge status={met ? 'On Track' : 'At Risk'} />
@@ -203,7 +203,7 @@ export default function PerformancePage() {
                 </div>
                 <div className="mt-3 flex items-center gap-3">
                   <Progress value={g.progress} className="h-1.5 flex-1" indicatorClassName={g.status === 'At Risk' ? 'bg-amber-500' : g.status === 'Completed' ? 'bg-emerald-500' : undefined} />
-                  <span className="w-10 text-right text-xs font-semibold tabular">{g.progress}%</span>
+                  <span className="w-10 text-end text-xs font-semibold tabular">{g.progress}%</span>
                 </div>
                 <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
                   <span>
@@ -230,8 +230,8 @@ export default function PerformancePage() {
           </CardHeader>
           <CardContent className="space-y-5">
             {ahmedFeedback.map((f) => (
-              <div key={f.id} className="relative pl-12">
-                <UserAvatar name={f.author} size="md" className="absolute top-0 left-0" />
+              <div key={f.id} className="relative ps-12">
+                <UserAvatar name={f.author} size="md" className="absolute top-0 start-0" />
                 <div className="flex flex-wrap items-center gap-x-2">
                   <span className="text-sm font-semibold">{f.author}</span>
                   <span className="text-xs text-muted-foreground">{f.authorTitle}</span>
@@ -239,7 +239,7 @@ export default function PerformancePage() {
                 <div className="mt-0.5 flex items-center gap-2 text-xs text-muted-foreground">
                   {f.cycle} · {formatDate(f.date)}
                 </div>
-                <p className="mt-2 rounded-xl rounded-tl-sm bg-muted/60 px-3.5 py-3 text-[13px] leading-relaxed">{f.comment}</p>
+                <p className="mt-2 rounded-xl rounded-ss-sm bg-muted/60 px-3.5 py-3 text-[13px] leading-relaxed">{f.comment}</p>
               </div>
             ))}
           </CardContent>

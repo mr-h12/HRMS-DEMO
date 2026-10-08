@@ -35,7 +35,7 @@ export function RoleSwitcher() {
         >
           <Icon className="hidden size-4 text-primary min-[400px]:block" />
           <span className="hidden text-muted-foreground lg:inline">Viewing as:</span>
-          <span className="font-semibold text-primary">{ROLE_LABELS[role]}</span>
+          <span className="max-w-[92px] truncate font-semibold text-primary sm:max-w-none">{ROLE_LABELS[role]}</span>
           <ChevronDown className="size-3.5 text-primary/70" />
         </button>
       </DropdownMenuTrigger>

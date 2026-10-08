@@ -2,6 +2,7 @@ import { CalendarHeart, GraduationCap, PartyPopper, Star, Users } from 'lucide-r
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { ahmedEvents } from '@/data/company'
 import { cn } from '@/lib/utils'
+import { dateLocale } from '@/i18n/lang'
 import { parseDate } from '@/utils/format'
 
 const KIND = {
@@ -28,7 +29,7 @@ export function UpcomingEventsCard() {
           return (
             <div key={e.id} className="flex items-center gap-3.5 rounded-xl p-2 transition hover:bg-muted/50">
               <div className="flex w-11 shrink-0 flex-col items-center rounded-lg border bg-card py-1">
-                <span className="text-[10px] font-semibold text-primary uppercase">{d.toLocaleDateString('en-US', { month: 'short' })}</span>
+                <span className="text-[10px] font-semibold text-primary uppercase">{d.toLocaleDateString(dateLocale(), { month: 'short' })}</span>
                 <span className="text-base leading-tight font-semibold tabular">{d.getDate()}</span>
               </div>
               <div className="min-w-0 flex-1">

@@ -19,7 +19,7 @@ export function SheetContent({
       <SheetPrimitive.Content
         className={cn(
           'fixed inset-y-0 z-50 flex h-full flex-col bg-card shadow-2xl outline-none transition-transform',
-          side === 'right' ? 'right-0 w-full border-l sm:max-w-md' : 'left-0 w-72 border-r',
+          side === 'right' ? 'end-0 w-full border-s sm:max-w-md' : 'start-0 w-72 border-e',
           'data-[state=open]:animate-fade-in',
           className,
         )}
@@ -27,7 +27,7 @@ export function SheetContent({
       >
         {children}
         {!hideClose && (
-          <SheetPrimitive.Close className="absolute top-4 right-4 rounded-md p-1 text-muted-foreground transition hover:bg-muted hover:text-foreground">
+          <SheetPrimitive.Close className="absolute top-4 end-4 rounded-md p-1 text-muted-foreground transition hover:bg-muted hover:text-foreground">
             <X className="size-4" />
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>

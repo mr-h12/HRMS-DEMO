@@ -14,7 +14,7 @@ import { STATUSES } from '@/data/employees'
 import { useSimulatedLoading } from '@/hooks/useSimulatedLoading'
 import { useAppStore } from '@/store/AppStore'
 import { CHART_COLORS } from '@/utils/colors'
-import { formatCompactCurrency, formatNumber, greeting, relativeTime } from '@/utils/format'
+import { formatCompactCurrency, formatNumber, greeting, relativeTime, todayLabel } from '@/utils/format'
 
 const STATUS_COLORS: Record<string, string> = { Active: 'var(--chart-3)', 'On Leave': 'var(--chart-1)', Probation: 'var(--chart-5)', 'Notice Period': 'var(--chart-4)' }
 
@@ -25,7 +25,7 @@ export default function HRDashboard() {
   const statusCounts = STATUSES.map((s) => ({ status: s, count: employees.filter((e) => e.status === s).length }))
   const newHires = employees.filter((e) => e.status === 'Probation').length
   const onLeave = statusCounts.find((s) => s.status === 'On Leave')!.count
-  const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
+  const today = todayLabel()
 
   return (
     <div className="space-y-6">
@@ -61,7 +61,7 @@ export default function HRDashboard() {
               <CardTitle>Headcount</CardTitle>
               <CardDescription>Total employees, last 12 months</CardDescription>
             </div>
-            <div className="text-right">
+            <div className="text-end">
               <div className="text-xl font-semibold tabular">{formatNumber(employees.length)}</div>
               <div className="text-xs text-emerald-600 dark:text-emerald-400">+56 since Nov 2025</div>
             </div>
@@ -117,7 +117,7 @@ export default function HRDashboard() {
             </div>
             <Button variant="ghost" size="xs" asChild>
               <Link to="/hr/recruitment">
-                Pipeline <ArrowRight />
+                Pipeline <ArrowRight className="rtl:-scale-x-100" />
               </Link>
             </Button>
           </CardHeader>
@@ -129,9 +129,9 @@ export default function HRDashboard() {
                 <div key={s.stage}>
                   <div className="mb-1.5 flex items-baseline justify-between text-[13px]">
                     <span className="font-medium">{s.stage}</span>
-                    <span>
+                    <span className="flex items-baseline gap-2">
                       <span className="font-semibold tabular">{s.value}</span>
-                      {conv !== null && <span className="ml-2 text-xs text-muted-foreground">{conv}% conv.</span>}
+                      {conv !== null && <span className="text-xs text-muted-foreground">{`${conv}% conv.`}</span>}
                     </span>
                   </div>
                   <div className="h-7 overflow-hidden rounded-md bg-muted">
@@ -162,12 +162,12 @@ export default function HRDashboard() {
                   key={s.status}
                   type="button"
                   onClick={() => navigate(`/hr/employees?status=${encodeURIComponent(s.status)}`)}
-                  className="flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left transition hover:bg-muted/60"
+                  className="flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-start transition hover:bg-muted/60"
                 >
                   <span className="size-2.5 rounded-[3px]" style={{ background: STATUS_COLORS[s.status] }} />
                   <span className="flex-1 text-[13px]">{s.status}</span>
                   <span className="text-sm font-semibold tabular">{s.count}</span>
-                  <span className="w-12 text-right text-xs text-muted-foreground tabular">{((s.count / employees.length) * 100).toFixed(1)}%</span>
+                  <span className="w-12 text-end text-xs text-muted-foreground tabular">{((s.count / employees.length) * 100).toFixed(1)}%</span>
                 </button>
               ))}
             </div>
@@ -196,7 +196,7 @@ export default function HRDashboard() {
             <Target className="size-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <ol className="relative space-y-5 before:absolute before:top-2 before:bottom-2 before:left-[17px] before:w-px before:bg-border">
+            <ol className="relative space-y-5 before:absolute before:top-2 before:bottom-2 before:start-[17px] before:w-px before:bg-border">
               {recentActivity.map((a) => (
                 <li key={a.id} className="relative flex gap-3">
                   <NotificationIcon kind={a.kind} className="relative ring-4 ring-card" />

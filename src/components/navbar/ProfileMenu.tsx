@@ -13,9 +13,9 @@ export function ProfileMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button type="button" className="flex items-center gap-2.5 rounded-lg p-1 transition hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none lg:pr-2" aria-label="Open profile menu">
+        <button type="button" className="flex items-center gap-2.5 rounded-lg p-1 transition hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none lg:pe-2" aria-label="Open profile menu">
           <UserAvatar name={user.name} size="sm" />
-          <div className="hidden text-left leading-tight lg:block">
+          <div className="hidden text-start leading-tight lg:block">
             <div className="text-[13px] font-semibold">{user.name}</div>
             <div className="text-[11px] text-muted-foreground">{user.title}</div>
           </div>

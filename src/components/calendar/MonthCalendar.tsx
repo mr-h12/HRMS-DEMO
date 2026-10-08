@@ -2,9 +2,12 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { dateLocale } from '@/i18n/lang'
 import { toISODate } from '@/utils/format'
 
-const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+// Sunday-first week; names come from the active locale (2026-10-04 is a Sunday).
+const weekdays = (style: 'short' | 'narrow') =>
+  Array.from({ length: 7 }, (_, i) => new Date(2026, 9, 4 + i).toLocaleDateString(dateLocale(), { weekday: style }))
 
 export interface CalendarDayRender {
   /** Classes for the day cell (background/border tone). */
@@ -35,7 +38,7 @@ export function shiftMonth(month: string, delta: number) {
 
 export function monthLabel(month: string) {
   const [y, m] = month.split('-').map(Number)
-  return new Date(y, m - 1, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+  return new Date(y, m - 1, 1).toLocaleDateString(dateLocale(), { month: 'long', year: 'numeric' })
 }
 
 export function MonthCalendar({ month, onMonthChange, minMonth, maxMonth, renderDay, selected, onSelect, today, compact }: MonthCalendarProps) {
@@ -53,18 +56,18 @@ export function MonthCalendar({ month, onMonthChange, minMonth, maxMonth, render
           <h4 className="text-sm font-semibold">{monthLabel(month)}</h4>
           <div className="flex gap-1">
             <Button variant="outline" size="icon-sm" disabled={!!minMonth && month <= minMonth} onClick={() => onMonthChange(shiftMonth(month, -1))} aria-label="Previous month">
-              <ChevronLeft />
+              <ChevronLeft className="rtl:-scale-x-100" />
             </Button>
             <Button variant="outline" size="icon-sm" disabled={!!maxMonth && month >= maxMonth} onClick={() => onMonthChange(shiftMonth(month, 1))} aria-label="Next month">
-              <ChevronRight />
+              <ChevronRight className="rtl:-scale-x-100" />
             </Button>
           </div>
         </div>
       )}
       <div className="grid grid-cols-7 gap-1 sm:gap-1.5">
-        {WEEKDAYS.map((d) => (
+        {weekdays('short').map((d, i) => (
           <div key={d} className="pb-1 text-center text-[11px] font-medium text-muted-foreground uppercase">
-            <span className="sm:hidden">{d[0]}</span>
+            <span className="sm:hidden">{weekdays('narrow')[i]}</span>
             <span className="hidden sm:inline">{d}</span>
           </div>
         ))}
@@ -80,7 +83,7 @@ export function MonthCalendar({ month, onMonthChange, minMonth, maxMonth, render
               disabled={r.disabled || !onSelect}
               onClick={() => onSelect?.(iso)}
               className={cn(
-                'relative flex flex-col items-start rounded-lg border border-transparent p-1.5 text-left transition sm:p-2',
+                'relative flex flex-col items-start rounded-lg border border-transparent p-1.5 text-start transition sm:p-2',
                 compact ? 'min-h-11' : 'min-h-12 sm:min-h-[72px]',
                 onSelect && !r.disabled && 'hover:border-primary/40 hover:shadow-xs',
                 r.className,

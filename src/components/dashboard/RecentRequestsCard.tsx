@@ -20,7 +20,7 @@ export function RecentRequestsCard({ requests, onView }: { requests: HRRequest[]
         </div>
         <Button variant="ghost" size="xs" asChild>
           <Link to="/employee/requests">
-            View all <ArrowRight />
+            View all <ArrowRight className="rtl:-scale-x-100" />
           </Link>
         </Button>
       </CardHeader>
@@ -31,7 +31,7 @@ export function RecentRequestsCard({ requests, onView }: { requests: HRRequest[]
           requests.map((r) => {
             const Icon = REQUEST_ICONS[r.type]
             return (
-              <button key={r.id} type="button" onClick={() => onView(r)} className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition hover:bg-muted/60">
+              <button key={r.id} type="button" onClick={() => onView(r)} className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-start transition hover:bg-muted/60">
                 <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted">
                   <Icon className="size-4 text-muted-foreground" />
                 </span>

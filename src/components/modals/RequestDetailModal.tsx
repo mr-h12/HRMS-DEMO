@@ -5,7 +5,7 @@ import { UserAvatar } from '@/components/common/UserAvatar'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogBody, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import type { HRRequest } from '@/types'
-import { formatCurrency, formatDate, relativeTime } from '@/utils/format'
+import { formatCurrency, formatDate, formatDateTime, relativeTime } from '@/utils/format'
 import { requestTitle } from '@/utils/requests'
 
 function Item({ label, children }: { label: string; children: ReactNode }) {
@@ -68,7 +68,7 @@ export function RequestDetailModal({
               </>
             )}
             {r.type === 'HR Letter' && <Item label="Letter">{r.letterType}</Item>}
-            <Item label="Submitted">{new Date(r.submittedAt).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}</Item>
+            <Item label="Submitted">{formatDateTime(r.submittedAt)}</Item>
           </div>
           <div>
             <div className="text-xs text-muted-foreground">Reason / notes</div>
@@ -83,7 +83,7 @@ export function RequestDetailModal({
           {r.status !== 'Pending' && r.decidedBy && (
             <div className="rounded-lg border border-dashed px-3 py-2.5 text-[13px] text-muted-foreground">
               {r.status} by <span className="font-medium text-foreground">{r.decidedBy}</span>
-              {r.decidedAt && <> · {new Date(r.decidedAt).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}</>}
+              {r.decidedAt && <> · {formatDateTime(r.decidedAt)}</>}
             </div>
           )}
         </DialogBody>

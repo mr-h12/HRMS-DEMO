@@ -83,7 +83,7 @@ export default function PayslipsPage() {
               <TableRow>
                 <TableHead>Component</TableHead>
                 {payslips.map((p) => (
-                  <TableHead key={p.id} className="text-right">
+                  <TableHead key={p.id} className="text-end">
                     {p.period.split(' ')[0].slice(0, 3)}
                   </TableHead>
                 ))}
@@ -97,7 +97,7 @@ export default function PayslipsPage() {
                     const line = [...p.earnings, ...p.deductions].find((l) => l.label.startsWith(label))
                     const isDeduction = p.deductions.some((l) => l.label.startsWith(label))
                     return (
-                      <TableCell key={p.id} className={`text-right tabular ${isDeduction ? 'text-rose-600 dark:text-rose-400' : ''}`}>
+                      <TableCell key={p.id} className={`text-end tabular ${isDeduction ? 'text-rose-600 dark:text-rose-400' : ''}`}>
                         {line ? `${isDeduction ? '−' : ''}${formatCurrency(line.amount)}` : '—'}
                       </TableCell>
                     )

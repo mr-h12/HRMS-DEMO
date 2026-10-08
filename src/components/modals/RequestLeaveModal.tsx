@@ -102,7 +102,7 @@ export function RequestLeaveModal({ open, onOpenChange }: { open: boolean; onOpe
             <CalendarDays className="size-4 text-primary" />
             <span className="text-muted-foreground">Working days requested:</span>
             <span className="font-semibold tabular">{days}</span>
-            {remaining !== undefined && <span className="ml-auto text-xs text-muted-foreground">Balance after: {Math.max(0, remaining - days)} / {balance!.total}</span>}
+            {remaining !== undefined && <span className="ms-auto text-xs text-muted-foreground">Balance after: {Math.max(0, remaining - days)} / {balance!.total}</span>}
           </div>
           <Field label="Reason" htmlFor="leave-reason" error={errors.reason} required>
             <Textarea id="leave-reason" value={reason} onChange={(e) => setReason(e.target.value)} placeholder="e.g. Family trip — handover notes shared with the team" aria-invalid={!!errors.reason} />

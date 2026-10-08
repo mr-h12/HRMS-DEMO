@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/misc'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { useLanguage } from '@/hooks/useLanguage'
 import { useRole } from '@/hooks/useRole'
 import { useTheme } from '@/hooks/useTheme'
 import { cn } from '@/lib/utils'
@@ -21,7 +22,7 @@ export default function PreferencesPage() {
   const role = useRole()
   const { theme, setTheme } = useTheme()
   const [prefs, setPrefs] = useState<Record<string, boolean>>({})
-  const [language, setLanguage] = useState('en')
+  const { lang, setLang } = useLanguage()
   const [tz, setTz] = useState('Africa/Cairo')
 
   return (
@@ -42,7 +43,7 @@ export default function PreferencesPage() {
               key={t}
               type="button"
               onClick={() => setTheme(t)}
-              className={cn('rounded-xl border-2 p-3 text-left transition', theme === t ? 'border-primary' : 'border-border hover:border-primary/40')}
+              className={cn('rounded-xl border-2 p-3 text-start transition', theme === t ? 'border-primary' : 'border-border hover:border-primary/40')}
               aria-pressed={theme === t}
             >
               <div className={cn('mb-3 h-20 rounded-lg border p-2', t === 'dark' ? 'bg-slate-900' : 'bg-slate-50')}>
@@ -68,12 +69,12 @@ export default function PreferencesPage() {
         <CardContent className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-1.5">
             <Label>Language</Label>
-            <Select value={language} onValueChange={setLanguage}>
+            <Select value={lang} onValueChange={(v) => setLang(v as 'en' | 'ar')}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="en">English</SelectItem>
+                <SelectItem value="en" data-no-translate>English</SelectItem>
                 <SelectItem value="ar">العربية (Arabic)</SelectItem>
               </SelectContent>
             </Select>
