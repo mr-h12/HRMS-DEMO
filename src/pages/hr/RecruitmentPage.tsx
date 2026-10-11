@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, Briefcase, CalendarPlus, Mail, MapPin, Plus, Star, UserSearch, Users } from 'lucide-react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { MiniStat } from '@/components/cards/StatCard'
 import { EmptyState } from '@/components/common/EmptyState'
@@ -31,6 +32,7 @@ const STAGE_TONE: Record<CandidateStage, string> = {
 
 export default function RecruitmentPage() {
   const { candidates, moveCandidate, pushNotification } = useAppStore()
+  const navigate = useNavigate()
   const [tab, setTab] = useState('pipeline')
   const [jobFilter, setJobFilter] = useState('all')
   const [viewing, setViewing] = useState<Candidate | null>(null)
@@ -44,8 +46,10 @@ export default function RecruitmentPage() {
     if (!next) return
     moveCandidate(c.id, next)
     if (viewing?.id === c.id) setViewing({ ...c, stage: next })
-    toast.success(`${c.name} moved to ${next}`, { description: jobTitle(c.jobId) })
-    if (next === 'Hired') pushNotification({ role: 'hr', kind: 'recruitment', title: 'Candidate hired', message: `${c.name} was hired as ${jobTitle(c.jobId)}. Start onboarding.`, link: '/hr/recruitment' })
+    if (next === 'Hired') {
+      toast.success(`${c.name} moved to ${next}`, { description: 'Added to onboarding — the pre-joining checklist is ready.', action: { label: 'Open onboarding', onClick: () => navigate('/hr/onboarding') } })
+      pushNotification({ role: 'hr', kind: 'recruitment', title: 'Candidate hired', message: `${c.name} was hired as ${jobTitle(c.jobId)}. Start onboarding.`, link: '/hr/onboarding' })
+    } else toast.success(`${c.name} moved to ${next}`, { description: jobTitle(c.jobId) })
   }
 
   return (

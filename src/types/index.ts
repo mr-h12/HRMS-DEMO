@@ -350,3 +350,31 @@ export interface ExpiringDocument {
   number: string
   expiryDate: string
 }
+
+/* ---------------- Onboarding ---------------- */
+
+export type OnboardingPhase = 'Before joining' | 'First day' | 'First 90 days'
+
+export interface OnboardingTask {
+  id: string
+  phase: OnboardingPhase
+  label: string
+  done: boolean
+}
+
+export type ProbationDecision = 'Confirmed' | 'Extended' | 'Not confirmed'
+
+export interface OnboardingCase {
+  id: string
+  /** Employee ID once they have joined; a candidate ID (CAN-…) while they are still pre-joining. */
+  personId: string
+  name: string
+  position: string
+  department: Department
+  location: Location
+  startDate: string
+  probationEnd: string
+  buddy: string
+  tasks: OnboardingTask[]
+  decision?: ProbationDecision
+}
