@@ -1,0 +1,1 @@
+import{h as e,v as t}from"./company-B8yv0uSK.js";var n=t(e(),1);function r(e=450,t=[]){let[r,i]=(0,n.useState)(!0);return(0,n.useEffect)(()=>{i(!0);let t=setTimeout(()=>i(!1),e);return()=>clearTimeout(t)},t),r}export{r as t};
