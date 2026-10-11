@@ -39,23 +39,27 @@ export default function EmployeeDashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="relative overflow-hidden rounded-lg border bg-primary px-6 py-6 text-primary-foreground shadow-1 sm:px-8 sm:py-7">
-        <div className="pointer-events-none absolute -top-16 -end-10 size-56 rounded-full bg-primary-foreground/10 blur-2xl" />
-        <div className="pointer-events-none absolute end-40 -bottom-20 size-48 rounded-full bg-primary-foreground/10 blur-2xl" />
+      <div className="relative overflow-hidden rounded-lg border bg-card px-6 py-6 shadow-1 sm:px-8 sm:py-7">
+        {/* Editorial accent: a terracotta rule on the inline-start edge and a faint warm wash towards the end. */}
+        <span aria-hidden className="absolute inset-y-0 start-0 w-1 bg-primary" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_140%_at_100%_0%,color-mix(in_srgb,var(--primary)_9%,transparent),transparent_60%)] rtl:bg-[radial-gradient(120%_140%_at_0%_0%,color-mix(in_srgb,var(--primary)_9%,transparent),transparent_60%)]"
+        />
         <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm opacity-85">{today}</p>
-            <h1 className="mt-1 text-2xl font-semibold tracking-tight sm:text-[28px]">{greeting()}, Ahmed 👋</h1>
-            <p className="mt-1 text-sm opacity-85">
-              You have <span className="font-semibold">{counts.myPending} pending requests</span> and your performance review is on Oct 15.
+            <p className="text-xs font-medium tracking-[0.08em] text-primary uppercase">{today}</p>
+            <h1 className="mt-1.5 text-page-title sm:text-[28px]">{greeting()}, Ahmed 👋</h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              You have <span className="font-semibold text-foreground">{counts.myPending} pending requests</span> and your performance review is on Oct 15.
             </p>
           </div>
           <button
             type="button"
             onClick={onClock}
-            className="inline-flex h-10 shrink-0 items-center gap-2 self-start rounded-md bg-card px-4 text-sm font-semibold text-primary shadow-1 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-foreground sm:self-auto"
+            className="inline-flex h-10 shrink-0 items-center gap-2 self-start rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover active:bg-primary-active focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:self-auto"
           >
-            {clock.clockedIn ? <LogOut className="size-4" /> : <LogIn className="size-4" />}
+            {clock.clockedIn ? <LogOut className="size-4 rtl:-scale-x-100" /> : <LogIn className="size-4 rtl:-scale-x-100" />}
             {clock.clockedIn ? 'Clock out' : 'Clock in'}
           </button>
         </div>
