@@ -118,18 +118,18 @@ export function GlobalSearch() {
       <DialogPrimitive.Trigger asChild>
         <button
           type="button"
-          className="group flex h-9 items-center gap-2 rounded-lg border bg-muted/50 px-3 text-sm whitespace-nowrap text-muted-foreground transition hover:bg-muted max-lg:size-9 max-lg:justify-center max-lg:border-0 max-lg:bg-transparent max-lg:px-0 lg:w-64 xl:w-80"
+          className="group flex h-10 items-center gap-2 rounded-xl border bg-card px-3 text-table whitespace-nowrap text-muted-foreground transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring max-xl:size-10 max-xl:justify-center max-xl:border-0 max-xl:px-0 xl:w-60"
           aria-label="Search"
         >
           <Search className="size-4 shrink-0" />
-          <span className="hidden flex-1 text-start lg:inline">Search people, requests…</span>
-          <kbd className="hidden rounded border bg-card px-1.5 py-0.5 font-sans text-[10px] font-medium lg:inline">⌘K</kbd>
+          <span className="hidden flex-1 text-start xl:inline">Search people, requests…</span>
+          <kbd className="hidden rounded border bg-card px-1.5 py-0.5 font-sans text-[10px] font-medium xl:inline">⌘K</kbd>
         </button>
       </DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-[2px] data-[state=open]:animate-fade-in" />
+        <DialogPrimitive.Overlay className="fixed inset-0 z-50 backdrop-brightness-[0.45] backdrop-blur-[2px] data-[state=open]:animate-fade-in" />
         <DialogPrimitive.Content
-          className="fixed top-[10vh] left-1/2 z-50 w-[calc(100vw-1.5rem)] max-w-xl -translate-x-1/2 overflow-hidden rounded-2xl border bg-card shadow-2xl outline-none data-[state=open]:animate-fade-in"
+          className="fixed top-[10vh] left-1/2 z-50 w-[calc(100vw-1.5rem)] max-w-xl -translate-x-1/2 overflow-hidden rounded-xl border bg-card shadow-2 outline-none data-[state=open]:animate-fade-in"
           onKeyDown={onKeyDown}
         >
           <DialogPrimitive.Title className="sr-only">Global search</DialogPrimitive.Title>

@@ -109,7 +109,7 @@ export default function MyTeamPage() {
                     <TableCell className="hidden text-muted-foreground lg:table-cell">{formatDate(e.joiningDate)}</TableCell>
                     <TableCell className="hidden sm:table-cell">
                       <div className="flex w-28 items-center gap-2">
-                        <Progress value={e.attendanceRate} className="h-1.5" indicatorClassName={e.attendanceRate < 90 ? 'bg-amber-500' : 'bg-emerald-500'} />
+                        <Progress value={e.attendanceRate} className="h-1.5" indicatorClassName={e.attendanceRate < 90 ? 'bg-warning' : 'bg-success'} />
                         <span className="text-xs tabular">{e.attendanceRate}%</span>
                       </div>
                     </TableCell>

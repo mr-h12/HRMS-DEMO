@@ -12,12 +12,12 @@ import type { ReportDefinition } from './ReportView'
 
 const C = ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)']
 const TONE = {
-  indigo: 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-300',
-  emerald: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-300',
-  sky: 'bg-sky-50 text-sky-600 dark:bg-sky-500/15 dark:text-sky-300',
-  amber: 'bg-amber-50 text-amber-600 dark:bg-amber-500/15 dark:text-amber-300',
+  indigo: 'bg-primary/10 text-primary',
+  emerald: 'bg-success/10 text-success',
+  sky: 'bg-info/10 text-info',
+  amber: 'bg-warning/10 text-warning',
   violet: 'bg-violet-50 text-violet-600 dark:bg-violet-500/15 dark:text-violet-300',
-  rose: 'bg-rose-50 text-rose-600 dark:bg-rose-500/15 dark:text-rose-300',
+  rose: 'bg-destructive/10 text-destructive',
   teal: 'bg-teal-50 text-teal-600 dark:bg-teal-500/15 dark:text-teal-300',
 }
 

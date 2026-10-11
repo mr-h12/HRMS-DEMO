@@ -1,47 +1,50 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { EmployeeDrawer } from '@/components/drawers/EmployeeDrawer'
-import { Navbar, BrandMark } from '@/components/navbar/Navbar'
-import { Sidebar, SidebarFooter, SidebarNav } from '@/components/sidebar/Sidebar'
+import { Navbar } from '@/components/navbar/Navbar'
+import { Sidebar, SidebarFooter, SidebarHeader, SidebarNav } from '@/components/sidebar/Sidebar'
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 
+/**
+ * The CRM application shell:
+ *   LTR: [Sidebar] [Top context bar / Page content]
+ *   RTL: mirrored by `dir` — the sidebar is the inline-start child of one flex row.
+ */
 export function AppLayout() {
-  const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1279px)')
-  const [collapsed, setCollapsed] = useState(isTablet)
+  const [collapsed, setCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { pathname } = useLocation()
 
-  // Tablet widths default to the icon rail; desktop to the full sidebar.
-  useEffect(() => setCollapsed(isTablet), [isTablet])
   useEffect(() => {
     window.scrollTo({ top: 0 })
   }, [pathname])
 
   return (
-    <div className="min-h-dvh bg-background">
-      <Navbar collapsed={collapsed} onToggleCollapse={() => setCollapsed((c) => !c)} onOpenMobile={() => setMobileOpen(true)} />
-      <div className="flex">
-        <Sidebar collapsed={collapsed} />
-        <main className="min-w-0 flex-1">
-          <div key={pathname} className="mx-auto w-full max-w-[1440px] animate-fade-in px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+    <div className="flex min-h-dvh bg-background text-foreground">
+      <a
+        href="#page-content"
+        className="sr-only rounded-lg border border-input bg-card px-3 py-2 shadow-2 focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:outline-2 focus:outline-offset-2 focus:outline-ring"
+      >
+        Skip to content
+      </a>
+
+      <Sidebar collapsed={collapsed} onToggleCollapse={() => setCollapsed((c) => !c)} />
+
+      <div className="flex min-w-0 flex-1 flex-col">
+        <Navbar onOpenMobile={() => setMobileOpen(true)} />
+        <main id="page-content" className="mx-auto w-full max-w-[1600px] flex-1 scroll-mt-20 p-4 sm:p-6">
+          <div key={pathname} className="animate-fade-in">
             <Outlet />
           </div>
         </main>
       </div>
 
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="left" className="px-3">
-          <div className="flex h-16 items-center gap-2.5 border-b px-2">
-            <BrandMark />
-            <div>
-              <SheetTitle className="text-[15px] font-bold tracking-tight">
-                HRMS <span className="text-primary">DEMO</span>
-              </SheetTitle>
-              <SheetDescription className="text-[11px]">Northwind Group</SheetDescription>
-            </div>
-          </div>
-          <div className="flex-1 overflow-y-auto py-4">
+        <SheetContent side="left" className="w-64 p-0">
+          <SheetTitle className="sr-only">Navigation</SheetTitle>
+          <SheetDescription className="sr-only">HRMS DEMO — Northwind Group</SheetDescription>
+          <SidebarHeader />
+          <div className="flex-1 overflow-y-auto overscroll-contain px-2 py-3">
             <SidebarNav onNavigate={() => setMobileOpen(false)} />
           </div>
           <SidebarFooter />

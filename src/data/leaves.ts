@@ -7,8 +7,8 @@ export const LEAVE_TYPES: LeaveType[] = ['Annual Leave', 'Sick Leave', 'Emergenc
 /** Ahmed's entitlement for 2026. Remaining = total - used. */
 export const ahmedLeaveBalances: LeaveBalance[] = [
   { type: 'Annual Leave', used: 7, total: 21, color: 'bg-primary' },
-  { type: 'Sick Leave', used: 3, total: 10, color: 'bg-sky-500' },
-  { type: 'Emergency Leave', used: 1, total: 3, color: 'bg-amber-500' },
+  { type: 'Sick Leave', used: 3, total: 10, color: 'bg-info' },
+  { type: 'Emergency Leave', used: 1, total: 3, color: 'bg-warning' },
 ]
 
 export const LEAVE_POLICIES = [

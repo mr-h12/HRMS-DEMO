@@ -62,11 +62,11 @@ export default function TeamLeavePage() {
               renderDay={(iso) => {
                 const list = onDay(iso)
                 if (isWeekend(parseDate(iso))) return { className: 'bg-muted/40' }
-                if (PUBLIC_HOLIDAYS[iso]) return { className: 'bg-slate-100 dark:bg-slate-500/10', content: <span className="hidden truncate text-[10px] text-muted-foreground sm:block">Holiday</span> }
+                if (PUBLIC_HOLIDAYS[iso]) return { className: 'bg-muted', content: <span className="hidden truncate text-[10px] text-muted-foreground sm:block">Holiday</span> }
                 if (!list.length) return {}
                 const pending = list.some((r) => r.status === 'Pending')
                 return {
-                  className: pending ? 'bg-amber-50 border-amber-100 dark:bg-amber-500/10 dark:border-amber-500/20' : 'bg-sky-50 border-sky-100 dark:bg-sky-500/10 dark:border-sky-500/20',
+                  className: pending ? 'bg-warning/10 border-warning/20' : 'bg-info/10 border-info/20',
                   content: (
                     <div className="flex -space-x-1">
                       {list.slice(0, 3).map((r) => (
@@ -81,10 +81,10 @@ export default function TeamLeavePage() {
             />
             <div className="mt-4 flex flex-wrap gap-4 border-t pt-4 text-xs text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
-                <span className="size-2.5 rounded-sm bg-sky-400" /> Approved leave
+                <span className="size-2.5 rounded-sm bg-info" /> Approved leave
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <span className="size-2.5 rounded-sm bg-amber-400" /> Includes pending requests
+                <span className="size-2.5 rounded-sm bg-warning" /> Includes pending requests
               </span>
               <span>Click a day to see who’s away</span>
             </div>
@@ -144,7 +144,7 @@ export default function TeamLeavePage() {
                   </div>
                 </TableCell>
                 <TableCell className="tabular">{pluralize(used, 'day')}</TableCell>
-                <TableCell className={cn('font-medium tabular', 21 - used >= 16 && 'text-amber-600 dark:text-amber-400')}>{pluralize(21 - used, 'day')}</TableCell>
+                <TableCell className={cn('font-medium tabular', 21 - used >= 16 && 'text-warning')}>{pluralize(21 - used, 'day')}</TableCell>
                 <TableCell className="hidden md:table-cell">
                   <Progress value={(used / 21) * 100} className="h-1.5" />
                 </TableCell>

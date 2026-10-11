@@ -43,7 +43,7 @@ export function DocumentPreviewModal({ doc, onOpenChange }: { doc: EmployeeDocum
                 <div className="h-2 w-24 rounded bg-slate-100 dark:bg-slate-800" />
                 <div className="h-2 w-16 rounded bg-slate-100 dark:bg-slate-800" />
               </div>
-              <div className="flex size-14 items-center justify-center rounded-full border-2 border-dashed border-indigo-300 text-[9px] font-bold text-indigo-400">VERIFIED</div>
+              <div className="flex size-14 items-center justify-center rounded-full border-2 border-dashed border-primary/40 text-[9px] font-bold text-primary/70">VERIFIED</div>
             </div>
           </div>
           {doc.expiresAt && (

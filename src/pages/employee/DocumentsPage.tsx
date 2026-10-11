@@ -15,10 +15,10 @@ import type { EmployeeDocument } from '@/types'
 import { formatDate } from '@/utils/format'
 
 const FILE_TONE: Record<EmployeeDocument['fileType'], string> = {
-  PDF: 'bg-rose-50 text-rose-600 dark:bg-rose-500/15 dark:text-rose-300',
-  DOCX: 'bg-sky-50 text-sky-600 dark:bg-sky-500/15 dark:text-sky-300',
-  JPG: 'bg-amber-50 text-amber-600 dark:bg-amber-500/15 dark:text-amber-300',
-  PNG: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-300',
+  PDF: 'bg-destructive/10 text-destructive',
+  DOCX: 'bg-info/10 text-info',
+  JPG: 'bg-warning/10 text-warning',
+  PNG: 'bg-success/10 text-success',
 }
 
 export function FileIcon({ type }: { type: EmployeeDocument['fileType'] }) {

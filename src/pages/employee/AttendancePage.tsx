@@ -18,18 +18,18 @@ import { downloadFile, toCSV } from '@/utils/download'
 import { formatDate } from '@/utils/format'
 
 export const DAY_TONE: Record<AttendanceStatus, string> = {
-  Present: 'bg-emerald-50 border-emerald-100 dark:bg-emerald-500/10 dark:border-emerald-500/20',
-  Late: 'bg-amber-50 border-amber-100 dark:bg-amber-500/10 dark:border-amber-500/20',
-  Absent: 'bg-rose-50 border-rose-100 dark:bg-rose-500/10 dark:border-rose-500/20',
+  Present: 'bg-success/10 border-success/20',
+  Late: 'bg-warning/10 border-warning/20',
+  Absent: 'bg-destructive/10 border-destructive/20',
   Overtime: 'bg-violet-50 border-violet-100 dark:bg-violet-500/10 dark:border-violet-500/20',
-  'On Leave': 'bg-sky-50 border-sky-100 dark:bg-sky-500/10 dark:border-sky-500/20',
+  'On Leave': 'bg-info/10 border-info/20',
   Weekend: 'bg-muted/40',
-  Holiday: 'bg-slate-100 dark:bg-slate-500/10',
-  'Missing Punch': 'bg-rose-50 dark:bg-rose-500/10',
+  Holiday: 'bg-muted',
+  'Missing Punch': 'bg-destructive/10',
 }
 
 const DOT: Partial<Record<AttendanceStatus, string>> = {
-  Present: 'bg-emerald-500', Late: 'bg-amber-500', Absent: 'bg-rose-500', Overtime: 'bg-violet-500', 'On Leave': 'bg-sky-500', Holiday: 'bg-slate-400',
+  Present: 'bg-success', Late: 'bg-warning', Absent: 'bg-destructive', Overtime: 'bg-violet-500', 'On Leave': 'bg-info', Holiday: 'bg-muted-foreground',
 }
 
 export default function AttendancePage() {

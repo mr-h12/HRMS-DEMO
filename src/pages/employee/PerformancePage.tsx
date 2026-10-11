@@ -58,7 +58,7 @@ export default function PerformancePage() {
         <Card className="relative overflow-hidden p-6">
           <div className="absolute -top-10 -end-10 size-36 rounded-full bg-amber-400/10" />
           <div className="flex items-center gap-2 text-[13px] font-medium text-muted-foreground">
-            <Trophy className="size-4 text-amber-500" /> Current rating
+            <Trophy className="size-4 text-warning" /> Current rating
           </div>
           <div className="mt-3 flex items-end gap-2">
             <span className="text-5xl font-semibold tracking-tight tabular">{ahmedPerformance.rating}</span>
@@ -73,7 +73,7 @@ export default function PerformancePage() {
             <div>
               <div className="text-xs text-muted-foreground">Previous cycle</div>
               <div className="flex items-center gap-1 font-semibold">
-                {ahmedPerformance.previousRating} <ArrowUpRight className="size-3.5 text-emerald-500 rtl:-scale-x-100" />
+                {ahmedPerformance.previousRating} <ArrowUpRight className="size-3.5 text-success rtl:-scale-x-100" />
               </div>
             </div>
             <div>
@@ -170,7 +170,7 @@ export default function PerformancePage() {
                     {k.unit && ` ${k.unit}`}
                   </TableCell>
                   <TableCell className="hidden sm:table-cell">
-                    {k.trend === 'up' ? <ArrowUpRight className="size-4 text-emerald-500 rtl:-scale-x-100" /> : k.trend === 'down' ? <ArrowDownRight className="size-4 text-rose-500 rtl:-scale-x-100" /> : <ArrowRight className="size-4 text-muted-foreground rtl:-scale-x-100" />}
+                    {k.trend === 'up' ? <ArrowUpRight className="size-4 text-success rtl:-scale-x-100" /> : k.trend === 'down' ? <ArrowDownRight className="size-4 text-destructive rtl:-scale-x-100" /> : <ArrowRight className="size-4 text-muted-foreground rtl:-scale-x-100" />}
                   </TableCell>
                   <TableCell>
                     <StatusBadge status={met ? 'On Track' : 'At Risk'} />
@@ -202,7 +202,7 @@ export default function PerformancePage() {
                   <StatusBadge status={g.status} />
                 </div>
                 <div className="mt-3 flex items-center gap-3">
-                  <Progress value={g.progress} className="h-1.5 flex-1" indicatorClassName={g.status === 'At Risk' ? 'bg-amber-500' : g.status === 'Completed' ? 'bg-emerald-500' : undefined} />
+                  <Progress value={g.progress} className="h-1.5 flex-1" indicatorClassName={g.status === 'At Risk' ? 'bg-warning' : g.status === 'Completed' ? 'bg-success' : undefined} />
                   <span className="w-10 text-end text-xs font-semibold tabular">{g.progress}%</span>
                 </div>
                 <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">

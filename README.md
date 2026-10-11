@@ -22,7 +22,7 @@ Use the **العربية / English** button in the top bar (or *Preferences → 
 
 - mirrors the layout right-to-left (sidebar, drawers, menus, icons, calendars)
 - translates every label, table, dialog, toast, notification and chart, plus the mock data (positions, departments, requests, documents) and people's names
-- formats dates in Arabic, uses the IBM Plex Sans Arabic font, and remembers the choice between visits
+- formats dates in Arabic, uses the self-hosted Noto Sans Arabic font, and remembers the choice between visits
 
 Translations live in `src/i18n/` (`ar-ui.ts` for interface copy, `ar-data.ts` for mock data, `names.ts` for names).
 

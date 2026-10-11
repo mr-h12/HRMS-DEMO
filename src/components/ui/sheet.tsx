@@ -15,10 +15,10 @@ export function SheetContent({
 }: React.ComponentProps<typeof SheetPrimitive.Content> & { side?: 'left' | 'right'; hideClose?: boolean }) {
   return (
     <SheetPrimitive.Portal>
-      <SheetPrimitive.Overlay className="fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-[2px] data-[state=open]:animate-fade-in" />
+      <SheetPrimitive.Overlay className="fixed inset-0 z-50 backdrop-brightness-[0.45] backdrop-blur-[2px] data-[state=open]:animate-fade-in" />
       <SheetPrimitive.Content
         className={cn(
-          'fixed inset-y-0 z-50 flex h-full flex-col bg-card shadow-2xl outline-none transition-transform',
+          'fixed inset-y-0 z-50 flex h-full flex-col bg-card shadow-2 outline-none transition-transform',
           side === 'right' ? 'end-0 w-full border-s sm:max-w-md' : 'start-0 w-72 border-e',
           'data-[state=open]:animate-fade-in',
           className,

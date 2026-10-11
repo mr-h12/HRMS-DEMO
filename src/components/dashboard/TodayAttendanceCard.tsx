@@ -48,9 +48,9 @@ export function TodayAttendanceCard() {
   const m = worked % 60
 
   const timeline = [
-    { label: 'Check-in', value: clock.clockInTime, icon: LogIn, tone: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-500/15 dark:text-emerald-300' },
-    { label: 'Break', value: todayAttendance.breakStart, icon: Coffee, tone: 'text-amber-600 bg-amber-50 dark:bg-amber-500/15 dark:text-amber-300' },
-    { label: clock.clockOutTime ? 'Checked out' : 'Expected checkout', value: clock.clockOutTime ?? todayAttendance.expectedCheckout, icon: LogOut, tone: 'text-sky-600 bg-sky-50 dark:bg-sky-500/15 dark:text-sky-300' },
+    { label: 'Check-in', value: clock.clockInTime, icon: LogIn, tone: 'bg-success/10 text-success' },
+    { label: 'Break', value: todayAttendance.breakStart, icon: Coffee, tone: 'bg-warning/10 text-warning' },
+    { label: clock.clockOutTime ? 'Checked out' : 'Expected checkout', value: clock.clockOutTime ?? todayAttendance.expectedCheckout, icon: LogOut, tone: 'bg-info/10 text-info' },
   ]
 
   return (
@@ -62,8 +62,8 @@ export function TodayAttendanceCard() {
             <MapPin className="size-3" /> {todayAttendance.location} · Shift {todayAttendance.shift}
           </CardDescription>
         </div>
-        <span className={cn('inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium whitespace-nowrap', clock.clockedIn ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300' : 'bg-muted text-muted-foreground')}>
-          <span className={cn('size-1.5 rounded-full', clock.clockedIn ? 'animate-pulse bg-emerald-500' : 'bg-slate-400')} />
+        <span className={cn('inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium whitespace-nowrap', clock.clockedIn ? 'bg-success/10 text-success' : 'bg-muted text-muted-foreground')}>
+          <span className={cn('size-1.5 rounded-full', clock.clockedIn ? 'animate-pulse bg-success' : 'bg-muted-foreground')} />
           {clock.clockedIn ? 'Clocked in' : 'Clocked out'}
         </span>
       </CardHeader>
@@ -88,7 +88,7 @@ export function TodayAttendanceCard() {
               {`${h}h ${String(m).padStart(2, '0')}m`} <span className="text-muted-foreground">/ 7h 00m</span>
             </span>
           </div>
-          <Progress value={pct} indicatorClassName="bg-gradient-to-r from-indigo-500 to-violet-500" />
+          <Progress value={pct} indicatorClassName="bg-primary" />
           <div className="mt-1.5 text-end text-[11px] text-muted-foreground tabular">{Math.min(100, pct)}% of today’s shift</div>
         </div>
         <Button className="w-full" variant={clock.clockedIn ? 'outline' : 'default'} onClick={onClock}>

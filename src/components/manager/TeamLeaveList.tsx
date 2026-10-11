@@ -21,7 +21,7 @@ export function TeamLeaveList({ entries, onView }: { entries: HRRequest[]; onVie
                 {r.leaveType} · {formatDateRange(r.startDate!, r.endDate!)} · {r.days}d
               </div>
             </div>
-            {active ? <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[11px] font-medium text-sky-700 dark:bg-sky-500/15 dark:text-sky-300">Away now</span> : <StatusBadge status={r.status} />}
+            {active ? <span className="rounded-full bg-info/10 px-2 py-0.5 text-[11px] font-medium text-info">Away now</span> : <StatusBadge status={r.status} />}
           </button>
         )
       })}
