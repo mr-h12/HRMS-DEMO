@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { LEAVE_POLICIES } from '@/data/leaves'
+import { COMPANY } from '@/data/company'
 
 export default function SettingsPage() {
   const [toggles, setToggles] = useState<Record<string, boolean>>({ geo: true, overtime: true, selfService: true, twoFactor: true, sso: false, payslipEmail: true })
@@ -58,19 +59,19 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="grid gap-4 sm:grid-cols-2">
               <Field label="Legal name">
-                <Input defaultValue="Northwind Group S.A.E." />
+                <Input defaultValue={COMPANY.name} />
               </Field>
               <Field label="Commercial registration">
-                <Input defaultValue="CR 184-552 Giza" />
+                <Input defaultValue="CR 184-552 Cairo" />
               </Field>
               <Field label="Headquarters">
-                <Input defaultValue="Tower B, Smart Village, Giza, Egypt" />
+                <Input defaultValue="Head Office, Cairo, Egypt" />
               </Field>
               <Field label="HR contact email">
-                <Input defaultValue="people@northwind.co" />
+                <Input defaultValue={`hr@${COMPANY.domain}`} />
               </Field>
               <Field label="Default currency">
-                <Select defaultValue="USD">
+                <Select defaultValue="EGP">
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -105,7 +106,7 @@ export default function SettingsPage() {
             <CardHeader>
               <div>
                 <CardTitle>Working hours & attendance</CardTitle>
-                <CardDescription>Default schedule for Cairo HQ, Dubai and Riyadh.</CardDescription>
+                <CardDescription>Default schedule for Cairo HQ, the warehouse and project sites.</CardDescription>
               </div>
             </CardHeader>
             <CardContent>

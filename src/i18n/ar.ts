@@ -36,7 +36,7 @@ export const AR: Record<string, string> = {
   'HRMS': 'نظام الموارد البشرية',
   'DEMO': 'تجريبي',
   'HRMS DEMO home': 'الصفحة الرئيسية',
-  'Northwind Group': 'مجموعة نورثويند',
+  'Smart Technology': 'سمارت تكنولوجي',
   'Viewing as:': 'العرض كـ:',
   'Employee': 'موظف',
   'Manager': 'مدير',

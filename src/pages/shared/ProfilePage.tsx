@@ -49,10 +49,10 @@ export default function ProfilePage() {
         workEmail: user.email,
         personalEmail: `${first}.${emp.name.split(' ')[1].toLowerCase()}@gmail.com`,
         grade: role === 'manager' ? 'M2 — Manager' : 'M2 — Manager',
-        costCenter: role === 'manager' ? 'TECH-ENG-200' : 'HR-OPS-100',
+        costCenter: role === 'manager' ? 'SAL-IND-100' : 'HR-OPS-100',
         probationEnd: '—',
         emergencyContacts: [{ name: role === 'manager' ? 'Heba Ali' : 'Samia Hassan', relation: role === 'manager' ? 'Spouse' : 'Mother', phone: '+20 100 220 9812', email: '—' }],
-        skills: role === 'manager' ? ['Engineering Leadership', 'Hiring', 'System Design', 'Agile Delivery', 'Java', 'Stakeholder Management'] : ['Talent Management', 'Labor Law (Egypt & UAE)', 'Compensation', 'HR Analytics', 'Employee Relations'],
+        skills: role === 'manager' ? ['Sales Leadership', 'Quotation Approval', 'Pipeline Management', 'Key Accounts', 'Supplier Negotiation', 'Coaching'] : ['Talent Management', 'Egyptian Labor Law', 'Compensation', 'HR Analytics', 'Employee Relations'],
       }
 
   const docs = isAhmed ? myDocuments.slice(0, 6) : myDocuments.filter((d) => d.category === 'Policy')

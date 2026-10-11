@@ -12,7 +12,7 @@ const STEPS = [
   'Applying leave and unpaid absence deductions',
   'Calculating income tax & social insurance',
   'Reconciling allowances and expense reimbursements',
-  'Generating 524 payslips',
+  `Generating ${PAYROLL_TOTALS.employees} payslips`,
 ]
 
 export function GeneratePayrollModal({ open, onOpenChange, onComplete }: { open: boolean; onOpenChange: (o: boolean) => void; onComplete: () => void }) {

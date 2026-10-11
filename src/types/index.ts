@@ -1,18 +1,17 @@
 export type Role = 'employee' | 'manager' | 'hr'
 
 export type Department =
-  | 'Technology'
   | 'Sales'
-  | 'Operations'
-  | 'Finance'
+  | 'Procurement'
+  | 'Accounting'
+  | 'Construction'
+  | 'Solar Energy'
   | 'Human Resources'
-  | 'Marketing'
-  | 'Legal'
-  | 'Customer Success'
+  | 'Administration & IT'
 
 export type EmployeeStatus = 'Active' | 'On Leave' | 'Probation' | 'Notice Period'
 export type EmploymentType = 'Full-time' | 'Part-time' | 'Contract' | 'Intern'
-export type Location = 'Cairo HQ' | 'Dubai' | 'Riyadh' | 'Remote'
+export type Location = 'Cairo HQ' | 'Warehouse' | 'Construction Sites' | 'Solar Sites' | 'Field'
 export type PerformanceBand = 'Exceptional' | 'Exceeds' | 'Meets' | 'Developing'
 
 export interface Employee {
@@ -22,7 +21,7 @@ export interface Employee {
   phone: string
   position: string
   department: Department
-  /** Sub-unit inside a department, e.g. "Backend" inside Technology. */
+  /** Sub-unit inside a department, e.g. "Indoor Sales" inside Sales. */
   team: string
   location: Location
   employmentType: EmploymentType
@@ -30,7 +29,7 @@ export interface Employee {
   managerName: string
   joiningDate: string
   status: EmployeeStatus
-  /** Monthly basic salary in USD. */
+  /** Monthly basic salary in EGP. */
   basicSalary: number
   /** Performance rating on a 1–5 scale. */
   rating: number

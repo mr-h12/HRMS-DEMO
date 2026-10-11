@@ -87,8 +87,6 @@ export default function PreferencesPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Africa/Cairo">Cairo (GMT+3)</SelectItem>
-                <SelectItem value="Asia/Dubai">Dubai (GMT+4)</SelectItem>
-                <SelectItem value="Asia/Riyadh">Riyadh (GMT+3)</SelectItem>
               </SelectContent>
             </Select>
           </div>

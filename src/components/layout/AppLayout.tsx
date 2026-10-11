@@ -5,6 +5,7 @@ import { Navbar, BrandMark } from '@/components/navbar/Navbar'
 import { Sidebar, SidebarFooter, SidebarNav } from '@/components/sidebar/Sidebar'
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { COMPANY } from '@/data/company'
 
 export function AppLayout() {
   const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1279px)')
@@ -38,7 +39,7 @@ export function AppLayout() {
               <SheetTitle className="text-[15px] font-bold tracking-tight">
                 HRMS <span className="text-primary">DEMO</span>
               </SheetTitle>
-              <SheetDescription className="text-[11px]">Northwind Group</SheetDescription>
+              <SheetDescription className="text-[11px]">{COMPANY.name}</SheetDescription>
             </div>
           </div>
           <div className="flex-1 overflow-y-auto py-4">

@@ -35,7 +35,7 @@ export default function RecruitmentPage() {
   const [jobFilter, setJobFilter] = useState('all')
   const [viewing, setViewing] = useState<Candidate | null>(null)
   const [postOpen, setPostOpen] = useState(false)
-  const [newJob, setNewJob] = useState({ title: '', department: 'Technology' })
+  const [newJob, setNewJob] = useState({ title: '', department: 'Sales' })
   const visible = candidates.filter((c) => jobFilter === 'all' || c.jobId === jobFilter)
   const jobTitle = (id: string) => jobOpenings.find((j) => j.id === id)?.title ?? ''
 
@@ -280,7 +280,7 @@ export default function RecruitmentPage() {
               onClick={() => {
                 toast.success('Job submitted for approval', { description: `${newJob.title} · ${newJob.department} — pending budget approval` })
                 setPostOpen(false)
-                setNewJob({ title: '', department: 'Technology' })
+                setNewJob({ title: '', department: 'Sales' })
               }}
             >
               Submit for approval

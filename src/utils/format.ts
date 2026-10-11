@@ -1,13 +1,17 @@
 import { dateLocale, isArabic } from '@/i18n/lang'
 
-const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
-const usd2 = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const num = new Intl.NumberFormat('en-US')
+const num2 = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
-export const formatCurrency = (value: number, cents = false) => (cents ? usd2 : usd).format(value)
+/** Amounts are Egyptian pounds ("EGP 12,500"); the Arabic dictionary renders them as "12,500 ج.م". */
+const withCurrency = (amount: string) => `EGP ${amount}`
+
+export const formatCurrency = (value: number, cents = false) => withCurrency((cents ? num2 : num).format(cents ? value : Math.round(value)))
 export const formatNumber = (value: number) => num.format(value)
-export const formatCompactCurrency = (value: number) =>
-  value >= 1_000_000 ? `$${(value / 1_000_000).toFixed(2)}M` : value >= 1_000 ? `$${Math.round(value / 1_000)}K` : `$${value}`
+/** "450K", "1.35M" — for chart axes, where the card already states the currency. */
+export const formatCompactNumber = (value: number) =>
+  value >= 1_000_000 ? `${(value / 1_000_000).toFixed(2)}M` : value >= 1_000 ? `${Math.round(value / 1_000)}K` : `${value}`
+export const formatCompactCurrency = (value: number) => withCurrency(formatCompactNumber(value))
 
 /** Parses a YYYY-MM-DD string as a local date (avoids UTC off-by-one). */
 export function parseDate(iso: string): Date {

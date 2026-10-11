@@ -1,4 +1,5 @@
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { formatCompactNumber, formatCurrency } from '@/utils/format'
 import { axisProps, ChartLegend, ChartTooltip, gridProps } from '@/components/charts/ChartTooltip'
 
 type Row = object
@@ -8,7 +9,7 @@ interface Series {
   color: string
 }
 
-const fmt = (unit?: string) => (v: number | string) => (unit === '$' ? `$${Number(v).toLocaleString()}` : `${typeof v === 'number' ? v.toLocaleString() : v}${unit && unit !== '$' ? unit : ''}`)
+const fmt = (unit?: string) => (v: number | string) => (unit === '$' ? formatCurrency(Number(v)) : `${typeof v === 'number' ? v.toLocaleString() : v}${unit && unit !== '$' ? unit : ''}`)
 
 export function SimpleBar({ data, x, series, unit, stacked, height = 260 }: { data: Row[]; x: string; series: Series[]; unit?: string; stacked?: boolean; height?: number }) {
   return (
@@ -23,7 +24,7 @@ export function SimpleBar({ data, x, series, unit, stacked, height = 260 }: { da
               interval={0}
               {...(data.length > 6 ? { angle: -35, textAnchor: 'end', height: 56, tick: { ...axisProps.tick, fontSize: 11 } } : {})}
             />
-            <YAxis {...axisProps} tickFormatter={(v) => (unit === '$' ? `$${Math.round(v / 1000)}K` : `${v}${unit ?? ''}`)} />
+            <YAxis {...axisProps} tickFormatter={(v) => (unit === '$' ? formatCompactNumber(v) : `${v}${unit ?? ''}`)} />
             <Tooltip cursor={{ fill: 'var(--muted)', opacity: 0.6 }} content={<ChartTooltip formatter={fmt(unit)} />} />
             {series.map((s, i) => (
               <Bar key={s.key} dataKey={s.key} name={s.label} fill={s.color} stackId={stacked ? 'a' : undefined} stroke={stacked ? 'var(--card)' : undefined} strokeWidth={stacked ? 1 : 0} radius={!stacked || i === series.length - 1 ? [4, 4, 0, 0] : 0} maxBarSize={32} />
@@ -79,7 +80,7 @@ export function SimpleArea({ data, x, dataKey, label, unit, height = 260, domain
           </defs>
           <CartesianGrid {...gridProps} />
           <XAxis dataKey={x} {...axisProps} />
-          <YAxis {...axisProps} domain={domain ?? ['auto', 'auto']} tickFormatter={(v) => (unit === '$' ? `$${Math.round(v / 1000)}K` : `${v}${unit ?? ''}`)} />
+          <YAxis {...axisProps} domain={domain ?? ['auto', 'auto']} tickFormatter={(v) => (unit === '$' ? formatCompactNumber(v) : `${v}${unit ?? ''}`)} />
           <Tooltip content={<ChartTooltip formatter={fmt(unit)} />} cursor={{ stroke: 'var(--border)' }} />
           <Area type="monotone" dataKey={dataKey} name={label} stroke="var(--chart-1)" strokeWidth={2} fill={`url(#${id})`} activeDot={{ r: 5, stroke: 'var(--card)', strokeWidth: 2 }} />
         </AreaChart>

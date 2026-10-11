@@ -62,7 +62,7 @@ export function EmployeeDrawer() {
                   {emp.position} · {emp.department}
                 </SheetDescription>
                 <div className="mt-4 flex gap-2">
-                  <Button size="sm" variant="outline" onClick={() => toast.success(`Message sent to ${emp.name.split(' ')[0]}`, { description: 'Delivered via Northwind Chat (demo).' })}>
+                  <Button size="sm" variant="outline" onClick={() => toast.success(`Message sent to ${emp.name.split(' ')[0]}`, { description: 'Delivered via Smart Technology Chat (demo).' })}>
                     <MessageSquare /> Message
                   </Button>
                   {role === 'hr' && (
