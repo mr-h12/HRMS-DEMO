@@ -26,6 +26,8 @@ export function requestSummary(r: HRRequest) {
       return `${formatCurrency(r.amount ?? 0)} · ${r.category}`
     case 'HR Letter':
       return 'HR letter'
+    case 'Salary Advance':
+      return `${formatCurrency(r.amount ?? 0)} · ${r.installments} installments`
   }
 }
 

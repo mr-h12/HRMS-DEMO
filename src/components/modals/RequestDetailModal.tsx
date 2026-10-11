@@ -68,6 +68,12 @@ export function RequestDetailModal({
               </>
             )}
             {r.type === 'HR Letter' && <Item label="Letter">{r.letterType}</Item>}
+            {r.type === 'Salary Advance' && (
+              <>
+                <Item label="Amount">{formatCurrency(r.amount ?? 0)}</Item>
+                <Item label="Repayment">{`${r.installments} × ${formatCurrency(Math.round((r.amount ?? 0) / (r.installments ?? 1)))}`}</Item>
+              </>
+            )}
             <Item label="Submitted">{formatDateTime(r.submittedAt)}</Item>
           </div>
           <div>

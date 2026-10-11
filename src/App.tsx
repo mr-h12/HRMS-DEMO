@@ -37,6 +37,11 @@ const TrainingPage = lazy(() => import('@/pages/hr/TrainingPage'))
 const HRDocumentsPage = lazy(() => import('@/pages/hr/HRDocumentsPage'))
 const ReportsPage = lazy(() => import('@/pages/hr/ReportsPage'))
 const SettingsPage = lazy(() => import('@/pages/hr/SettingsPage'))
+const LoansPage = lazy(() => import('@/pages/hr/LoansPage'))
+const AssetsPage = lazy(() => import('@/pages/hr/AssetsPage'))
+const OffboardingPage = lazy(() => import('@/pages/hr/OffboardingPage'))
+const OrgChartPage = lazy(() => import('@/pages/hr/OrgChartPage'))
+const ContractsPage = lazy(() => import('@/pages/hr/ContractsPage'))
 // Shared
 const ProfilePage = lazy(() => import('@/pages/shared/ProfilePage'))
 const NotificationsPage = lazy(() => import('@/pages/shared/NotificationsPage'))
@@ -97,6 +102,7 @@ export default function App() {
                     <Route path="approvals" element={page(<ApprovalsPage />)} />
                     <Route path="performance" element={page(<TeamPerformancePage />)} />
                     <Route path="reports" element={page(<ManagerReportsPage />)} />
+                    <Route path="org-chart" element={page(<OrgChartPage />)} />
                     {shared}
                   </Route>
                   <Route path="/hr" element={<AppLayout />}>
@@ -111,6 +117,11 @@ export default function App() {
                     <Route path="documents" element={page(<HRDocumentsPage />)} />
                     <Route path="reports" element={page(<ReportsPage />)} />
                     <Route path="settings" element={page(<SettingsPage />)} />
+                    <Route path="loans" element={page(<LoansPage />)} />
+                    <Route path="assets" element={page(<AssetsPage />)} />
+                    <Route path="offboarding" element={page(<OffboardingPage />)} />
+                    <Route path="org-chart" element={page(<OrgChartPage />)} />
+                    <Route path="contracts" element={page(<ContractsPage />)} />
                     {shared}
                   </Route>
                   <Route path="*" element={<RootRedirect />} />

@@ -1,4 +1,4 @@
-import { ArrowRight, CalendarDays, FileText, Inbox, Receipt, Timer } from 'lucide-react'
+import { ArrowRight, CalendarDays, FileText, HandCoins, Inbox, Receipt, Timer } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { EmptyState } from '@/components/common/EmptyState'
 import { StatusBadge } from '@/components/common/StatusBadge'
@@ -8,7 +8,7 @@ import type { HRRequest, RequestType } from '@/types'
 import { submittedLabel } from '@/utils/format'
 import { requestSummary, requestTitle } from '@/utils/requests'
 
-export const REQUEST_ICONS: Record<RequestType, typeof Inbox> = { Leave: CalendarDays, Overtime: Timer, Expense: Receipt, 'HR Letter': FileText }
+export const REQUEST_ICONS: Record<RequestType, typeof Inbox> = { Leave: CalendarDays, Overtime: Timer, Expense: Receipt, 'HR Letter': FileText, 'Salary Advance': HandCoins }
 
 export function RecentRequestsCard({ requests, onView }: { requests: HRRequest[]; onView: (r: HRRequest) => void }) {
   return (

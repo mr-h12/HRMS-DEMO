@@ -1,4 +1,4 @@
-import { CalendarDays, CheckCheck, Eye, FileText, Inbox, Receipt, Timer } from 'lucide-react'
+import { CalendarDays, CheckCheck, Eye, FileText, HandCoins, Inbox, Receipt, Timer } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { EmptyState } from '@/components/common/EmptyState'
@@ -22,6 +22,7 @@ const TABS: { value: RequestType; label: string; icon: typeof Inbox }[] = [
   { value: 'Overtime', label: 'Overtime', icon: Timer },
   { value: 'Expense', label: 'Expenses', icon: Receipt },
   { value: 'HR Letter', label: 'HR Requests', icon: FileText },
+  { value: 'Salary Advance', label: 'Advances', icon: HandCoins },
 ]
 
 export default function ApprovalsPage() {

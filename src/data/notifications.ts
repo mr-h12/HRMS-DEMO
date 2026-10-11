@@ -1,4 +1,5 @@
 import type { AppNotification } from '@/types'
+import { expiryAlerts } from './contracts'
 
 export const initialNotifications: AppNotification[] = [
   // Employee — Ahmed Hassan
@@ -18,7 +19,8 @@ export const initialNotifications: AppNotification[] = [
 
   // HR Admin — Mariam Hassan
   { id: 'N-H1', role: 'hr', kind: 'payroll', title: 'Payroll processing is ready', message: 'October 2026 payroll for 248 employees is ready for review.', createdAt: '2026-10-07T08:30:00', read: false, link: '/hr/payroll' },
-  { id: 'N-H2', role: 'hr', kind: 'document', title: 'Documents expiring', message: '3 employee documents are expiring within 30 days.', createdAt: '2026-10-07T07:00:00', read: false, link: '/hr/documents' },
+  { id: 'N-H2', role: 'hr', kind: 'document', title: 'Contracts and documents expiring', message: `${expiryAlerts().length} contracts and documents expire within 30 days.`, createdAt: '2026-10-07T07:00:00', read: false, link: '/hr/contracts' },
+  { id: 'N-H9', role: 'hr', kind: 'request', title: 'Salary advance requests', message: '2 salary advance requests are waiting for HR review.', createdAt: '2026-10-06T12:20:00', read: false, link: '/hr/loans' },
   { id: 'N-H3', role: 'hr', kind: 'request', title: 'Leave request submitted', message: 'Ahmed submitted a leave request (Annual Leave, Oct 12–14).', createdAt: '2026-10-05T10:24:00', read: false, link: '/hr/leave' },
   { id: 'N-H4', role: 'hr', kind: 'recruitment', title: 'Offer accepted', message: 'Mira Youssef accepted the PV Design Engineer offer — starts Nov 1.', createdAt: '2026-10-06T13:20:00', read: false, link: '/hr/recruitment' },
   { id: 'N-H5', role: 'hr', kind: 'system', title: 'Probation reviews', message: '4 employees complete probation this month.', createdAt: '2026-10-02T09:00:00', read: true, link: '/hr/employees' },

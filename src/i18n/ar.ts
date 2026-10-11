@@ -5,6 +5,7 @@
  */
 
 import { AR_DATA } from './ar-data'
+import { AR_LIFECYCLE } from './ar-lifecycle'
 import { AR_UI } from './ar-ui'
 
 const MONTHS: [string, string, string][] = [
@@ -29,6 +30,7 @@ for (const [abbr, , ar] of MONTHS) for (const y of ['25', '26']) dateTemplates[`
 
 export const AR: Record<string, string> = {
   ...dateTemplates,
+  ...AR_LIFECYCLE,
   ...AR_DATA,
   ...AR_UI,
 

@@ -1,4 +1,4 @@
-import { CalendarCheck, CalendarDays, Clock, FileText, Inbox, LogIn, LogOut, Receipt, Wallet } from 'lucide-react'
+import { CalendarCheck, CalendarDays, Clock, FileText, HandCoins, Inbox, LogIn, LogOut, Receipt, Wallet } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StatCard } from '@/components/cards/StatCard'
@@ -12,6 +12,7 @@ import { HrLetterModal } from '@/components/modals/HrLetterModal'
 import { PayslipModal } from '@/components/modals/PayslipModal'
 import { RequestDetailModal } from '@/components/modals/RequestDetailModal'
 import { RequestLeaveModal } from '@/components/modals/RequestLeaveModal'
+import { SalaryAdvanceModal } from '@/components/modals/SalaryAdvanceModal'
 import { ahmedAttendanceRate } from '@/data/attendance'
 import { EMPLOYEE_ID } from '@/data/employees'
 import { ahmedLeaveBalances } from '@/data/leaves'
@@ -29,6 +30,7 @@ export default function EmployeeDashboard() {
   const [leaveOpen, setLeaveOpen] = useState(false)
   const [letterOpen, setLetterOpen] = useState(false)
   const [expenseOpen, setExpenseOpen] = useState(false)
+  const [advanceOpen, setAdvanceOpen] = useState(false)
   const [payslip, setPayslip] = useState<Payslip | null>(null)
   const [viewing, setViewing] = useState<HRRequest | null>(null)
 
@@ -80,6 +82,7 @@ export default function EmployeeDashboard() {
             { label: 'Request Leave', description: `${annual.total - annual.used} annual days left`, icon: CalendarDays, onClick: () => setLeaveOpen(true), tone: 'bg-primary/10 text-primary' },
             { label: 'Request HR Letter', description: 'Salary, embassy & more', icon: FileText, onClick: () => setLetterOpen(true), tone: 'bg-violet-50 text-violet-600 dark:bg-violet-500/15 dark:text-violet-300' },
             { label: 'Submit Expense', description: 'Reimbursement claim', icon: Receipt, onClick: () => setExpenseOpen(true), tone: 'bg-warning/10 text-warning' },
+            { label: 'Salary Advance', description: 'Repaid in installments', icon: HandCoins, onClick: () => setAdvanceOpen(true), tone: 'bg-success/10 text-success' },
             { label: 'View Payslip', description: payslips[1].period, icon: Wallet, onClick: () => setPayslip(payslips[1]), tone: 'bg-info/10 text-info' },
           ]}
         />
@@ -104,6 +107,7 @@ export default function EmployeeDashboard() {
       <RequestLeaveModal open={leaveOpen} onOpenChange={setLeaveOpen} />
       <HrLetterModal open={letterOpen} onOpenChange={setLetterOpen} />
       <ExpenseModal open={expenseOpen} onOpenChange={setExpenseOpen} />
+      <SalaryAdvanceModal open={advanceOpen} onOpenChange={setAdvanceOpen} />
       <PayslipModal payslip={payslip} onOpenChange={(o) => !o && setPayslip(null)} />
       <RequestDetailModal request={viewing} onOpenChange={(o) => !o && setViewing(null)} />
     </div>

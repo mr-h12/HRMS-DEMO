@@ -43,7 +43,7 @@ interface AppStore {
   drawerEmployeeId: string | null
   openEmployee: (id: string | null) => void
 
-  counts: { pendingApprovals: number; pendingLeave: number; myPending: number }
+  counts: { pendingApprovals: number; pendingLeave: number; myPending: number; pendingAdvances: number }
 }
 
 const StoreContext = createContext<AppStore | null>(null)
@@ -91,6 +91,7 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
     () => ({
       pendingApprovals: requests.filter((r) => r.managerId === MANAGER_ID && r.status === 'Pending').length,
       pendingLeave: requests.filter((r) => r.type === 'Leave' && r.status === 'Pending').length,
+      pendingAdvances: requests.filter((r) => r.type === 'Salary Advance' && r.status === 'Pending').length,
       myPending: requests.filter((r) => r.employeeId === EMPLOYEE_ID && r.status === 'Pending').length,
     }),
     [requests],

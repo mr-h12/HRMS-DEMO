@@ -1,6 +1,6 @@
 import {
-  BarChart3, BriefcaseBusiness, CalendarCheck2, CalendarDays, CheckSquare, Clock, FileText, FolderOpen, GraduationCap,
-  LayoutDashboard, Receipt, Settings, Target, User, Users, Wallet, type LucideIcon, Inbox,
+  BarChart3, BriefcaseBusiness, CalendarCheck2, CalendarDays, CheckSquare, Clock, FileClock, FileText, FolderOpen, GraduationCap,
+  HandCoins, LayoutDashboard, Network, Package, Receipt, Settings, Target, User, UserMinus, Users, Wallet, type LucideIcon, Inbox,
 } from 'lucide-react'
 import { COMPANY } from '@/data/company'
 import type { CurrentUser, Role } from '@/types'
@@ -9,7 +9,9 @@ export interface NavItem {
   label: string
   path: string
   icon: LucideIcon
-  badgeKey?: 'pendingApprovals' | 'pendingLeave' | 'myPending'
+  badgeKey?: 'pendingApprovals' | 'pendingLeave' | 'myPending' | 'pendingAdvances'
+  /** Section heading in the sidebar; consecutive items with the same group share one heading. */
+  group?: string
 }
 
 export const ROLE_LABELS: Record<Role, string> = {
@@ -49,19 +51,25 @@ export const NAVIGATION: Record<Role, NavItem[]> = {
     { label: 'Approvals', path: '/manager/approvals', icon: CheckSquare, badgeKey: 'pendingApprovals' },
     { label: 'Performance', path: '/manager/performance', icon: Target },
     { label: 'Reports', path: '/manager/reports', icon: BarChart3 },
+    { label: 'Org Chart', path: '/manager/org-chart', icon: Network },
   ],
   hr: [
     { label: 'Dashboard', path: '/hr', icon: LayoutDashboard },
-    { label: 'Employees', path: '/hr/employees', icon: Users },
-    { label: 'Attendance', path: '/hr/attendance', icon: Clock },
-    { label: 'Leave', path: '/hr/leave', icon: CalendarCheck2, badgeKey: 'pendingLeave' },
-    { label: 'Payroll', path: '/hr/payroll', icon: Wallet },
-    { label: 'Recruitment', path: '/hr/recruitment', icon: BriefcaseBusiness },
-    { label: 'Performance', path: '/hr/performance', icon: Target },
-    { label: 'Training', path: '/hr/training', icon: GraduationCap },
-    { label: 'Documents', path: '/hr/documents', icon: FileText },
-    { label: 'Reports', path: '/hr/reports', icon: BarChart3 },
-    { label: 'Settings', path: '/hr/settings', icon: Settings },
+    { label: 'Employees', path: '/hr/employees', icon: Users, group: 'People' },
+    { label: 'Org Chart', path: '/hr/org-chart', icon: Network, group: 'People' },
+    { label: 'Contracts & Expiries', path: '/hr/contracts', icon: FileClock, group: 'People' },
+    { label: 'Offboarding', path: '/hr/offboarding', icon: UserMinus, group: 'People' },
+    { label: 'Attendance', path: '/hr/attendance', icon: Clock, group: 'Time & Leave' },
+    { label: 'Leave', path: '/hr/leave', icon: CalendarCheck2, badgeKey: 'pendingLeave', group: 'Time & Leave' },
+    { label: 'Payroll', path: '/hr/payroll', icon: Wallet, group: 'Pay & Benefits' },
+    { label: 'Advances & Loans', path: '/hr/loans', icon: HandCoins, badgeKey: 'pendingAdvances', group: 'Pay & Benefits' },
+    { label: 'Recruitment', path: '/hr/recruitment', icon: BriefcaseBusiness, group: 'Talent' },
+    { label: 'Performance', path: '/hr/performance', icon: Target, group: 'Talent' },
+    { label: 'Training', path: '/hr/training', icon: GraduationCap, group: 'Talent' },
+    { label: 'Assets & Custody', path: '/hr/assets', icon: Package, group: 'Administration' },
+    { label: 'Documents', path: '/hr/documents', icon: FileText, group: 'Administration' },
+    { label: 'Reports', path: '/hr/reports', icon: BarChart3, group: 'Administration' },
+    { label: 'Settings', path: '/hr/settings', icon: Settings, group: 'Administration' },
   ],
 }
 
