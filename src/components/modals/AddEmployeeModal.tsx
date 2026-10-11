@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils'
 import { useAppStore } from '@/store/AppStore'
 import type { Department, Employee, EmploymentType, Location } from '@/types'
 import { formatCurrency, formatDate } from '@/utils/format'
+import { COMPANY } from '@/data/company'
 
 const STEPS = ['Personal', 'Employment', 'Salary', 'Documents', 'Review'] as const
 
@@ -39,7 +40,7 @@ interface FormState {
 
 const INITIAL: FormState = {
   firstName: '', lastName: '', email: '', phone: '', dateOfBirth: '', gender: 'Female', nationality: 'Egyptian',
-  department: 'Technology', position: '', managerId: '', location: 'Cairo HQ', employmentType: 'Full-time', joiningDate: '2026-11-01',
+  department: 'Sales', position: '', managerId: '', location: 'Cairo HQ', employmentType: 'Full-time', joiningDate: '2026-11-01',
   basicSalary: '', housing: '', transport: '150', bank: 'Commercial International Bank (CIB)', iban: '',
   docs: { 'National ID / Passport': null, 'Signed offer letter': null, 'Educational certificate': null },
 }
@@ -89,7 +90,7 @@ export function AddEmployeeModal({ open, onOpenChange }: { open: boolean; onOpen
     }
     if (s === 2) {
       const b = Number(form.basicSalary)
-      if (!b || b < 300) e.basicSalary = 'Enter a monthly basic salary (min $300)'
+      if (!b || b < 7000) e.basicSalary = 'Enter a monthly basic salary (min EGP 7,000)'
       if (form.iban.replace(/\s/g, '').length < 15) e.iban = 'Enter a valid IBAN'
     }
     setErrors(e)
@@ -181,7 +182,7 @@ export function AddEmployeeModal({ open, onOpenChange }: { open: boolean; onOpen
                   type="email"
                   value={form.email}
                   onChange={(e) => set('email', e.target.value)}
-                  placeholder={form.firstName && form.lastName ? `${form.firstName}.${form.lastName}@northwind.co`.toLowerCase().replace(/\s/g, '') : 'name@northwind.co'}
+                  placeholder={form.firstName && form.lastName ? `${form.firstName}.${form.lastName}@${COMPANY.domain}`.toLowerCase().replace(/\s/g, '') : `name@${COMPANY.domain}`}
                 />
               </Field>
               <Field label="Phone" htmlFor="f-phone" error={errors.phone} required>
@@ -234,7 +235,7 @@ export function AddEmployeeModal({ open, onOpenChange }: { open: boolean; onOpen
           )}
           {step === 2 && (
             <div className="grid gap-4 sm:grid-cols-3">
-              <Field label="Basic salary (USD / month)" htmlFor="f-basic" error={errors.basicSalary} required>
+              <Field label="Basic salary (EGP / month)" htmlFor="f-basic" error={errors.basicSalary} required>
                 <Input id="f-basic" type="number" min="0" value={form.basicSalary} onChange={(e) => set('basicSalary', e.target.value)} placeholder="2,200" />
               </Field>
               <Field label="Housing allowance" htmlFor="f-housing" hint="Suggested: 20% of basic">

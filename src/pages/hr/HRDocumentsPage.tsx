@@ -105,7 +105,7 @@ export default function HRDocumentsPage() {
                     <Button variant="ghost" size="icon-sm" onClick={() => setPreviewing(d)} aria-label={`View ${d.name}`}>
                       <Eye />
                     </Button>
-                    <Button variant="ghost" size="icon-sm" onClick={() => downloadDocument(d, 'Northwind Group')} aria-label={`Download ${d.name}`}>
+                    <Button variant="ghost" size="icon-sm" onClick={() => downloadDocument(d, 'Smart Technology')} aria-label={`Download ${d.name}`}>
                       <Download />
                     </Button>
                   </TableCell>

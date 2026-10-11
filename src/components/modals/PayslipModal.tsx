@@ -9,6 +9,7 @@ import type { Payslip } from '@/types'
 import { downloadFile } from '@/utils/download'
 import { formatCurrency, formatDate } from '@/utils/format'
 import { payslipText } from '@/utils/payslip'
+import { COMPANY } from '@/data/company'
 
 export function downloadPayslip(p: Payslip) {
   downloadFile(`Payslip-${p.month}-EMP-1042.txt`, payslipText(p))
@@ -31,10 +32,10 @@ export function PayslipModal({ payslip, onOpenChange }: { payslip: Payslip | nul
           <div className="rounded-xl border bg-card p-5 shadow-xs sm:p-7">
             <div className="flex flex-col justify-between gap-4 border-b pb-5 sm:flex-row sm:items-start">
               <div className="flex items-center gap-3">
-                <BrandMark />
+                <BrandMark className="size-12" />
                 <div>
-                  <div className="font-semibold">Northwind Group</div>
-                  <div className="text-xs text-muted-foreground">Tower B, Smart Village, Giza, Egypt</div>
+                  <div className="font-semibold">{COMPANY.name}</div>
+                  <div className="text-xs text-muted-foreground">Head Office, Cairo, Egypt</div>
                 </div>
               </div>
               <div className="sm:text-end">
@@ -48,8 +49,8 @@ export function PayslipModal({ payslip, onOpenChange }: { payslip: Payslip | nul
               {[
                 ['Employee', 'Ahmed Hassan'],
                 ['Employee ID', 'EMP-1042'],
-                ['Department', 'Technology'],
-                ['Position', 'Senior Software Engineer'],
+                ['Department', 'Sales'],
+                ['Position', 'Senior Sales Engineer'],
                 ['Pay date', formatDate(payslip.payDate)],
                 ['Paid days', `${payslip.paidDays} / ${payslip.workingDays}`],
                 ['Bank', 'CIB'],

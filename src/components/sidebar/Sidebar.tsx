@@ -1,6 +1,6 @@
 import { LifeBuoy, PanelLeft, Sparkles } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
-import { BrandMark } from '@/components/navbar/Navbar'
+import { BrandMark, BrandName } from '@/components/navbar/Navbar'
 import { Tooltip } from '@/components/ui/misc'
 import { NAVIGATION, ROLE_LABELS } from '@/config/roles'
 import { useRole } from '@/hooks/useRole'
@@ -90,11 +90,9 @@ export function SidebarHeader({ collapsed = false, onToggleCollapse }: { collaps
         <BrandMark />
       )}
       {!collapsed && (
-        <Link to={`/${role}`} className={cn('flex min-w-0 items-center gap-2 rounded-md', FOCUS)} aria-label="HRMS DEMO home">
-          {onToggleCollapse && <BrandMark className="size-6" />}
-          <span className="truncate text-card-title" data-no-translate>
-            HRMS <span className="text-primary">DEMO</span>
-          </span>
+        <Link to={`/${role}`} className={cn('flex min-w-0 items-center gap-2 rounded-md', FOCUS)} aria-label="Smart Technology HRMS home">
+          {onToggleCollapse && <BrandMark className="size-7" />}
+          <BrandName product="HRMS · Demo" />
         </Link>
       )}
     </div>

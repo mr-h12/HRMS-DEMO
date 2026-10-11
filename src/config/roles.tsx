@@ -2,6 +2,7 @@ import {
   BarChart3, BriefcaseBusiness, CalendarCheck2, CalendarDays, CheckSquare, Clock, FileText, FolderOpen, GraduationCap,
   LayoutDashboard, Receipt, Settings, Target, User, Users, Wallet, type LucideIcon, Inbox,
 } from 'lucide-react'
+import { COMPANY } from '@/data/company'
 import type { CurrentUser, Role } from '@/types'
 
 export interface NavItem {
@@ -24,9 +25,9 @@ export const ROLE_DESCRIPTIONS: Record<Role, string> = {
 }
 
 export const CURRENT_USERS: Record<Role, CurrentUser> = {
-  employee: { role: 'employee', employeeId: 'EMP-1042', name: 'Ahmed Hassan', title: 'Senior Software Engineer', department: 'Technology', email: 'ahmed.hassan@northwind.co' },
-  manager: { role: 'manager', employeeId: 'EMP-1008', name: 'Mohamed Ali', title: 'Engineering Manager', department: 'Technology', email: 'mohamed.ali@northwind.co' },
-  hr: { role: 'hr', employeeId: 'EMP-1003', name: 'Mariam Hassan', title: 'HR Manager', department: 'Human Resources', email: 'mariam.hassan@northwind.co' },
+  employee: { role: 'employee', employeeId: 'EMP-1042', name: 'Ahmed Hassan', title: 'Senior Sales Engineer', department: 'Sales', email: `ahmed.hassan@${COMPANY.domain}` },
+  manager: { role: 'manager', employeeId: 'EMP-1008', name: 'Mohamed Ali', title: 'Sales Team Leader', department: 'Sales', email: `mohamed.ali@${COMPANY.domain}` },
+  hr: { role: 'hr', employeeId: 'EMP-1003', name: 'Mariam Hassan', title: 'HR Manager', department: 'Human Resources', email: `mariam.hassan@${COMPANY.domain}` },
 }
 
 export const NAVIGATION: Record<Role, NavItem[]> = {

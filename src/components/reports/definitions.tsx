@@ -51,8 +51,8 @@ export const HR_REPORTS: ReportDefinition[] = [
       { label: 'Net growth', value: '+12.0%' },
     ],
     chartTitle: 'Headcount — last 12 months',
-    chart: () => <SimpleArea data={headcountTrend} x="month" dataKey="headcount" label="Headcount" domain={[440, 540]} />,
-    insight: 'Headcount grew steadily (+4.7 net hires/month), driven by Technology and Sales expansion in the Riyadh and Dubai offices.',
+    chart: () => <SimpleArea data={headcountTrend} x="month" dataKey="headcount" label="Headcount" domain={[200, 260]} />,
+    insight: 'Headcount grew steadily (+4.7 net hires/month), driven by Construction and Solar Energy site crews for new projects.',
     table: { columns: ['Department', 'Employees', 'Share'], rows: deptCounts.map(([d, n]) => [d, n, `${((n / employees.length) * 100).toFixed(1)}%`]) },
   },
   {
@@ -94,7 +94,7 @@ export const HR_REPORTS: ReportDefinition[] = [
     ],
     chartTitle: 'Gross vs net payroll — last 6 months',
     chart: () => <SimpleBar data={payrollHistory} x="month" unit="$" series={[{ key: 'gross', label: 'Gross', color: C[0] }, { key: 'net', label: 'Net', color: C[2] }]} />,
-    insight: 'Payroll cost rose 5.1% over six months, in line with headcount growth; overtime spend is concentrated in Technology and Operations.',
+    insight: 'Payroll cost rose 5.1% over six months, in line with headcount growth; overtime spend is concentrated on construction and solar sites.',
     table: { columns: ['Department', 'Monthly gross', 'Share'], rows: payrollDept.map((d) => [d.department, formatCurrency(d.total), `${((d.total / PAYROLL_TOTALS.gross) * 100).toFixed(1)}%`]) },
   },
   {
@@ -104,7 +104,7 @@ export const HR_REPORTS: ReportDefinition[] = [
       { label: 'Applicants', value: '248' },
       { label: 'Offer acceptance', value: '86%' },
       { label: 'Time to hire', value: '31 days' },
-      { label: 'Cost per hire', value: '$1,240' },
+      { label: 'Cost per hire', value: 'EGP 9,800' },
     ],
     chartTitle: 'Recruitment funnel',
     chart: () => <SimpleBar data={recruitmentFunnel} x="stage" series={[{ key: 'value', label: 'Candidates', color: C[0] }]} />,
@@ -136,7 +136,7 @@ export const HR_REPORTS: ReportDefinition[] = [
     ],
     chartTitle: 'Rating distribution (employees)',
     chart: () => <SimpleBar data={ratingDistribution} x="band" series={[{ key: 'count', label: 'Employees', color: C[0] }]} />,
-    insight: 'Ratings skew toward “Exceeds”; calibration sessions should confirm consistency between Technology and Sales managers.',
+    insight: 'Ratings skew toward “Exceeds”; calibration sessions should confirm consistency between Sales and Construction managers.',
     table: { columns: ['Department', 'Average rating'], rows: [...departmentPerformance].sort((a, b) => b.rating - a.rating).map((d) => [d.department, d.rating.toFixed(2)]) },
   },
 ]
@@ -183,7 +183,7 @@ export const MANAGER_REPORTS: ReportDefinition[] = [
         series={[{ key: 'days', label: 'Days', color: C[0] }]}
       />
     ),
-    insight: 'Three members have upcoming leave in late October — plan sprint capacity accordingly.',
+    insight: 'Three members have upcoming leave in late October — plan customer follow-ups and quotation coverage accordingly.',
     table: { columns: ['Employee', 'Type', 'Start', 'End', 'Days', 'Status'], rows: teamLeave.map((r) => [r.employeeName, r.leaveType!, r.startDate!, r.endDate!, r.days!, r.status]) },
   },
   {
@@ -197,7 +197,7 @@ export const MANAGER_REPORTS: ReportDefinition[] = [
     ],
     chartTitle: 'Team trend — last 6 months (%)',
     chart: () => <SimpleLine data={teamPerformanceTrend} x="month" unit="%" domain={[60, 100]} series={[{ key: 'goals', label: 'Goal achievement', color: C[0] }, { key: 'performance', label: 'Performance', color: C[1] }, { key: 'productivity', label: 'Productivity', color: C[2] }]} />,
-    insight: 'Productivity rose 13 points since May after the CI/CD migration; mentoring goals are the main area at risk.',
+    insight: 'Productivity rose 13 points since May after quotations moved into the CRM; solar product certification is the main goal at risk.',
     table: { columns: ['Employee', 'Rating', 'Goals', 'Productivity', 'Review'], rows: teamPerformance.map((p) => [teamMembers.find((e) => e.id === p.employeeId)!.name, p.rating.toFixed(1), `${p.goalAchievement}%`, `${p.productivity}%`, p.reviewStatus]) },
   },
   {
@@ -207,11 +207,11 @@ export const MANAGER_REPORTS: ReportDefinition[] = [
       { label: 'Hours (6 mo)', value: String(teamOvertime.reduce((s, m) => s + m.hours, 0)) },
       { label: 'Avg. / member', value: `${(teamOvertime.reduce((s, m) => s + m.hours, 0) / 18).toFixed(1)}h` },
       { label: 'Pending claims', value: '3' },
-      { label: 'Est. cost', value: '$3,380' },
+      { label: 'Est. cost', value: 'EGP 24,600' },
     ],
     chartTitle: 'Overtime hours by month',
     chart: () => <SimpleBar data={teamOvertime} x="month" series={[{ key: 'hours', label: 'Hours', color: C[0] }]} />,
-    insight: 'August spiked with the payments migration; overtime has normalized since release automation went live.',
+    insight: 'August spiked with the New Capital tender submission; overtime has normalized since quotation approvals moved into the CRM.',
     table: { columns: ['Month', 'Overtime hours'], rows: teamOvertime.map((m) => [m.month, m.hours]) },
   },
 ]

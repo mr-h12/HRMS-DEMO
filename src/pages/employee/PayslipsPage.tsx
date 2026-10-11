@@ -50,7 +50,7 @@ export default function PayslipsPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Deductions</span>
-                  <span className="font-medium text-destructive tabular">−{formatCurrency(pt.deductions, true)}</span>
+                  <span className="font-medium text-destructive tabular">{`−${formatCurrency(pt.deductions, true)}`}</span>
                 </div>
                 <div className="flex justify-between border-t pt-2.5">
                   <span className="font-medium">Net salary</span>
@@ -90,7 +90,7 @@ export default function PayslipsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {['Basic Salary', 'Housing Allowance', 'Transportation Allowance', 'Overtime', 'Income Tax', 'Social Insurance (Employee)', 'Medical Insurance'].map((label) => (
+              {['Basic Salary', 'Housing Allowance', 'Transportation Allowance', 'Sales Commission', 'Overtime', 'Income Tax', 'Social Insurance (Employee)', 'Medical Insurance'].map((label) => (
                 <TableRow key={label}>
                   <TableCell className="font-medium">{label}</TableCell>
                   {payslips.map((p) => {
@@ -124,7 +124,7 @@ export default function PayslipsPage() {
                   size="icon-sm"
                   aria-label={`Download ${d}`}
                   onClick={() => {
-                    downloadFile(`${d.replace(/[^a-z0-9]+/gi, '-')}.txt`, `${d}\nEmployee: Ahmed Hassan (EMP-1042)\nIssued by Northwind Group HR — demo document.`)
+                    downloadFile(`${d.replace(/[^a-z0-9]+/gi, '-')}.txt`, `${d}\nEmployee: Ahmed Hassan (EMP-1042)\nIssued by Smart Technology HR — demo document.`)
                     toast.success('Download started', { description: d })
                   }}
                 >

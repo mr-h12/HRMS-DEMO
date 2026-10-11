@@ -62,7 +62,7 @@ export function GlobalSearch() {
       onSelect: () => {
         close()
         if (role === 'hr') navigate(`/hr/employees?department=${encodeURIComponent(d.name)}`)
-        else if (role === 'manager' && d.name === 'Technology') navigate('/manager/team')
+        else if (role === 'manager' && d.name === 'Sales') navigate('/manager/team')
         else toast.info(d.name, { description: `${d.headcount} employees · Department head: ${d.head}` })
       },
     }))
@@ -111,7 +111,7 @@ export function GlobalSearch() {
   }, [active])
 
   const groups = (['Employees', 'Departments', 'Requests', 'Documents'] as const).filter((g) => results.some((r) => r.group === g))
-  const suggestions = role === 'hr' ? ['Ahmed', 'Technology', 'Annual Leave', 'Passport'] : role === 'manager' ? ['Sara', 'Overtime', 'Expense', 'Technology'] : ['Mohamed', 'Leave', 'Contract', 'Salary']
+  const suggestions = role === 'hr' ? ['Ahmed', 'Construction', 'Annual Leave', 'Passport'] : role === 'manager' ? ['Sara', 'Overtime', 'Expense', 'Sales'] : ['Mohamed', 'Leave', 'Contract', 'Salary']
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={(o) => { setOpen(o); if (!o) setQuery('') }}>

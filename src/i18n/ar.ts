@@ -35,8 +35,11 @@ export const AR: Record<string, string> = {
   /* ---------- Brand & shell ---------- */
   'HRMS': 'نظام الموارد البشرية',
   'DEMO': 'تجريبي',
+  'Demo': 'تجريبي',
+  'Smart Technology HRMS home': 'الصفحة الرئيسية لنظام الموارد البشرية — سمارت تكنولوجي',
+  'S.T.I.S — Smart Technology for Integrated Systems': 'S.T.I.S — سمارت تكنولوجي للأنظمة المتكاملة',
   'HRMS DEMO home': 'الصفحة الرئيسية',
-  'Northwind Group': 'مجموعة نورثويند',
+  'Smart Technology': 'سمارت تكنولوجي',
   'Viewing as:': 'العرض كـ:',
   'Employee': 'موظف',
   'Manager': 'مدير',

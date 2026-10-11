@@ -161,6 +161,7 @@ export const BRANDS = new Set([
   'Instabug', 'Paymob', 'Fawry', 'Careem', 'Valeo Egypt', 'Swvl', 'Talabat', 'Noon', 'Freelance', 'Raya Holding', 'Vodafone Egypt',
   'Orange Business', 'IBM Egypt', 'Etisalat by e&', 'STC', 'Salesforce', 'Oracle KSA', 'Zoho', 'HubSpot', 'Majid Al Futtaim', 'PwC Egypt',
   'CIB', 'Zendesk', 'Emirates NBD', 'Valu', 'Breadfast', 'Aramex', 'Matouk Bassiouny', 'Anghami', 'AXA', 'AWS', 'LinkedIn', 'Wuzzuf', 'Bayt',
+  'Schneider Electric Egypt', 'Elsewedy Electric', 'ABB Egypt', 'Siemens Egypt', 'KarmSolar', 'Infinity Power', 'Orascom Construction', 'Hassan Allam', 'Arab Contractors',
   'PDF', 'DOCX', 'JPG', 'PNG', 'ESC', '⌘K', 'Go', 'Kafka', 'Node.js', 'TypeScript', 'PostgreSQL', 'Java', 'GITEX Global',
 ])
 

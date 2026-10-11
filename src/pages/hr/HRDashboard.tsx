@@ -33,7 +33,7 @@ export default function HRDashboard() {
         <div>
           <p className="text-sm text-muted-foreground">{today}</p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight">{greeting()}, Mariam 👋</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Here’s what’s happening across Northwind Group today.</p>
+          <p className="mt-1 text-sm text-muted-foreground">Here’s what’s happening across Smart Technology today.</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={() => navigate('/hr/reports')}>
@@ -67,7 +67,7 @@ export default function HRDashboard() {
             </div>
           </CardHeader>
           <CardContent>
-            <SimpleArea data={headcountTrend} x="month" dataKey="headcount" label="Headcount" domain={[440, 540]} height={280} />
+            <SimpleArea data={headcountTrend} x="month" dataKey="headcount" label="Headcount" domain={[200, 260]} height={280} />
           </CardContent>
         </Card>
 

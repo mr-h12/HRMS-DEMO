@@ -1,6 +1,6 @@
 import { Briefcase, ShieldCheck, UserRound } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { BrandMark } from '@/components/navbar/Navbar'
+import logoFull from '@/assets/logo-full.png'
 import { Card } from '@/components/ui/card'
 import { ROLE_DESCRIPTIONS, ROLE_LABELS } from '@/config/roles'
 import type { Role } from '@/types'
@@ -11,11 +11,8 @@ export default function SignedOutPage() {
   return (
     <div className="flex min-h-dvh items-center justify-center bg-background px-4 py-10">
       <Card className="w-full max-w-md p-8 shadow-2">
-        <div className="flex items-center gap-2.5">
-          <BrandMark />
-          <span className="text-[15px] font-bold tracking-tight">
-            HRMS <span className="text-primary">DEMO</span>
-          </span>
+        <div className="flex justify-center">
+          <img src={logoFull} alt="S.T.I.S — Smart Technology for Integrated Systems" className="h-32 w-auto rounded-lg bg-white p-2" />
         </div>
         <h1 className="mt-6 text-xl font-semibold tracking-tight">You’ve been signed out</h1>
         <p className="mt-1 text-sm text-muted-foreground">This is a demo environment — pick a role to jump back in. No credentials required.</p>
