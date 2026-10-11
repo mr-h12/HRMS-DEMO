@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { EmployeeDrawer } from '@/components/drawers/EmployeeDrawer'
-import { Navbar, BrandMark } from '@/components/navbar/Navbar'
+import { Navbar, BrandMark, BrandName } from '@/components/navbar/Navbar'
 import { Sidebar, SidebarFooter, SidebarNav } from '@/components/sidebar/Sidebar'
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -36,10 +36,10 @@ export function AppLayout() {
           <div className="flex h-16 items-center gap-2.5 border-b px-2">
             <BrandMark />
             <div>
-              <SheetTitle className="text-[15px] font-bold tracking-tight">
-                HRMS <span className="text-primary">DEMO</span>
+              <SheetTitle>
+                <BrandName product="HRMS · Demo" />
               </SheetTitle>
-              <SheetDescription className="text-[11px]">{COMPANY.name}</SheetDescription>
+              <SheetDescription className="sr-only">{COMPANY.name}</SheetDescription>
             </div>
           </div>
           <div className="flex-1 overflow-y-auto py-4">
