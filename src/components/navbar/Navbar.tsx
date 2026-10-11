@@ -1,4 +1,5 @@
 import { Menu } from 'lucide-react'
+import logoMark from '@/assets/logo-mark.png'
 import { useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { NotificationsMenu } from '@/components/notifications/NotificationsMenu'
@@ -11,12 +12,11 @@ import { ProfileMenu } from './ProfileMenu'
 import { RoleSwitcher } from './RoleSwitcher'
 import { ThemeToggle } from './ThemeToggle'
 
+/** The Smart Technology mark. On dark surfaces it sits on a light tile so its charcoal blocks stay visible. */
 export function BrandMark({ className }: { className?: string }) {
   return (
-    <span className={cn('flex size-8 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground', className)}>
-      <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden>
-        <path d="M5 19V5h3v5.6h8V5h3v14h-3v-5.4H8V19z" />
-      </svg>
+    <span className={cn('flex size-8 shrink-0 items-center justify-center rounded-md dark:bg-white dark:p-0.5', className)}>
+      <img src={logoMark} alt="" className="size-full object-contain" draggable={false} />
     </span>
   )
 }
