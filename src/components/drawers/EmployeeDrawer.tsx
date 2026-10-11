@@ -51,7 +51,7 @@ export function EmployeeDrawer() {
         {emp && (
           <>
             <div className="relative overflow-hidden border-b">
-              <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-r from-indigo-500/15 via-violet-500/10 to-sky-500/15" />
+              <div className="absolute inset-x-0 top-0 h-20 bg-primary/10" />
               <div className="relative px-6 pt-10 pb-5">
                 <UserAvatar name={emp.name} size="xl" ring className="ring-4" />
                 <div className="mt-3 flex flex-wrap items-center gap-2">

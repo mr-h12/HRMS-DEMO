@@ -50,7 +50,7 @@ export default function PayslipsPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Deductions</span>
-                  <span className="font-medium text-rose-600 tabular dark:text-rose-400">−{formatCurrency(pt.deductions, true)}</span>
+                  <span className="font-medium text-destructive tabular">−{formatCurrency(pt.deductions, true)}</span>
                 </div>
                 <div className="flex justify-between border-t pt-2.5">
                   <span className="font-medium">Net salary</span>
@@ -97,7 +97,7 @@ export default function PayslipsPage() {
                     const line = [...p.earnings, ...p.deductions].find((l) => l.label.startsWith(label))
                     const isDeduction = p.deductions.some((l) => l.label.startsWith(label))
                     return (
-                      <TableCell key={p.id} className={`text-end tabular ${isDeduction ? 'text-rose-600 dark:text-rose-400' : ''}`}>
+                      <TableCell key={p.id} className={`text-end tabular ${isDeduction ? 'text-destructive' : ''}`}>
                         {line ? `${isDeduction ? '−' : ''}${formatCurrency(line.amount)}` : '—'}
                       </TableCell>
                     )
@@ -117,7 +117,7 @@ export default function PayslipsPage() {
           <CardContent className="space-y-2">
             {['Annual Tax Certificate 2025', 'Social Insurance Statement 2025', 'Salary Certificate — Sep 2026'].map((d) => (
               <div key={d} className="flex items-center gap-3 rounded-xl border p-3">
-                <span className="flex size-9 items-center justify-center rounded-lg bg-rose-50 text-[10px] font-bold text-rose-600 dark:bg-rose-500/15 dark:text-rose-300">PDF</span>
+                <span className="flex size-9 items-center justify-center rounded-lg bg-destructive/10 text-[10px] font-bold text-destructive">PDF</span>
                 <span className="flex-1 truncate text-[13px] font-medium">{d}</span>
                 <Button
                   variant="ghost"

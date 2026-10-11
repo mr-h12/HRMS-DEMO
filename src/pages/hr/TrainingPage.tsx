@@ -57,7 +57,7 @@ export default function TrainingPage() {
                   </span>
                   <span className="font-semibold tabular">{pct}%</span>
                 </div>
-                <Progress value={pct} className="h-1.5" indicatorClassName={pct >= 80 ? 'bg-emerald-500' : pct < 50 ? 'bg-amber-500' : undefined} />
+                <Progress value={pct} className="h-1.5" indicatorClassName={pct >= 80 ? 'bg-success' : pct < 50 ? 'bg-warning' : undefined} />
                 <div className="mt-3 flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">Due {formatDate(c.due, { month: 'short', day: 'numeric' })}</span>
                   <Button variant="ghost" size="xs" onClick={() => toast.success('Reminder sent', { description: `${c.enrolled - c.completed} employees have not completed “${c.title}”.` })}>

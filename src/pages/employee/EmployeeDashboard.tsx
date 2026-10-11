@@ -39,21 +39,21 @@ export default function EmployeeDashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="relative overflow-hidden rounded-2xl border bg-gradient-to-br from-indigo-600 via-indigo-600 to-violet-600 px-6 py-6 text-white shadow-lg shadow-indigo-500/20 sm:px-8 sm:py-7">
-        <div className="pointer-events-none absolute -top-16 -end-10 size-56 rounded-full bg-white/10 blur-2xl" />
-        <div className="pointer-events-none absolute end-40 -bottom-20 size-48 rounded-full bg-violet-300/20 blur-2xl" />
+      <div className="relative overflow-hidden rounded-lg border bg-primary px-6 py-6 text-primary-foreground shadow-1 sm:px-8 sm:py-7">
+        <div className="pointer-events-none absolute -top-16 -end-10 size-56 rounded-full bg-primary-foreground/10 blur-2xl" />
+        <div className="pointer-events-none absolute end-40 -bottom-20 size-48 rounded-full bg-primary-foreground/10 blur-2xl" />
         <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm text-indigo-100">{today}</p>
+            <p className="text-sm opacity-85">{today}</p>
             <h1 className="mt-1 text-2xl font-semibold tracking-tight sm:text-[28px]">{greeting()}, Ahmed 👋</h1>
-            <p className="mt-1 text-sm text-indigo-100">
-              You have <span className="font-semibold text-white">{counts.myPending} pending requests</span> and your performance review is on Oct 15.
+            <p className="mt-1 text-sm opacity-85">
+              You have <span className="font-semibold">{counts.myPending} pending requests</span> and your performance review is on Oct 15.
             </p>
           </div>
           <button
             type="button"
             onClick={onClock}
-            className="inline-flex h-10 shrink-0 items-center gap-2 self-start rounded-lg bg-white px-4 text-sm font-semibold text-indigo-700 shadow-sm transition hover:bg-indigo-50 sm:self-auto"
+            className="inline-flex h-10 shrink-0 items-center gap-2 self-start rounded-md bg-card px-4 text-sm font-semibold text-primary shadow-1 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-foreground sm:self-auto"
           >
             {clock.clockedIn ? <LogOut className="size-4" /> : <LogIn className="size-4" />}
             {clock.clockedIn ? 'Clock out' : 'Clock in'}
@@ -72,11 +72,11 @@ export default function EmployeeDashboard() {
         <h2 className="mb-3 text-sm font-semibold">Quick actions</h2>
         <QuickActions
           actions={[
-            { label: clock.clockedIn ? 'Clock Out' : 'Clock In', description: clock.clockedIn ? `In since ${clock.clockInTime}` : 'Start your day', icon: Clock, onClick: onClock, tone: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-300' },
-            { label: 'Request Leave', description: `${annual.total - annual.used} annual days left`, icon: CalendarDays, onClick: () => setLeaveOpen(true), tone: 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-300' },
+            { label: clock.clockedIn ? 'Clock Out' : 'Clock In', description: clock.clockedIn ? `In since ${clock.clockInTime}` : 'Start your day', icon: Clock, onClick: onClock, tone: 'bg-success/10 text-success' },
+            { label: 'Request Leave', description: `${annual.total - annual.used} annual days left`, icon: CalendarDays, onClick: () => setLeaveOpen(true), tone: 'bg-primary/10 text-primary' },
             { label: 'Request HR Letter', description: 'Salary, embassy & more', icon: FileText, onClick: () => setLetterOpen(true), tone: 'bg-violet-50 text-violet-600 dark:bg-violet-500/15 dark:text-violet-300' },
-            { label: 'Submit Expense', description: 'Reimbursement claim', icon: Receipt, onClick: () => setExpenseOpen(true), tone: 'bg-amber-50 text-amber-600 dark:bg-amber-500/15 dark:text-amber-300' },
-            { label: 'View Payslip', description: payslips[1].period, icon: Wallet, onClick: () => setPayslip(payslips[1]), tone: 'bg-sky-50 text-sky-600 dark:bg-sky-500/15 dark:text-sky-300' },
+            { label: 'Submit Expense', description: 'Reimbursement claim', icon: Receipt, onClick: () => setExpenseOpen(true), tone: 'bg-warning/10 text-warning' },
+            { label: 'View Payslip', description: payslips[1].period, icon: Wallet, onClick: () => setPayslip(payslips[1]), tone: 'bg-info/10 text-info' },
           ]}
         />
       </section>

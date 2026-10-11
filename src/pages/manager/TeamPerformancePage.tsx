@@ -40,7 +40,7 @@ export default function TeamPerformancePage() {
           <Card key={k.name} className="p-5">
             <p className="text-[13px] font-medium text-muted-foreground">{k.name}</p>
             <p className="mt-1.5 text-2xl font-semibold tracking-tight tabular">{k.value}</p>
-            <p className={cn('mt-2 inline-flex items-center gap-0.5 text-xs font-medium', k.positive ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400')}>
+            <p className={cn('mt-2 inline-flex items-center gap-0.5 text-xs font-medium', k.positive ? 'text-success' : 'text-destructive')}>
               {k.positive ? <ArrowUpRight className="size-3.5 rtl:-scale-x-100" /> : <ArrowDownRight className="size-3.5 rtl:-scale-x-100" />}
               {k.change} <span className="ms-1 font-normal text-muted-foreground">vs last quarter</span>
             </p>
@@ -130,7 +130,7 @@ export default function TeamPerformancePage() {
                   </TableCell>
                   <TableCell className="hidden lg:table-cell">
                     <div className="flex w-32 items-center gap-2">
-                      <Progress value={r.productivity} className="h-1.5" indicatorClassName="bg-emerald-500" />
+                      <Progress value={r.productivity} className="h-1.5" indicatorClassName="bg-success" />
                       <span className="text-xs tabular">{r.productivity}%</span>
                     </div>
                   </TableCell>

@@ -9,8 +9,8 @@ const ICONS = { employee: UserRound, manager: Briefcase, hr: ShieldCheck }
 
 export default function SignedOutPage() {
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-gradient-to-br from-indigo-50 via-background to-violet-50 px-4 py-10 dark:from-indigo-950/30 dark:to-violet-950/20">
-      <Card className="w-full max-w-md p-8 shadow-xl">
+    <div className="flex min-h-dvh items-center justify-center bg-background px-4 py-10">
+      <Card className="w-full max-w-md p-8 shadow-2">
         <div className="flex items-center gap-2.5">
           <BrandMark />
           <span className="text-[15px] font-bold tracking-tight">

@@ -61,7 +61,7 @@ export function GeneratePayrollModal({ open, onOpenChange, onComplete }: { open:
                 <span
                   className={cn(
                     'flex size-6 shrink-0 items-center justify-center rounded-full border text-xs',
-                    i < current && 'border-emerald-500 bg-emerald-500 text-white',
+                    i < current && 'border-success bg-success text-white',
                     i === current && 'border-primary text-primary',
                   )}
                 >
@@ -72,7 +72,7 @@ export function GeneratePayrollModal({ open, onOpenChange, onComplete }: { open:
             ))}
           </ol>
           {done && (
-            <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300">
+            <div className="rounded-lg border border-success/25 bg-success/10 px-4 py-3 text-sm text-success">
               Payroll generated successfully. Review the register, then approve to release payments on Oct 28.
             </div>
           )}

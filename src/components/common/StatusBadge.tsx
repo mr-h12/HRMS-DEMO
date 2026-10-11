@@ -14,7 +14,7 @@ const MAP: Record<string, BadgeVariant> = {
 }
 
 const DOT: Partial<Record<BadgeVariant, string>> = {
-  success: 'bg-emerald-500', warning: 'bg-amber-500', danger: 'bg-rose-500', info: 'bg-sky-500', violet: 'bg-violet-500', neutral: 'bg-slate-400',
+  success: 'bg-success', warning: 'bg-warning', danger: 'bg-destructive', info: 'bg-info', violet: 'bg-violet-500', neutral: 'bg-muted-foreground',
 }
 
 export function StatusBadge({ status, className, dot = true }: { status: string; className?: string; dot?: boolean }) {

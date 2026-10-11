@@ -22,11 +22,11 @@ import type { Candidate, CandidateStage } from '@/types'
 import { formatDate } from '@/utils/format'
 
 const STAGE_TONE: Record<CandidateStage, string> = {
-  Applied: 'bg-slate-400',
-  Screening: 'bg-sky-500',
+  Applied: 'bg-muted-foreground',
+  Screening: 'bg-info',
   Interview: 'bg-violet-500',
-  Offer: 'bg-amber-500',
-  Hired: 'bg-emerald-500',
+  Offer: 'bg-warning',
+  Hired: 'bg-success',
 }
 
 export default function RecruitmentPage() {

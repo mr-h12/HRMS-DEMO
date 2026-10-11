@@ -63,7 +63,7 @@ export default function HRDashboard() {
             </div>
             <div className="text-end">
               <div className="text-xl font-semibold tabular">{formatNumber(employees.length)}</div>
-              <div className="text-xs text-emerald-600 dark:text-emerald-400">+56 since Nov 2025</div>
+              <div className="text-xs text-success">+56 since Nov 2025</div>
             </div>
           </CardHeader>
           <CardContent>

@@ -61,7 +61,7 @@ export default function ProfilePage() {
   return (
     <div className="space-y-6">
       <Card className="overflow-hidden">
-        <div className="h-28 bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-500 sm:h-32" />
+        <div className="h-28 bg-primary/12 sm:h-32" />
         <div className="px-5 pb-5 sm:px-8">
           <div className="-mt-10 flex flex-col gap-4 sm:-mt-12 sm:flex-row sm:items-start sm:justify-between">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-5">

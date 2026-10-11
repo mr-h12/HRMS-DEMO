@@ -24,7 +24,7 @@ export function NotificationsMenu() {
         <Button variant="ghost" size="icon" className="relative" aria-label={`Notifications (${unread} unread)`}>
           <Bell className="size-[18px]" />
           {unread > 0 && (
-            <span className="absolute top-1 end-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-semibold text-white ring-2 ring-card">
+            <span className="absolute top-1 end-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-semibold text-white ring-2 ring-card">
               {unread}
             </span>
           )}

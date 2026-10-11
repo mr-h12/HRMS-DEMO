@@ -89,7 +89,7 @@ export default function PayrollPage() {
             const state = i < idx ? 'done' : i === idx ? 'current' : 'todo'
             return (
               <li key={s} className={cn('flex items-center gap-3 rounded-xl border p-3', state === 'current' && 'border-primary/40 bg-primary/5')}>
-                <span className={cn('flex size-8 items-center justify-center rounded-full text-sm font-semibold', state === 'done' ? 'bg-emerald-500 text-white' : state === 'current' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground')}>
+                <span className={cn('flex size-8 items-center justify-center rounded-full text-sm font-semibold', state === 'done' ? 'bg-success text-white' : state === 'current' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground')}>
                   {state === 'done' ? '✓' : i + 1}
                 </span>
                 <div>
@@ -144,7 +144,7 @@ export default function PayrollPage() {
                   <TableCell className="text-end tabular">{formatCurrency(p.basic)}</TableCell>
                   <TableCell className="hidden text-end tabular md:table-cell">{formatCurrency(p.allowances)}</TableCell>
                   <TableCell className="hidden text-end tabular lg:table-cell">{p.overtime ? formatCurrency(p.overtime) : '—'}</TableCell>
-                  <TableCell className="hidden text-end text-rose-600 tabular sm:table-cell dark:text-rose-400">−{formatCurrency(p.deductions)}</TableCell>
+                  <TableCell className="hidden text-end text-destructive tabular sm:table-cell">−{formatCurrency(p.deductions)}</TableCell>
                   <TableCell className="text-end font-semibold tabular">{formatCurrency(p.net)}</TableCell>
                   <TableCell>
                     <StatusBadge status={p.status} />

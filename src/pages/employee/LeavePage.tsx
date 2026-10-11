@@ -17,7 +17,7 @@ import { useAppStore } from '@/store/AppStore'
 import type { HRRequest } from '@/types'
 import { formatDate, formatDateRange } from '@/utils/format'
 
-const TONES = ['from-indigo-500 to-violet-500', 'from-sky-500 to-cyan-500', 'from-amber-500 to-orange-500']
+const TONES = ['bg-primary', 'bg-info', 'bg-warning']
 
 export default function LeavePage() {
   const { requests } = useAppStore()
@@ -45,7 +45,7 @@ export default function LeavePage() {
           const remaining = b.total - b.used
           return (
             <Card key={b.type} className="relative overflow-hidden p-5">
-              <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${TONES[i]}`} />
+              <div className={`absolute inset-x-0 top-0 h-1 ${TONES[i]}`} />
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-[13px] font-medium text-muted-foreground">{b.type}</p>
@@ -59,7 +59,7 @@ export default function LeavePage() {
               <Progress value={(remaining / b.total) * 100} className="mt-4" indicatorClassName={b.color} />
               <div className="mt-2 flex justify-between text-xs text-muted-foreground">
                 <span>{b.used} used</span>
-                {b.type === 'Annual Leave' && pendingDays > 0 && <span className="text-amber-600 dark:text-amber-400">{pendingDays} pending approval</span>}
+                {b.type === 'Annual Leave' && pendingDays > 0 && <span className="text-warning">{pendingDays} pending approval</span>}
               </div>
             </Card>
           )
@@ -126,7 +126,7 @@ export default function LeavePage() {
             <CardContent className="space-y-3">
               {[['2026-10-29', PUBLIC_HOLIDAYS['2026-10-29']], ['2026-12-25', 'Christmas Day (Dubai office)'], ['2027-01-07', 'Coptic Christmas']].map(([d, name]) => (
                 <div key={d} className="flex items-center gap-3">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-300">
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-success/10 text-success">
                     <PartyPopper className="size-4" />
                   </span>
                   <div>

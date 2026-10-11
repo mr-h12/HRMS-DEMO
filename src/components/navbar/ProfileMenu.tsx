@@ -1,8 +1,9 @@
-import { Bell, ChevronDown, LogOut, Moon, Settings2, Sun, User } from 'lucide-react'
+import { Bell, ChevronDown, Languages, LogOut, Moon, Settings2, Sun, User } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { UserAvatar } from '@/components/common/UserAvatar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useCurrentUser, useRole } from '@/hooks/useRole'
+import { useLanguage } from '@/hooks/useLanguage'
 import { useTheme } from '@/hooks/useTheme'
 
 export function ProfileMenu() {
@@ -10,10 +11,11 @@ export function ProfileMenu() {
   const role = useRole()
   const navigate = useNavigate()
   const { theme, toggleTheme } = useTheme()
+  const { lang, toggleLang } = useLanguage()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button type="button" className="flex items-center gap-2.5 rounded-lg p-1 transition hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none lg:pe-2" aria-label="Open profile menu">
+        <button type="button" className="flex min-h-10 items-center gap-2 rounded-xl border p-1 transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring lg:ps-1.5 lg:pe-3" aria-label="Open profile menu">
           <UserAvatar name={user.name} size="sm" />
           <div className="hidden text-start leading-tight lg:block">
             <div className="text-[13px] font-semibold">{user.name}</div>
@@ -39,6 +41,9 @@ export function ProfileMenu() {
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate(`/${role}/notifications`)}>
           <Bell /> Notifications
+        </DropdownMenuItem>
+        <DropdownMenuItem className="sm:hidden" onSelect={toggleLang} data-no-translate>
+          <Languages /> {lang === 'ar' ? 'English' : 'العربية'}
         </DropdownMenuItem>
         <DropdownMenuItem className="sm:hidden" onSelect={toggleTheme}>
           {theme === 'dark' ? <Sun /> : <Moon />} {theme === 'dark' ? 'Light mode' : 'Dark mode'}

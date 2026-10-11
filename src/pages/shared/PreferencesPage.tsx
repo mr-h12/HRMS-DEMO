@@ -46,9 +46,9 @@ export default function PreferencesPage() {
               className={cn('rounded-xl border-2 p-3 text-start transition', theme === t ? 'border-primary' : 'border-border hover:border-primary/40')}
               aria-pressed={theme === t}
             >
-              <div className={cn('mb-3 h-20 rounded-lg border p-2', t === 'dark' ? 'bg-slate-900' : 'bg-slate-50')}>
-                <div className={cn('h-2 w-1/2 rounded', t === 'dark' ? 'bg-slate-700' : 'bg-slate-200')} />
-                <div className={cn('mt-2 h-8 rounded', t === 'dark' ? 'bg-slate-800' : 'bg-white')} />
+              <div className={cn('mb-3 h-20 rounded-lg border p-2', t === 'dark' ? 'bg-[#0b0f19]' : 'bg-[#faf8f5]')}>
+                <div className={cn('h-2 w-1/2 rounded', t === 'dark' ? 'bg-[#818cf8]' : 'bg-[#c2410c]')} />
+                <div className={cn('mt-2 h-8 rounded', t === 'dark' ? 'bg-[#111827]' : 'bg-white')} />
               </div>
               <div className="flex items-center gap-2 text-sm font-medium capitalize">
                 {t === 'dark' ? <Moon className="size-4" /> : <Sun className="size-4" />} {t}

@@ -3,14 +3,14 @@ import { cn } from '@/lib/utils'
 import type { NotificationKind } from '@/types'
 
 const MAP: Record<NotificationKind, { icon: typeof Bell; className: string }> = {
-  request: { icon: Inbox, className: 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-300' },
-  approval: { icon: CheckCircle2, className: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-300' },
-  payroll: { icon: Wallet, className: 'bg-sky-50 text-sky-600 dark:bg-sky-500/15 dark:text-sky-300' },
-  document: { icon: FileText, className: 'bg-amber-50 text-amber-600 dark:bg-amber-500/15 dark:text-amber-300' },
-  attendance: { icon: Clock, className: 'bg-rose-50 text-rose-600 dark:bg-rose-500/15 dark:text-rose-300' },
+  request: { icon: Inbox, className: 'bg-primary/10 text-primary' },
+  approval: { icon: CheckCircle2, className: 'bg-success/10 text-success' },
+  payroll: { icon: Wallet, className: 'bg-info/10 text-info' },
+  document: { icon: FileText, className: 'bg-warning/10 text-warning' },
+  attendance: { icon: Clock, className: 'bg-destructive/10 text-destructive' },
   recruitment: { icon: BriefcaseBusiness, className: 'bg-violet-50 text-violet-600 dark:bg-violet-500/15 dark:text-violet-300' },
   performance: { icon: Target, className: 'bg-teal-50 text-teal-600 dark:bg-teal-500/15 dark:text-teal-300' },
-  system: { icon: Bell, className: 'bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-300' },
+  system: { icon: Bell, className: 'bg-muted text-muted-foreground' },
 }
 
 export function NotificationIcon({ kind, className }: { kind: NotificationKind; className?: string }) {

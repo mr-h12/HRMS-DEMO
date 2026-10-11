@@ -36,7 +36,7 @@ export function Switch({ className, ...props }: React.ComponentProps<typeof Swit
   return (
     <SwitchPrimitive.Root
       className={cn(
-        'peer inline-flex h-5 w-9 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] focus-visible:ring-ring/30 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input',
+        'peer inline-flex h-5 w-9 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-[state=checked]:bg-primary data-[state=unchecked]:bg-input',
         className,
       )}
       {...props}
@@ -60,7 +60,7 @@ export function Tooltip({ content, children, side = 'top' }: { content: React.Re
         <TooltipPrimitive.Content
           side={side}
           sideOffset={6}
-          className="z-50 rounded-md bg-slate-900 px-2.5 py-1.5 text-xs font-medium text-white shadow-lg data-[state=delayed-open]:animate-fade-in dark:bg-slate-700"
+          className="z-50 rounded-md bg-foreground px-2.5 py-1.5 text-xs font-medium text-background shadow-2 data-[state=delayed-open]:animate-fade-in"
         >
           {content}
         </TooltipPrimitive.Content>

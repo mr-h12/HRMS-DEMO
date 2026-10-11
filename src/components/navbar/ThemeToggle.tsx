@@ -1,15 +1,18 @@
 import { Moon, Sun } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Tooltip } from '@/components/ui/misc'
 import { useTheme } from '@/hooks/useTheme'
+import { SegmentedControl } from './SegmentedControl'
 
 export function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   return (
-    <Tooltip content={theme === 'dark' ? 'Light mode' : 'Dark mode'} side="bottom">
-      <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
-        {theme === 'dark' ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}
-      </Button>
-    </Tooltip>
+    <SegmentedControl
+      label="Theme"
+      value={theme}
+      onChange={setTheme}
+      options={[
+        { value: 'light', label: 'Light mode', content: <Sun className="size-4" aria-hidden /> },
+        { value: 'dark', label: 'Dark mode', content: <Moon className="size-4" aria-hidden /> },
+      ]}
+    />
   )
 }
