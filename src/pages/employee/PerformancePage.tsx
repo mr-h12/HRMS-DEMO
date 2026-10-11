@@ -140,7 +140,7 @@ export default function PerformancePage() {
         <CardHeader>
           <div>
             <CardTitle>Key performance indicators</CardTitle>
-            <CardDescription>Q4 2026 targets for Platform Engineering — Backend</CardDescription>
+            <CardDescription>Q4 2026 targets for Sales — Indoor Sales</CardDescription>
           </div>
         </CardHeader>
         <Table>

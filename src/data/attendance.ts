@@ -12,7 +12,7 @@ export const isWeekend = (d: Date) => d.getDay() === 5 || d.getDay() === 6
 export const PUBLIC_HOLIDAYS: Record<string, string> = {
   '2026-08-27': 'Prophet’s Birthday (observed)',
   '2026-10-06': 'Armed Forces Day',
-  '2026-10-29': 'Northwind Founders’ Day',
+  '2026-10-29': 'Smart Technology Family Day',
 }
 
 /* ---------------- Employee (Ahmed) attendance ---------------- */

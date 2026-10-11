@@ -1,3 +1,4 @@
+import { COMPANY } from '@/data/company'
 import { payslipTotals } from '@/data/payroll'
 import type { Payslip } from '@/types'
 import { formatCurrency, formatDate } from './format'
@@ -7,12 +8,12 @@ export function payslipText(p: Payslip) {
   const t = payslipTotals(p)
   const line = (label: string, amount: number) => `  ${label.padEnd(34, '.')} ${formatCurrency(amount, true).padStart(12)}`
   return [
-    'NORTHWIND GROUP — PAYSLIP',
+    `${COMPANY.name.toUpperCase()} — PAYSLIP`,
     '='.repeat(52),
     `Pay period:     ${p.period}`,
     `Pay date:       ${formatDate(p.payDate)}`,
     'Employee:       Ahmed Hassan (EMP-1042)',
-    'Position:       Senior Software Engineer — Technology',
+    'Position:       Senior Sales Engineer — Sales',
     'Bank:           CIB · EG38 •••• 8000 2',
     `Paid days:      ${p.paidDays} of ${p.workingDays}`,
     '',

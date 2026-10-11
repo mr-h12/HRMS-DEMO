@@ -6,11 +6,12 @@ import { Dialog, DialogBody, DialogContent, DialogDescription, DialogFooter, Dia
 import type { EmployeeDocument } from '@/types'
 import { downloadFile } from '@/utils/download'
 import { formatDate } from '@/utils/format'
+import { COMPANY } from '@/data/company'
 
 export function downloadDocument(d: EmployeeDocument, owner = 'Ahmed Hassan (EMP-1042)') {
   downloadFile(
     `${d.name.replace(/[^a-z0-9]+/gi, '-')}.txt`,
-    [`${d.name}`, `Category: ${d.category}`, `Owner: ${d.owner ?? owner}`, `Uploaded: ${formatDate(d.uploadedAt)}`, d.expiresAt ? `Expires: ${formatDate(d.expiresAt)}` : '', '', 'Northwind Group HRMS — demo export. The original file is stored in the document vault.'].filter(Boolean).join('\n'),
+    [`${d.name}`, `Category: ${d.category}`, `Owner: ${d.owner ?? owner}`, `Uploaded: ${formatDate(d.uploadedAt)}`, d.expiresAt ? `Expires: ${formatDate(d.expiresAt)}` : '', '', `${COMPANY.name} HRMS — demo export. The original file is stored in the document vault.`].filter(Boolean).join('\n'),
   )
   toast.success('Download started', { description: d.name })
 }
@@ -30,7 +31,7 @@ export function DocumentPreviewModal({ doc, onOpenChange }: { doc: EmployeeDocum
           <div className="mx-auto flex aspect-[1/1.2] max-h-[52vh] w-full max-w-sm flex-col rounded-lg border bg-white p-6 shadow-sm dark:bg-slate-900">
             <div className="flex items-center gap-2 border-b pb-3">
               <FileText className="size-4 text-primary" />
-              <span className="text-[11px] font-semibold tracking-wide text-slate-500 uppercase">Northwind Group</span>
+              <span className="text-[11px] font-semibold tracking-wide text-slate-500 uppercase">{COMPANY.name}</span>
             </div>
             <div className="mt-4 text-sm font-semibold text-slate-800 dark:text-slate-100">{doc.name}</div>
             <div className="mt-4 space-y-2">

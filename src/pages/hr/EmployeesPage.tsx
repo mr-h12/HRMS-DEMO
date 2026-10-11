@@ -68,11 +68,11 @@ export default function EmployeesPage() {
 
   const exportCsv = () => {
     downloadFile(
-      'northwind-employees.csv',
+      'smart-technology-employees.csv',
       toCSV(filtered.map((e) => ({ 'Employee ID': e.id, Name: e.name, Email: e.email, Department: e.department, Position: e.position, Manager: e.managerName, Location: e.location, Type: e.employmentType, 'Joining Date': e.joiningDate, Status: e.status }))),
       'text/csv',
     )
-    toast.success('Employee list exported', { description: `${formatNumber(filtered.length)} records · northwind-employees.csv` })
+    toast.success('Employee list exported', { description: `${formatNumber(filtered.length)} records · smart-technology-employees.csv` })
   }
 
   return (

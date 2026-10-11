@@ -35,5 +35,5 @@ export function applyDocumentLang(lang: Lang) {
   const html = document.documentElement
   html.lang = lang
   html.dir = lang === 'ar' ? 'rtl' : 'ltr'
-  document.title = lang === 'ar' ? 'نظام نورثويند للموارد البشرية — عرض توضيحي' : 'Northwind HRMS — Demo'
+  document.title = lang === 'ar' ? 'سمارت تكنولوجي — نظام الموارد البشرية' : 'Smart Technology HRMS — Demo'
 }

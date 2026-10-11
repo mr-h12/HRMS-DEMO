@@ -58,7 +58,7 @@ export default function PayrollPage() {
               variant="outline"
               onClick={() => {
                 downloadFile('payroll-register-2026-10.csv', toCSV(entries.map((p) => ({ ID: p.employeeId, Employee: p.employeeName, Department: p.department, Basic: p.basic, Allowances: p.allowances, Overtime: p.overtime, Deductions: p.deductions, Net: p.net, Status: p.status }))), 'text/csv')
-                toast.success('Payroll register exported', { description: 'payroll-register-2026-10.csv · 524 rows' })
+                toast.success('Payroll register exported', { description: `payroll-register-2026-10.csv · ${PAYROLL_TOTALS.employees} rows` })
               }}
             >
               <Download /> Export register
@@ -94,7 +94,7 @@ export default function PayrollPage() {
                 </span>
                 <div>
                   <div className="text-sm font-semibold">{['Draft — ready for processing', 'Generated — pending approval', 'Approved — payments scheduled'][i]}</div>
-                  <div className="text-xs text-muted-foreground">{['Attendance locked Oct 25', '524 payslips created', `Bank transfer ${formatDate(NEXT_PAYROLL_DATE, { month: 'short', day: 'numeric' })}`][i]}</div>
+                  <div className="text-xs text-muted-foreground">{['Attendance locked Oct 25', `${PAYROLL_TOTALS.employees} payslips created`, `Bank transfer ${formatDate(NEXT_PAYROLL_DATE, { month: 'short', day: 'numeric' })}`][i]}</div>
                 </div>
               </li>
             )
@@ -113,7 +113,7 @@ export default function PayrollPage() {
         <CardHeader className="flex-col gap-3 lg:flex-row lg:items-center">
           <div>
             <CardTitle>Payroll register</CardTitle>
-            <CardDescription>Monthly amounts in USD</CardDescription>
+            <CardDescription>Monthly amounts in EGP</CardDescription>
           </div>
           <div className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto">
             <SearchInput value={query} onChange={setQuery} placeholder="Search employee…" className="sm:w-60" />
@@ -144,7 +144,7 @@ export default function PayrollPage() {
                   <TableCell className="text-end tabular">{formatCurrency(p.basic)}</TableCell>
                   <TableCell className="hidden text-end tabular md:table-cell">{formatCurrency(p.allowances)}</TableCell>
                   <TableCell className="hidden text-end tabular lg:table-cell">{p.overtime ? formatCurrency(p.overtime) : '—'}</TableCell>
-                  <TableCell className="hidden text-end text-destructive tabular sm:table-cell">−{formatCurrency(p.deductions)}</TableCell>
+                  <TableCell className="hidden text-end text-destructive tabular sm:table-cell">{`−${formatCurrency(p.deductions)}`}</TableCell>
                   <TableCell className="text-end font-semibold tabular">{formatCurrency(p.net)}</TableCell>
                   <TableCell>
                     <StatusBadge status={p.status} />
@@ -187,7 +187,7 @@ export default function PayrollPage() {
         onOpenChange={setOpen}
         onComplete={() => {
           setPayrollStatus('Generated')
-          toast.success('Payroll generated', { description: '524 payslips created · awaiting approval' })
+          toast.success('Payroll generated', { description: `${PAYROLL_TOTALS.employees} payslips created · awaiting approval` })
         }}
       />
     </div>

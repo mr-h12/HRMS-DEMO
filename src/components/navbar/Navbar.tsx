@@ -21,6 +21,18 @@ export function BrandMark({ className }: { className?: string }) {
   )
 }
 
+/** "SMART technology" wordmark in the logo's colours, with the product name underneath. */
+export function BrandName({ product = 'HRMS' }: { product?: string }) {
+  return (
+    <span className="flex flex-col leading-none">
+      <span className="text-[15px] font-extrabold tracking-tight whitespace-nowrap" dir="ltr" data-no-translate>
+        <span className="text-[#1b2a4a] dark:text-white">SMART</span> <span className="text-[#5b8bd0]">technology</span>
+      </span>
+      <span className="mt-0.5 text-[10px] font-medium tracking-[0.18em] text-muted-foreground uppercase">{product}</span>
+    </span>
+  )
+}
+
 /** The page the context bar names: the longest navigation path that prefixes the current one. */
 function usePageLabel() {
   const role = useRole()

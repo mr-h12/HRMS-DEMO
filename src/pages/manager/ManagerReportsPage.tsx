@@ -7,7 +7,7 @@ export default function ManagerReportsPage() {
   const [open, setOpen] = useState<ReportDefinition | null>(null)
   return (
     <div className="space-y-6">
-      <PageHeader title="Reports" description="Team-level analytics for Platform Engineering. Data is limited to your direct reports." />
+      <PageHeader title="Reports" description="Team-level analytics for the Indoor Sales team. Data is limited to your direct reports." />
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {MANAGER_REPORTS.map((r) => (
           <ReportCard key={r.id} report={r} onOpen={() => setOpen(r)} />

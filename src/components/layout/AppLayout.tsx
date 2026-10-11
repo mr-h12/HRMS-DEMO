@@ -4,6 +4,7 @@ import { EmployeeDrawer } from '@/components/drawers/EmployeeDrawer'
 import { Navbar } from '@/components/navbar/Navbar'
 import { Sidebar, SidebarFooter, SidebarHeader, SidebarNav } from '@/components/sidebar/Sidebar'
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet'
+import { COMPANY } from '@/data/company'
 
 /**
  * The CRM application shell:
@@ -42,7 +43,7 @@ export function AppLayout() {
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
         <SheetContent side="left" className="w-64 p-0">
           <SheetTitle className="sr-only">Navigation</SheetTitle>
-          <SheetDescription className="sr-only">HRMS DEMO — Northwind Group</SheetDescription>
+          <SheetDescription className="sr-only">{COMPANY.name}</SheetDescription>
           <SidebarHeader />
           <div className="flex-1 overflow-y-auto overscroll-contain px-2 py-3">
             <SidebarNav onNavigate={() => setMobileOpen(false)} />

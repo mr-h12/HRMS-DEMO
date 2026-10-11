@@ -27,7 +27,7 @@ export function ExpenseModal({ open, onOpenChange }: { open: boolean; onOpenChan
     const e: Record<string, string> = {}
     const value = Number(amount)
     if (!amount || Number.isNaN(value) || value <= 0) e.amount = 'Enter a valid amount'
-    else if (value > 5000) e.amount = 'Claims above $5,000 require a purchase order'
+    else if (value > 50000) e.amount = 'Claims above EGP 50,000 require a purchase order'
     if (description.trim().length < 5) e.description = 'Describe the expense'
     if (!receipt) e.receipt = 'Attach a receipt'
     setErrors(e)
@@ -68,7 +68,7 @@ export function ExpenseModal({ open, onOpenChange }: { open: boolean; onOpenChan
                 </SelectContent>
               </Select>
             </Field>
-            <Field label="Amount (USD)" htmlFor="exp-amount" error={errors.amount} required>
+            <Field label="Amount (EGP)" htmlFor="exp-amount" error={errors.amount} required>
               <Input id="exp-amount" type="number" min="0" step="0.01" inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0.00" aria-invalid={!!errors.amount} />
             </Field>
           </div>

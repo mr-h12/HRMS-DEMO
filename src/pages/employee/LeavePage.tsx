@@ -124,7 +124,7 @@ export default function LeavePage() {
               </div>
             </CardHeader>
             <CardContent className="space-y-3">
-              {[['2026-10-29', PUBLIC_HOLIDAYS['2026-10-29']], ['2026-12-25', 'Christmas Day (Dubai office)'], ['2027-01-07', 'Coptic Christmas']].map(([d, name]) => (
+              {[['2026-10-29', PUBLIC_HOLIDAYS['2026-10-29']], ['2027-01-07', 'Coptic Christmas'], ['2027-01-25', 'January 25 Revolution Day']].map(([d, name]) => (
                 <div key={d} className="flex items-center gap-3">
                   <span className="flex size-9 items-center justify-center rounded-lg bg-success/10 text-success">
                     <PartyPopper className="size-4" />
@@ -141,7 +141,7 @@ export default function LeavePage() {
             <CardHeader>
               <div>
                 <CardTitle>Leave policy</CardTitle>
-                <CardDescription>Northwind Group · Egypt</CardDescription>
+                <CardDescription>Smart Technology · Egypt</CardDescription>
               </div>
               <Info className="size-4 text-muted-foreground" />
             </CardHeader>

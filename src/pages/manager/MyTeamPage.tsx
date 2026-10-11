@@ -51,13 +51,13 @@ export default function MyTeamPage() {
     <div className="space-y-6">
       <PageHeader
         title="My Team"
-        description={`${team.length} direct reports in Platform Engineering`}
+        description={`${team.length} direct reports in the Sales team`}
         actions={
           <Button
             variant="outline"
             onClick={() => {
-              downloadFile('platform-engineering-team.csv', toCSV(filtered.map((e) => ({ ID: e.id, Name: e.name, Position: e.position, Team: e.team, Status: e.status, Rating: e.rating, 'Attendance %': e.attendanceRate }))), 'text/csv')
-              toast.success('Team exported', { description: `${filtered.length} members · platform-engineering-team.csv` })
+              downloadFile('sales-team.csv', toCSV(filtered.map((e) => ({ ID: e.id, Name: e.name, Position: e.position, Team: e.team, Status: e.status, Rating: e.rating, 'Attendance %': e.attendanceRate }))), 'text/csv')
+              toast.success('Team exported', { description: `${filtered.length} members · sales-team.csv` })
             }}
           >
             <Download /> Export

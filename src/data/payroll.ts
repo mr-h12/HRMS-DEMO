@@ -14,15 +14,16 @@ export const payslips: Payslip[] = [
     workingDays: 21,
     paidDays: 21,
     earnings: [
-      { label: 'Basic Salary', amount: 2400 },
-      { label: 'Housing Allowance', amount: 480 },
-      { label: 'Transportation Allowance', amount: 150 },
-      { label: 'Overtime (3 hrs)', amount: 45 },
+      { label: 'Basic Salary', amount: 24000 },
+      { label: 'Housing Allowance', amount: 4800 },
+      { label: 'Transportation Allowance', amount: 1500 },
+      { label: 'Sales Commission', amount: 3200 },
+      { label: 'Overtime (3 hrs)', amount: 555 },
     ],
     deductions: [
-      { label: 'Income Tax', amount: 248 },
-      { label: 'Social Insurance (Employee)', amount: 176 },
-      { label: 'Medical Insurance', amount: 32 },
+      { label: 'Income Tax', amount: 4310 },
+      { label: 'Social Insurance (Employee)', amount: 1837 },
+      { label: 'Medical Insurance', amount: 320 },
     ],
   },
   {
@@ -34,14 +35,15 @@ export const payslips: Payslip[] = [
     workingDays: 22,
     paidDays: 22,
     earnings: [
-      { label: 'Basic Salary', amount: 2400 },
-      { label: 'Housing Allowance', amount: 480 },
-      { label: 'Transportation Allowance', amount: 150 },
+      { label: 'Basic Salary', amount: 24000 },
+      { label: 'Housing Allowance', amount: 4800 },
+      { label: 'Transportation Allowance', amount: 1500 },
+      { label: 'Sales Commission', amount: 2750 },
     ],
     deductions: [
-      { label: 'Income Tax', amount: 242 },
-      { label: 'Social Insurance (Employee)', amount: 176 },
-      { label: 'Medical Insurance', amount: 32 },
+      { label: 'Income Tax', amount: 4080 },
+      { label: 'Social Insurance (Employee)', amount: 1837 },
+      { label: 'Medical Insurance', amount: 320 },
     ],
   },
   {
@@ -53,16 +55,17 @@ export const payslips: Payslip[] = [
     workingDays: 21,
     paidDays: 20,
     earnings: [
-      { label: 'Basic Salary', amount: 2400 },
-      { label: 'Housing Allowance', amount: 480 },
-      { label: 'Transportation Allowance', amount: 150 },
-      { label: 'Overtime (4 hrs)', amount: 62 },
+      { label: 'Basic Salary', amount: 24000 },
+      { label: 'Housing Allowance', amount: 4800 },
+      { label: 'Transportation Allowance', amount: 1500 },
+      { label: 'Sales Commission', amount: 4100 },
+      { label: 'Overtime (4 hrs)', amount: 740 },
     ],
     deductions: [
-      { label: 'Income Tax', amount: 250 },
-      { label: 'Social Insurance (Employee)', amount: 176 },
-      { label: 'Medical Insurance', amount: 32 },
-      { label: 'Unpaid Absence (1 day)', amount: 109 },
+      { label: 'Income Tax', amount: 4520 },
+      { label: 'Social Insurance (Employee)', amount: 1837 },
+      { label: 'Medical Insurance', amount: 320 },
+      { label: 'Unpaid Absence (1 day)', amount: 1143 },
     ],
   },
 ]
@@ -76,7 +79,7 @@ export const payslipTotals = (p: Payslip) => {
 /* ---------------- Company payroll — October 2026 ---------------- */
 
 export const PAYROLL_PERIOD = 'October 2026'
-export const PAYROLL_TOTALS = { gross: 842_430, deductions: 112_400, net: 730_030, employees: 524 }
+export const PAYROLL_TOTALS = { gross: 5_962_400, deductions: 834_700, net: 5_127_700, employees: employees.length }
 
 function buildPayroll(): PayrollEntry[] {
   const rng = createRng(1028)
@@ -85,11 +88,11 @@ function buildPayroll(): PayrollEntry[] {
     if (e.id === EMPLOYEE_ID) {
       return {
         employeeId: e.id, employeeName: e.name, department: e.department, position: e.position,
-        basic: 2400, allowances: 630, overtime: 45, deductions: ahmed.deductions, net: ahmed.net, status: 'Pending',
+        basic: 24000, allowances: 9500, overtime: 555, deductions: ahmed.deductions, net: ahmed.net, status: 'Pending',
       }
     }
-    const allowances = Math.round((e.basicSalary * (0.18 + rng.next() * 0.08)) / 5) * 5
-    const overtime = rng.chance(0.22) ? Math.round(rng.int(20, 180) / 5) * 5 : 0
+    const allowances = Math.round((e.basicSalary * (0.18 + rng.next() * 0.08)) / 50) * 50
+    const overtime = rng.chance(e.location === 'Cairo HQ' ? 0.18 : 0.45) ? Math.round(rng.int(300, 2400) / 50) * 50 : 0
     const status: PayrollStatus = e.status === 'Notice Period' && rng.chance(0.5) ? 'On Hold' : 'Pending'
     return { employeeId: e.id, employeeName: e.name, department: e.department, position: e.position, basic: e.basicSalary, allowances, overtime, deductions: 0, net: 0, status }
   })
@@ -117,12 +120,12 @@ function buildPayroll(): PayrollEntry[] {
 export const payrollEntries: PayrollEntry[] = buildPayroll()
 
 export const payrollHistory = [
-  { month: 'May', gross: 801_200, net: 694_300 },
-  { month: 'Jun', gross: 808_950, net: 700_850 },
-  { month: 'Jul', gross: 815_400, net: 706_200 },
-  { month: 'Aug', gross: 823_760, net: 713_480 },
-  { month: 'Sep', gross: 834_110, net: 722_640 },
-  { month: 'Oct', gross: 842_430, net: 730_030 },
+  { month: 'May', gross: 5_690_200, net: 4_893_600 },
+  { month: 'Jun', gross: 5_745_900, net: 4_941_500 },
+  { month: 'Jul', gross: 5_801_300, net: 4_989_100 },
+  { month: 'Aug', gross: 5_856_800, net: 5_036_800 },
+  { month: 'Sep', gross: 5_912_500, net: 5_084_800 },
+  { month: 'Oct', gross: 5_962_400, net: 5_127_700 },
 ]
 
 export const payrollByDepartment = () => {

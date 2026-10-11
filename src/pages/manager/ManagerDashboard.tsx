@@ -43,7 +43,7 @@ export default function ManagerDashboard() {
           <p className="text-sm text-muted-foreground">{today}</p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight">{greeting()}, Mohamed 👋</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Platform Engineering · <span className="font-medium text-foreground">{data.pending.length} requests</span> need your attention today.
+            Indoor Sales · <span className="font-medium text-foreground">{data.pending.length} requests</span> need your attention today.
           </p>
         </div>
         <div className="flex gap-2">
@@ -62,7 +62,7 @@ export default function ManagerDashboard() {
         <StatCard loading={loading} label="On leave" value={data.onLeave} icon={CalendarOff} tone="sky" hint="approved leave" onClick={() => navigate('/manager/leave')} />
         <StatCard loading={loading} label="Late" value={data.late} icon={AlarmClock} tone="amber" hint="after 09:15 AM" onClick={() => navigate('/manager/attendance')} />
         <StatCard loading={loading} label="Pending approvals" value={data.pending.length} icon={CheckSquare} tone="rose" hint="awaiting decision" onClick={() => navigate('/manager/approvals')} />
-        <StatCard loading={loading} label="Open positions" value={data.openPositions.length} icon={BriefcaseBusiness} tone="violet" hint={data.openPositions.map((j) => j.title.split(' ')[0]).join(', ')} />
+        <StatCard loading={loading} label="Open positions" value={data.openPositions.length} icon={BriefcaseBusiness} tone="violet" hint={`${data.openPositions.reduce((s, j) => s + j.applicants, 0)} applicants`} />
       </div>
 
       <div className="grid gap-6 xl:grid-cols-5">
