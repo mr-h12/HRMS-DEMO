@@ -76,7 +76,7 @@ export function GlobalSearch() {
         id: r.id, group: 'Requests', title: `${r.leaveType ?? r.letterType ?? r.type} — ${r.employeeName}`, subtitle: `${r.id} · ${r.status}`,
         onSelect: () => {
           close()
-          navigate(role === 'employee' ? '/employee/requests' : role === 'manager' ? '/manager/approvals' : r.type === 'Leave' ? '/hr/leave' : '/hr/employees')
+          navigate(role === 'employee' ? '/employee/requests' : role === 'manager' ? '/manager/approvals' : r.type === 'Leave' ? '/hr/leave' : r.type === 'Salary Advance' ? '/hr/loans' : '/hr/employees')
         },
       }))
     const docs = (role === 'hr' ? companyDocuments : myDocuments)

@@ -19,6 +19,8 @@ const SKIP_PARENTS = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'NOSCRIPT'])
 /** Identifiers, emails, file names and similar values stay as they are. */
 const UNTRANSLATABLE = [
   /^(EMP|REQ|JOB|CAN|PS|TR|CD|N|D|G|FB|EV|A)-[\w-]+$/,
+  /^(AST|LN|OFF|CT|CL)-\d+$/, // assets, loans, offboarding cases, contracts
+  /^[A-Z]{2,3}-\d{4,}$/, // asset serials and document numbers (LT-48211, HSE-482113)
   /@/,
   /\.(pdf|csv|txt|docx|png|jpg|jpeg)\b/i,
   /^https?:/,

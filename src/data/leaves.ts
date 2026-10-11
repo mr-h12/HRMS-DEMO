@@ -53,6 +53,8 @@ const teamRequests: HRRequest[] = [
   req({ id: 'REQ-2042', type: 'Expense', employeeId: 'EMP-1024', amount: 3200, category: 'Exhibitions', submittedAt: '2026-10-05T16:40:00', status: 'Pending', reason: 'Solar & Storage Live Egypt 2026 exhibition pass.' }),
   req({ id: 'REQ-2040', type: 'HR Letter', employeeId: 'EMP-1051', letterType: 'Salary Certificate', submittedAt: '2026-10-05T09:30:00', status: 'Pending', reason: 'Apartment rental contract.' }),
   req({ id: 'REQ-2039', type: 'HR Letter', employeeId: 'EMP-1033', letterType: 'Embassy Letter', submittedAt: '2026-10-04T13:10:00', status: 'Pending', reason: 'Schengen visa application — Germany, Nov 2026.' }),
+  req({ id: 'REQ-2043', type: 'Salary Advance', employeeId: 'EMP-1051', amount: 10000, installments: 4, submittedAt: '2026-10-06T12:15:00', status: 'Pending', reason: 'Children’s school fees for the new term.' }),
+  req({ id: 'REQ-2037', type: 'Salary Advance', employeeId: 'EMP-1033', amount: 18000, installments: 6, submittedAt: '2026-10-03T10:40:00', status: 'Pending', reason: 'Urgent car repair — needed for client visits.' }),
   req({ id: 'REQ-2048', type: 'Expense', employeeId: 'EMP-1074', amount: 1200, category: 'Books & Learning', submittedAt: '2026-10-07T08:55:00', status: 'Pending', reason: 'Excel for sales analytics — online course.' }),
   req({ id: 'REQ-2036', type: 'Overtime', employeeId: 'EMP-1021', hours: 3, date: '2026-10-01', submittedAt: '2026-10-02T09:00:00', status: 'Pending', reason: 'Urgent re-quote after a supplier price change.' }),
 

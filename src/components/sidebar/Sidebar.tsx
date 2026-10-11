@@ -17,7 +17,8 @@ export function SidebarNav({ collapsed = false, onNavigate }: { collapsed?: bool
     <nav className="flex flex-col" aria-label={`${ROLE_LABELS[role]} navigation`}>
       {!collapsed && <p className="px-3 pb-2 text-start text-table tracking-[0.08em] text-muted-foreground uppercase">{`${ROLE_LABELS[role]} workspace`}</p>}
       <ul className="flex flex-col gap-1">
-        {items.map((item) => {
+        {items.map((item, index) => {
+          const heading = item.group && item.group !== items[index - 1]?.group ? item.group : null
           const badge = item.badgeKey ? counts[item.badgeKey] : 0
           const link = (
             <NavLink
@@ -56,6 +57,12 @@ export function SidebarNav({ collapsed = false, onNavigate }: { collapsed?: bool
           )
           return (
             <li key={item.path}>
+              {heading &&
+                (collapsed ? (
+                  <div aria-hidden className="mx-3 mt-2 mb-1 border-t" />
+                ) : (
+                  <p className="px-3 pt-3 pb-1 text-start text-[11px] font-medium tracking-[0.08em] text-muted-foreground/80 uppercase">{heading}</p>
+                ))}
               {collapsed ? (
                 <Tooltip content={item.label} side="right">
                   {link}

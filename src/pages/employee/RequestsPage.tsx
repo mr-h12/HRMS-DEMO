@@ -1,4 +1,4 @@
-import { CalendarDays, ChevronDown, FileText, Inbox, Plus, Receipt } from 'lucide-react'
+import { CalendarDays, ChevronDown, FileText, Inbox, Plus, Receipt, HandCoins } from 'lucide-react'
 import { useState } from 'react'
 import { EmptyState } from '@/components/common/EmptyState'
 import { PageHeader } from '@/components/common/PageHeader'
@@ -8,6 +8,7 @@ import { ExpenseModal } from '@/components/modals/ExpenseModal'
 import { HrLetterModal } from '@/components/modals/HrLetterModal'
 import { RequestDetailModal } from '@/components/modals/RequestDetailModal'
 import { RequestLeaveModal } from '@/components/modals/RequestLeaveModal'
+import { SalaryAdvanceModal } from '@/components/modals/SalaryAdvanceModal'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
@@ -22,7 +23,7 @@ import { requestSummary, requestTitle } from '@/utils/requests'
 export default function RequestsPage() {
   const { requests } = useAppStore()
   const [tab, setTab] = useState('all')
-  const [modal, setModal] = useState<'leave' | 'letter' | 'expense' | null>(null)
+  const [modal, setModal] = useState<'leave' | 'letter' | 'expense' | 'advance' | null>(null)
   const [viewing, setViewing] = useState<HRRequest | null>(null)
   const mine = requests.filter((r) => r.employeeId === EMPLOYEE_ID)
   const filtered = tab === 'all' ? mine : mine.filter((r) => r.status.toLowerCase() === tab)
@@ -49,6 +50,9 @@ export default function RequestsPage() {
               </DropdownMenuItem>
               <DropdownMenuItem onSelect={() => setModal('expense')}>
                 <Receipt /> Expense claim
+              </DropdownMenuItem>
+              <DropdownMenuItem onSelect={() => setModal('advance')}>
+                <HandCoins /> Salary advance
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -119,6 +123,7 @@ export default function RequestsPage() {
       <RequestLeaveModal open={modal === 'leave'} onOpenChange={(o) => setModal(o ? 'leave' : null)} />
       <HrLetterModal open={modal === 'letter'} onOpenChange={(o) => setModal(o ? 'letter' : null)} />
       <ExpenseModal open={modal === 'expense'} onOpenChange={(o) => setModal(o ? 'expense' : null)} />
+      <SalaryAdvanceModal open={modal === 'advance'} onOpenChange={(o) => setModal(o ? 'advance' : null)} />
       <RequestDetailModal request={viewing} onOpenChange={(o) => !o && setViewing(null)} />
     </div>
   )

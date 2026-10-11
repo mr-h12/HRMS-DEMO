@@ -81,7 +81,7 @@ export interface AttendanceTrendPoint {
 /* ---------------- Requests & Leave ---------------- */
 
 export type RequestStatus = 'Pending' | 'Approved' | 'Rejected'
-export type RequestType = 'Leave' | 'Overtime' | 'Expense' | 'HR Letter'
+export type RequestType = 'Leave' | 'Overtime' | 'Expense' | 'HR Letter' | 'Salary Advance'
 export type LeaveType = 'Annual Leave' | 'Sick Leave' | 'Emergency Leave' | 'Unpaid Leave' | 'Parental Leave'
 
 export interface HRRequest {
@@ -109,6 +109,8 @@ export interface HRRequest {
   category?: string
   // HR letter
   letterType?: string
+  // Salary advance (amount above) repaid in equal monthly installments
+  installments?: number
   decidedAt?: string
   decidedBy?: string
 }
@@ -269,4 +271,82 @@ export interface UpcomingEvent {
   time?: string
   kind: 'review' | 'meeting' | 'holiday' | 'training' | 'birthday'
   description: string
+}
+
+/* ---------------- Assets (custody) ---------------- */
+
+export type AssetCategory = 'Laptop' | 'Mobile Phone' | 'Vehicle' | 'Power Tools' | 'Safety Gear' | 'Solar Test Equipment' | 'Survey Equipment'
+export type AssetStatus = 'Assigned' | 'In Stock' | 'In Repair' | 'Lost'
+
+export interface Asset {
+  id: string
+  name: string
+  category: AssetCategory
+  serial: string
+  /** Purchase value in EGP. */
+  value: number
+  status: AssetStatus
+  employeeId: string | null
+  assignedOn: string | null
+}
+
+/* ---------------- Salary advances & loans ---------------- */
+
+export type LoanStatus = 'Active' | 'Settled'
+
+export interface Loan {
+  id: string
+  employeeId: string
+  type: 'Salary Advance' | 'Personal Loan'
+  amount: number
+  installments: number
+  paidInstallments: number
+  startMonth: string
+  reason: string
+  status: LoanStatus
+}
+
+/* ---------------- Offboarding ---------------- */
+
+export type SeparationType = 'Resignation' | 'End of Contract' | 'Termination' | 'Retirement'
+
+export interface ClearanceItem {
+  id: string
+  owner: 'IT' | 'Custody' | 'Finance' | 'Line Manager' | 'HR'
+  label: string
+  done: boolean
+}
+
+export interface OffboardingCase {
+  id: string
+  employeeId: string
+  type: SeparationType
+  noticeDate: string
+  lastWorkingDay: string
+  reason: string
+  unusedLeaveDays: number
+  checklist: ClearanceItem[]
+}
+
+/* ---------------- Contracts & expiring documents ---------------- */
+
+export type ContractType = 'Fixed-term' | 'Indefinite' | 'Probation'
+
+export interface ContractRecord {
+  id: string
+  employeeId: string
+  type: ContractType
+  startDate: string
+  /** Null for indefinite contracts. */
+  endDate: string | null
+}
+
+export type ExpiryDocType = 'National ID' | 'Driving License' | 'Medical Certificate' | 'HSE Certificate' | 'Site Work Permit'
+
+export interface ExpiringDocument {
+  id: string
+  employeeId: string
+  type: ExpiryDocType
+  number: string
+  expiryDate: string
 }

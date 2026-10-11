@@ -1,4 +1,4 @@
-import { ArrowRight, BriefcaseBusiness, CalendarOff, CheckCircle2, Clock, FileText, Inbox, Percent, Plus, Target, UserPlus, Users, Wallet } from 'lucide-react'
+import { AlarmClock, ArrowRight, BriefcaseBusiness, CalendarOff, CheckCircle2, Clock, FileText, HandCoins, Inbox, Package, Percent, Plus, Target, UserMinus, UserPlus, Users, Wallet } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 import { StatCard } from '@/components/cards/StatCard'
@@ -7,14 +7,20 @@ import { NotificationIcon } from '@/components/notifications/NotificationIcon'
 import { SimpleArea } from '@/components/reports/charts'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { PersonCell } from '@/components/common/UserAvatar'
+import { Badge } from '@/components/ui/badge'
+import { initialAssets } from '@/data/assets'
 import { departmentDistribution, headcountTrend, recentActivity } from '@/data/company'
+import { daysUntil, expiryAlerts } from '@/data/contracts'
+import { employeeById } from '@/data/employees'
+import { initialOffboarding } from '@/data/offboarding'
 import { PAYROLL_TOTALS } from '@/data/payroll'
 import { jobOpenings, recruitmentFunnel } from '@/data/recruitment'
 import { STATUSES } from '@/data/employees'
 import { useSimulatedLoading } from '@/hooks/useSimulatedLoading'
 import { useAppStore } from '@/store/AppStore'
 import { CHART_COLORS } from '@/utils/colors'
-import { formatCompactCurrency, formatNumber, greeting, relativeTime, todayLabel } from '@/utils/format'
+import { formatCompactCurrency, formatDate, formatNumber, greeting, relativeTime, todayLabel } from '@/utils/format'
 
 const STATUS_COLORS: Record<string, string> = { Active: 'var(--chart-3)', 'On Leave': 'var(--chart-1)', Probation: 'var(--chart-5)', 'Notice Period': 'var(--chart-4)' }
 
@@ -174,7 +180,7 @@ export default function HRDashboard() {
             <div className="mt-4 grid grid-cols-3 gap-2 border-t pt-4">
               {[
                 { label: 'Leave requests', value: counts.pendingLeave, icon: Inbox, to: '/hr/leave' },
-                { label: 'Docs expiring', value: 3, icon: FileText, to: '/hr/documents' },
+                { label: 'Docs expiring', value: expiryAlerts().length, icon: FileText, to: '/hr/contracts' },
                 { label: 'Payroll', value: payrollStatus === 'Draft' ? 'Ready' : payrollStatus, icon: payrollStatus === 'Draft' ? Clock : CheckCircle2, to: '/hr/payroll' },
               ].map((x) => (
                 <Link key={x.label} to={x.to} className="rounded-lg border p-2.5 transition hover:border-primary/30 hover:bg-muted/40">
@@ -212,6 +218,81 @@ export default function HRDashboard() {
           </CardContent>
         </Card>
       </div>
+
+      <div className="grid gap-6 lg:grid-cols-5">
+        <ExpiringSoonCard />
+        <PeopleOpsCard />
+      </div>
     </div>
+  )
+}
+
+function ExpiringSoonCard() {
+  const alerts = expiryAlerts()
+  return (
+    <Card className="lg:col-span-3">
+      <CardHeader>
+        <div>
+          <CardTitle>Expiring soon</CardTitle>
+          <CardDescription>Contracts and documents due within 30 days</CardDescription>
+        </div>
+        <Button variant="ghost" size="sm" asChild>
+          <Link to="/hr/contracts">
+            View all <ArrowRight className="rtl:-scale-x-100" />
+          </Link>
+        </Button>
+      </CardHeader>
+      <CardContent className="divide-y">
+        {alerts.slice(0, 6).map((a) => {
+          const e = employeeById(a.employeeId)!
+          const d = daysUntil(a.date)
+          return (
+            <div key={a.id} className="flex items-center justify-between gap-3 py-2.5 first:pt-0 last:pb-0">
+              <PersonCell name={e.name} subtitle={`${a.label} · ${formatDate(a.date)}`} size="sm" />
+              <Badge variant={d < 0 ? 'danger' : 'warning'}>
+                <AlarmClock /> {d < 0 ? 'Overdue' : d === 0 ? 'Today' : `${d} days`}
+              </Badge>
+            </div>
+          )
+        })}
+      </CardContent>
+    </Card>
+  )
+}
+
+function PeopleOpsCard() {
+  const navigate = useNavigate()
+  const { counts } = useAppStore()
+  const items = [
+    { label: 'Salary advances to review', value: counts.pendingAdvances, icon: HandCoins, to: '/hr/loans' },
+    { label: 'Employees offboarding', value: initialOffboarding.length, icon: UserMinus, to: '/hr/offboarding' },
+    { label: 'Assets in repair or lost', value: initialAssets.filter((a) => a.status === 'In Repair' || a.status === 'Lost').length, icon: Package, to: '/hr/assets' },
+    { label: 'Probation reviews due', value: expiryAlerts().filter((a) => a.label === 'Probation ends').length, icon: CheckCircle2, to: '/hr/contracts' },
+  ]
+  return (
+    <Card className="lg:col-span-2">
+      <CardHeader>
+        <div>
+          <CardTitle>People operations</CardTitle>
+          <CardDescription>Open items across the employee lifecycle</CardDescription>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        {items.map((i) => (
+          <button
+            key={i.label}
+            type="button"
+            onClick={() => navigate(i.to)}
+            className="flex w-full items-center gap-3 rounded-lg border p-3 text-start transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <i.icon className="size-4" />
+            </span>
+            <span className="min-w-0 flex-1 text-sm font-medium">{i.label}</span>
+            <span className="text-lg font-semibold tabular">{i.value}</span>
+          </button>
+        ))}
+      </CardContent>
+    </Card>
   )
 }

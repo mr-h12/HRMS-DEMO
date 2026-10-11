@@ -1,7 +1,9 @@
-import { Briefcase, Building2, CalendarDays, Download, Eye, Hash, Mail, MapPin, Pencil, Phone, ShieldCheck, UserRound } from 'lucide-react'
+import { Briefcase, Building2, CalendarDays, Download, Eye, Hash, Mail, MapPin, Package, Pencil, Phone, ShieldCheck, UserRound } from 'lucide-react'
 import { useState, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
+import { ASSET_ICONS } from '@/components/assets/assetIcons'
+import { EmptyState } from '@/components/common/EmptyState'
 import { StatusBadge } from '@/components/common/StatusBadge'
 import { UserAvatar } from '@/components/common/UserAvatar'
 import { DocumentPreviewModal, downloadDocument } from '@/components/modals/DocumentPreviewModal'
@@ -9,12 +11,13 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { assetsHeldBy } from '@/data/assets'
 import { ahmedProfile, employeeById } from '@/data/employees'
 import { FileIcon } from '@/pages/employee/DocumentsPage'
 import { useCurrentUser, useRole } from '@/hooks/useRole'
 import { useAppStore } from '@/store/AppStore'
 import type { EmployeeDocument } from '@/types'
-import { formatDate } from '@/utils/format'
+import { formatCurrency, formatDate } from '@/utils/format'
 
 function InfoGrid({ items }: { items: [string, ReactNode][] }) {
   return (
@@ -119,6 +122,9 @@ export default function ProfilePage() {
           </TabsTrigger>
           <TabsTrigger value="documents">
             <Building2 className="size-4" /> Documents
+          </TabsTrigger>
+          <TabsTrigger value="custody">
+            <Package className="size-4" /> Custody
           </TabsTrigger>
         </TabsList>
 
@@ -251,9 +257,52 @@ export default function ProfilePage() {
             </CardContent>
           </Card>
         </TabsContent>
+
+        <TabsContent value="custody">
+          <CustodyCard employeeId={emp.id} />
+        </TabsContent>
       </Tabs>
 
       <DocumentPreviewModal doc={previewing} onOpenChange={(o) => !o && setPreviewing(null)} />
     </div>
+  )
+}
+
+/** Company equipment signed out to this employee (custody receipts). */
+function CustodyCard({ employeeId }: { employeeId: string }) {
+  const items = assetsHeldBy(employeeId)
+  return (
+    <Card>
+      <CardHeader>
+        <div>
+          <CardTitle>My custody</CardTitle>
+          <CardDescription>Company equipment you signed for. Return it to HR before your last working day.</CardDescription>
+        </div>
+      </CardHeader>
+      {items.length === 0 ? (
+        <EmptyState icon={Package} title="No custody items" description="Equipment HR assigns to you will appear here." />
+      ) : (
+        <CardContent className="grid gap-3 sm:grid-cols-2">
+          {items.map((a) => {
+            const Icon = ASSET_ICONS[a.category]
+            return (
+              <div key={a.id} className="flex items-center gap-3 rounded-lg border p-3">
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground">
+                  <Icon className="size-5" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-sm font-medium">{a.name}</div>
+                  <div className="font-mono text-xs text-muted-foreground" data-no-translate>
+                    {a.serial}
+                  </div>
+                  <div className="text-xs text-muted-foreground">{`Since ${formatDate(a.assignedOn!)} · ${formatCurrency(a.value)}`}</div>
+                </div>
+                <StatusBadge status={a.status} />
+              </div>
+            )
+          })}
+        </CardContent>
+      )}
+    </Card>
   )
 }

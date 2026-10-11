@@ -8,6 +8,7 @@ const MAP: Record<string, BadgeVariant> = {
   Paid: 'success', Scheduled: 'info', Processed: 'success', 'On Hold': 'danger', Draft: 'neutral', Generated: 'info',
   'On Track': 'success', 'At Risk': 'warning', Completed: 'success', Behind: 'danger', 'In Progress': 'info', 'Not Started': 'neutral',
   Valid: 'success', 'Expiring Soon': 'warning', Expired: 'danger',
+  Settled: 'success', Assigned: 'info', 'In Stock': 'neutral', 'In Repair': 'warning', Lost: 'danger',
   High: 'danger', Medium: 'warning', Low: 'neutral',
   Applied: 'neutral', Screening: 'info', Interview: 'violet', Offer: 'warning', Hired: 'success',
   Exceptional: 'violet', Exceeds: 'success', Meets: 'info', Developing: 'warning',
