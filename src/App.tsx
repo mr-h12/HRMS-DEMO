@@ -42,6 +42,8 @@ const AssetsPage = lazy(() => import('@/pages/hr/AssetsPage'))
 const OffboardingPage = lazy(() => import('@/pages/hr/OffboardingPage'))
 const OrgChartPage = lazy(() => import('@/pages/hr/OrgChartPage'))
 const ContractsPage = lazy(() => import('@/pages/hr/ContractsPage'))
+const OnboardingPage = lazy(() => import('@/pages/hr/OnboardingPage'))
+const InsuranceTaxPage = lazy(() => import('@/pages/hr/InsuranceTaxPage'))
 // Shared
 const ProfilePage = lazy(() => import('@/pages/shared/ProfilePage'))
 const NotificationsPage = lazy(() => import('@/pages/shared/NotificationsPage'))
@@ -122,6 +124,8 @@ export default function App() {
                     <Route path="offboarding" element={page(<OffboardingPage />)} />
                     <Route path="org-chart" element={page(<OrgChartPage />)} />
                     <Route path="contracts" element={page(<ContractsPage />)} />
+                    <Route path="onboarding" element={page(<OnboardingPage />)} />
+                    <Route path="insurance" element={page(<InsuranceTaxPage />)} />
                     {shared}
                   </Route>
                   <Route path="*" element={<RootRedirect />} />

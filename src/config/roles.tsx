@@ -1,6 +1,6 @@
 import {
   BarChart3, BriefcaseBusiness, CalendarCheck2, CalendarDays, CheckSquare, Clock, FileClock, FileText, FolderOpen, GraduationCap,
-  HandCoins, LayoutDashboard, Network, Package, Receipt, Settings, Target, User, UserMinus, Users, Wallet, type LucideIcon, Inbox,
+  HandCoins, Landmark, LayoutDashboard, Network, Package, Receipt, Settings, Target, User, UserMinus, UserPlus, Users, Wallet, type LucideIcon, Inbox,
 } from 'lucide-react'
 import { COMPANY } from '@/data/company'
 import type { CurrentUser, Role } from '@/types'
@@ -58,11 +58,13 @@ export const NAVIGATION: Record<Role, NavItem[]> = {
     { label: 'Employees', path: '/hr/employees', icon: Users, group: 'People' },
     { label: 'Org Chart', path: '/hr/org-chart', icon: Network, group: 'People' },
     { label: 'Contracts & Expiries', path: '/hr/contracts', icon: FileClock, group: 'People' },
+    { label: 'Onboarding', path: '/hr/onboarding', icon: UserPlus, group: 'People' },
     { label: 'Offboarding', path: '/hr/offboarding', icon: UserMinus, group: 'People' },
     { label: 'Attendance', path: '/hr/attendance', icon: Clock, group: 'Time & Leave' },
     { label: 'Leave', path: '/hr/leave', icon: CalendarCheck2, badgeKey: 'pendingLeave', group: 'Time & Leave' },
     { label: 'Payroll', path: '/hr/payroll', icon: Wallet, group: 'Pay & Benefits' },
     { label: 'Advances & Loans', path: '/hr/loans', icon: HandCoins, badgeKey: 'pendingAdvances', group: 'Pay & Benefits' },
+    { label: 'Social Insurance & Tax', path: '/hr/insurance', icon: Landmark, group: 'Pay & Benefits' },
     { label: 'Recruitment', path: '/hr/recruitment', icon: BriefcaseBusiness, group: 'Talent' },
     { label: 'Performance', path: '/hr/performance', icon: Target, group: 'Talent' },
     { label: 'Training', path: '/hr/training', icon: GraduationCap, group: 'Talent' },

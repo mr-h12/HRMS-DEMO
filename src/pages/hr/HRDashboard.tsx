@@ -14,6 +14,7 @@ import { departmentDistribution, headcountTrend, recentActivity } from '@/data/c
 import { daysUntil, expiryAlerts } from '@/data/contracts'
 import { employeeById } from '@/data/employees'
 import { initialOffboarding } from '@/data/offboarding'
+import { probationCases } from '@/data/onboarding'
 import { PAYROLL_TOTALS } from '@/data/payroll'
 import { jobOpenings, recruitmentFunnel } from '@/data/recruitment'
 import { STATUSES } from '@/data/employees'
@@ -262,9 +263,10 @@ function ExpiringSoonCard() {
 
 function PeopleOpsCard() {
   const navigate = useNavigate()
-  const { counts } = useAppStore()
+  const { counts, candidates } = useAppStore()
   const items = [
     { label: 'Salary advances to review', value: counts.pendingAdvances, icon: HandCoins, to: '/hr/loans' },
+    { label: 'New hires onboarding', value: probationCases.length + candidates.filter((c) => c.stage === 'Hired').length, icon: UserPlus, to: '/hr/onboarding' },
     { label: 'Employees offboarding', value: initialOffboarding.length, icon: UserMinus, to: '/hr/offboarding' },
     { label: 'Assets in repair or lost', value: initialAssets.filter((a) => a.status === 'In Repair' || a.status === 'Lost').length, icon: Package, to: '/hr/assets' },
     { label: 'Probation reviews due', value: expiryAlerts().filter((a) => a.label === 'Probation ends').length, icon: CheckCircle2, to: '/hr/contracts' },
