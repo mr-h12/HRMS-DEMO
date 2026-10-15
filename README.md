@@ -8,6 +8,8 @@ The prototype is for demonstrating to clients and stakeholders. It has three com
 
 > All data is realistic mock data held in frontend state. There is no backend, database, authentication, payroll engine or HR integration.
 
+The full product this prototype represents, including requirements, workflows and the release plan, is described in the [Product Requirements Document](docs/PRD.md).
+
 ## Demo roles
 
 Use **Viewing as: ▼** in the top navigation to switch roles. Switching changes the dashboard, sidebar, available pages, data scope, permitted actions and notifications.
